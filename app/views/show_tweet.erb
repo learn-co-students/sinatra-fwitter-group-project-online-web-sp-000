@@ -4,11 +4,15 @@
 <p><%= @tweet.content %></p>
 
 <form method="post" action="/tweets/<%= @tweet[:id] %>">
-  <h3>Edit Tweet</h3>
+  <h3><a href="/tweets/<%= @tweet[:id] %>/edit">Edit Tweet</a></h3>
 </form>
 
 <form method="post" action="/tweets/<%= @tweet[:id] %>">
   <input type="hidden" name="_method" value="delete" />
-  <h3>Delete Tweet</h3>
+
   <input type="submit" id="Delete Tweet" value="Delete Tweet" />
 </form>
+
+<p><a href="/tweets">Return to Tweets</a></p>
+
+<p><a href="/logout">Log Out</a></p>
