@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
 
   delete '/tweets/:id' do
     @tweet = Tweet.find_by_id(params[:id])
-    @tweet.destroy
+    if Helpers.is_logged_in?(session) && @tweet.user_id == session[:user_id]
+      @tweet.destroy
+    else
+      redirect "/login"
+    end
   end
 
   get '/' do
@@ -72,15 +76,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/tweets/:id/delete' do
-    if Helpers.is_logged_in?(session)
-      @tweet = Tweet.find_by_id(params[:id])
-      erb :delete_tweet
-    else
-      redirect "/login"
-    end
-  end
-
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :show
@@ -113,7 +108,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect "/tweets"
     else
-      erb :error
+      redirect "/login"
     end
 
   end
@@ -131,17 +126,3 @@ class ApplicationController < Sinatra::Base
   end
 
 end
-
-#
-# context "logged in" do
-#   it 'lets a user view tweet edit form if they are logged in' do
-#     user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-#     tweet = Tweet.create(:content => "tweeting!", :user_id => user.id)
-#     visit '/login'
-#
-#     fill_in(:username, :with => "becky567")
-#     fill_in(:password, :with => "kittens")
-#     click_button 'submit'
-#     visit '/tweets/1/edit'
-#     expect(page.status_code).to eq(200)
-#     expect(page.body).to include(tweet.content)
