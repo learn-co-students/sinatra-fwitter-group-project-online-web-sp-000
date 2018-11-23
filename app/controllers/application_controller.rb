@@ -1,4 +1,4 @@
-rrequire './config/environment'
+require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
