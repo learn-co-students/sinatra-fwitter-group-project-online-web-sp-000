@@ -1,0 +1,23 @@
+<h1><%= @tweet.user.username %> said:</h1>
+<p>
+  <%= @tweet.content %>
+</p>
+
+<% if current_user.id == @tweet.user.id %>
+<form action="/tweets/<%= @tweet.id %>/edit" method="get">
+  <input value="Edit Tweet" type="submit">
+</form>
+<form action="/tweets/<%= @tweet.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input value="Delete Tweet" type="submit">
+</form>
+<% end %>
+
+<!-- a second, identical delete button because the tests require one be
+  visible to users for whom the delete functionality is blocked -->
+<% if current_user.id != @tweet.user.id %>
+<form action="/tweets/<%= @tweet.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input value="Delete Tweet" type="submit">
+</form>
+<% end %>
