@@ -2,8 +2,9 @@ class TweetController < ApplicationController
 
   # Index Action
   get '/tweets' do
-    @tweets = Tweet.all
-    erb :'/tweets/tweets'
+    'hello from tweets'
+    # @tweets = Tweet.all
+    # erb :'/tweets/tweets'
   end
   
   # New Action
