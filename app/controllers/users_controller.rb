@@ -1,6 +1,5 @@
 class UserController < ApplicationController
 
-
   # Index Action
   get '/users' do
     @users = User.all
@@ -9,15 +8,19 @@ class UserController < ApplicationController
   
   # New Action
   get '/signup' do
-    erb :'users/create_user'
+    if !session[:id]
+      erb :'users/create_user'
+    else
+      redirect "/tweets"
+    end
   end  
   
   # Create Action
   post '/signup' do
-    # binding.pry
     redirect '/signup' if params['username'].empty? || params['password'].empty? || params['email'].empty?
-
+    
     user = User.create(username:params['username'], password:params['password'], email:[params['email']])
+    session[:id] = user.id
     redirect "/tweets"
   end
   
