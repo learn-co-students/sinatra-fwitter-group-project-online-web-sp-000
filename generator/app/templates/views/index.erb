@@ -1,0 +1,11 @@
+<h2><%= @class.name %></h2>
+
+<ol>
+  <% @objects.each do |object| %>    
+  <li><a href="/objects/<%=object.id%>">
+  <%= object.name %></a></li>
+  <% end %>
+</ol>
+
+<a class="button" href="/objects"><%= @class.name %></a>
+<a class="button" href="/">Home</a>
