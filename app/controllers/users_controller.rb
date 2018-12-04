@@ -1,9 +1,5 @@
 class UserController < ApplicationController
 
-  # Home action
-  get '/' do
-    erb :'index'
-  end
 
   # Index Action
   get '/users' do

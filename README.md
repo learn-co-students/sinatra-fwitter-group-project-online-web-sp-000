@@ -27,7 +27,7 @@ There are controller tests to make sure that you build the appropriate controlle
 ### Some Hints on Working Together
 
 Working on a software project with another person is not something to be taken lightly. While you are a fantastic coder solo, software development is a collaborative activity. Just like anything else, there is skill in collaborating on code. In the end, collaborating with another person boils down to three different styles:
-
+  
   - Pair - Pair the entire time working linearly together
   - Pass - 1 person does 1 requirement and then the next person does the next one
   - Parallel - work on different parts at the same time by agreeing on interfaces and stubs and meeting in the middle
