@@ -2,6 +2,7 @@ class TweetController < ApplicationController
 
   # Index Action
   get '/tweets' do
+    binding.pry
     @tweets = Tweet.all
     erb :'/tweets/tweets'
   end

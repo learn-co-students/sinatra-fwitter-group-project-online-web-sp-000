@@ -14,7 +14,7 @@ class UserController < ApplicationController
   end
   
   # Create Action
-  post '/users' do
+  post '/signup' do
     user = User.create(params['user'])
     redirect "/tweets"
   end
