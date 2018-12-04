@@ -14,7 +14,10 @@ class UserController < ApplicationController
   
   # Create Action
   post '/signup' do
-    user = User.create(params['user'])
+    # binding.pry
+    redirect '/signup' if params['username'].empty? || params['password'].empty? || params['email'].empty?
+
+    user = User.create(username:params['username'], password:params['password'], email:[params['email']])
     redirect "/tweets"
   end
   

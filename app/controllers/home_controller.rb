@@ -4,8 +4,4 @@ class HomeController < ApplicationController
     erb :'index'
   end
 
-  get '/signup' do
-    erb :'users/create_user'
-  end  
-
 end
