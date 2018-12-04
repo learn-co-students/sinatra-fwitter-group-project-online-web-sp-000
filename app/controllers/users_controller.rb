@@ -16,10 +16,7 @@ class UserController < ApplicationController
   # Create Action
   post '/users' do
     user = User.create(params['user'])
-
-    user.tweets << Tweet.create(name: params['tweet_name']) unless params['tweet_name'].empty?
-    user.save
-    redirect "users/#{user.id}"
+    redirect "/tweets"
   end
   
   # Show Action
