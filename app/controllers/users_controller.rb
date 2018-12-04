@@ -8,10 +8,9 @@ class UserController < ApplicationController
   end
   
   # New Action
-  get '/users/new' do
-    @tweets = Tweet.all
-    erb :'/users/new'
-  end
+  get '/signup' do
+    erb :'users/create_user'
+  end  
   
   # Create Action
   post '/signup' do
