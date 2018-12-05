@@ -53,7 +53,10 @@ class UserController < ApplicationController
   
   # Create Action
   post '/signup' do
-    redirect '/signup' if params['username'].empty? || params['password'].empty? || params['email'].empty?
+    if params['username'].empty? || params['password'].empty? || params['email'].empty?
+      session[:flash] = "You must enter a username, email and password."
+      redirect '/signup' 
+    end
     
     user = User.create(username:params['username'], password:params['password'], email:[params['email']])
     session[:id] = user.id

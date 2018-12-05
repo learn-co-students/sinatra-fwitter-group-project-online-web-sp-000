@@ -1,6 +1,8 @@
 <h1>Fwitter Login</h1>
 <% if session[:flash] %>
 <p><%= session[:flash] %></p>
+<% session.delete(:flash) %>
+<% binding.pry %>
 <% end %>
 <form action="/login" method="POST">
 <p><label for="username">User name:</label>
