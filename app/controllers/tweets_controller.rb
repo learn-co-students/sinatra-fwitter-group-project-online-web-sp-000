@@ -14,8 +14,8 @@ class TweetController < ApplicationController
   # New Action
   get '/tweets/new' do
     if session[:id] 
-      @users = User.all
-    erb :'/tweets/new'
+      # @users = User.all
+      erb :'/tweets/new'
     else
       redirect '/login'
     end
@@ -23,9 +23,8 @@ class TweetController < ApplicationController
   
   # Create Action
   post '/tweets' do
-    tweet = Tweet.create(params['tweet'])
-    tweet.user = User.create(name: params['user_name']) unless params['user_name'].empty?
-
+    tweet = Tweet.create(content: params['content'])
+    tweet.user = User.find(session[:id])
     tweet.save
     redirect "tweets/#{tweet.id}"
   end
