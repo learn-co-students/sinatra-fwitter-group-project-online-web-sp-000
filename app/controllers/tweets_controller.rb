@@ -13,8 +13,12 @@ class TweetController < ApplicationController
   
   # New Action
   get '/tweets/new' do
-    @users = User.all
+    if session[:id] 
+      @users = User.all
     erb :'/tweets/new'
+    else
+      redirect '/login'
+    end
   end
   
   # Create Action
