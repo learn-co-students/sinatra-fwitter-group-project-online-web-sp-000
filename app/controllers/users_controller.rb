@@ -5,6 +5,15 @@ class UserController < ApplicationController
     @users = User.all
     erb :'/users/index'
   end
+
+  # Login Action
+  get '/login' do
+    if !session[:id]
+      erb :'users/login'
+    else
+      redirect "/tweets"
+    end    
+  end
   
   # New Action
   get '/signup' do
