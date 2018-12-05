@@ -56,11 +56,11 @@ class UserController < ApplicationController
     if params['username'].empty? || params['password'].empty? || params['email'].empty?
       session[:flash] = "You must enter a username, email and password."
       redirect '/signup' 
+    else
+      user = User.create(username:params['username'], password:params['password'], email:[params['email']])
+      session[:id] = user.id
+      redirect "/tweets"
     end
-    
-    user = User.create(username:params['username'], password:params['password'], email:[params['email']])
-    session[:id] = user.id
-    redirect "/tweets"
   end
   
   # Show Action
