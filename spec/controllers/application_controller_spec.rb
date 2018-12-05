@@ -101,7 +101,7 @@ describe ApplicationController do
       
     end
 
-    xit "displays a failure message if no user is found" do
+    it "displays a failure message if no user is found" do
       params = {
         :username => "becky567",
         :password => "kittens"
@@ -110,10 +110,10 @@ describe ApplicationController do
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("Login failed: User becky567 not found.")
+      expect(last_response.body).to include("Login failed: User 'becky567' not found.")
     end
 
-    xit "displays a failure message if the password is incorrect" do
+    it "displays a failure message if the password is incorrect" do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
       params = {
         :username => "becky567",

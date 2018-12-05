@@ -2,9 +2,14 @@ class TweetController < ApplicationController
 
   # Index Action
   get '/tweets' do
-    @tweets = Tweet.all
-    @user = User.find(session[:id])
-    erb :'/tweets/tweets'
+    # binding.pry
+    if session[:id] 
+      @user = User.find(session[:id])
+      @tweets = Tweet.all
+      erb :'/tweets/tweets'
+    else
+      redirect '/login'
+    end
   end
   
   # New Action

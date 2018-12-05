@@ -16,14 +16,17 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    redirect '/login' if params['username'].empty? || params['password'].empty? 
+    if params['username'].empty? || params['password'].empty? 
+      session[:flash] = "You must enter a username and password."
+      redirect '/login' 
+    end
     
     user = User.find_by(username: params[:username])    
     if user && user.authenticate(params[:password])
       session[:id] = user.id
       redirect '/tweets'
     else
-      session[:flash] = "Login failed: " + (user ? "Incorrect password." : "User '#{params[:username]} not found.'")
+      session[:flash] = "Login failed: " + (user ? "Incorrect password." : "User '#{params[:username]}' not found.")
       redirect '/login'
     end
   end
@@ -31,7 +34,8 @@ class UserController < ApplicationController
   # Logout action
   get '/logout' do
     if session[:id]
-      session[:id] = ""
+      session.clear
+      # binding.pry
       redirect '/login'
     else
       redirect "/"
