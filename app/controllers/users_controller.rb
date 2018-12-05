@@ -14,6 +14,18 @@ class UserController < ApplicationController
       redirect "/tweets"
     end    
   end
+
+  post '/login' do
+    redirect '/login' if params['username'].empty? || params['password'].empty? 
+    
+    user = User.find_by(username: params[:username])    
+    if user && user.authenticate(params[:password])
+      session[:id] = user.id
+      redirect '/tweets'
+    else
+      redirect '/login'
+    end
+  end
   
   # New Action
   get '/signup' do
