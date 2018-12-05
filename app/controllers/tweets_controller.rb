@@ -23,16 +23,22 @@ class TweetController < ApplicationController
   
   # Create Action
   post '/tweets' do
-    tweet = Tweet.create(content: params['content'])
-    tweet.user = User.find(session[:id])
-    tweet.save
-    redirect "tweets/#{tweet.id}"
+    content = params['content']
+    if content.empty?
+      session[:flash] = "Please enter some content for your tweet."
+      redirect '/tweets/new'
+    else 
+      tweet = Tweet.create(content: content)
+      tweet.user = User.find(session[:id])
+      tweet.save
+      redirect "tweets/#{tweet.id}"
+    end
   end
   
   # Show Action
   get '/tweets/:id' do
     @tweet = Tweet.find(params[:id])
-    erb :'/tweets/show'
+    erb :'/tweets/show_tweet'
   end
   
   # Edit Action

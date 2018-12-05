@@ -6,9 +6,11 @@
   <body>
 
     <div class="container">
+      <% if session[:flash] %>
+      <p><%= session[:flash] %></p>
+      <% session.delete(:flash) %>
+      <% end %>
       <%= yield %>
-      <!-- <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2> -->
     </div>
 
   </body>
