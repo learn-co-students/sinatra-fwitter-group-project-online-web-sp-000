@@ -23,10 +23,21 @@ class UserController < ApplicationController
       session[:id] = user.id
       redirect '/tweets'
     else
+      session[:flash] = "Login failed: " + (user ? "Incorrect password." : "User '#{params[:username]} not found.'")
       redirect '/login'
     end
   end
   
+  # Logout action
+  get '/logout' do
+    if session[:id]
+      session[:id] = ""
+      redirect '/login'
+    else
+      redirect "/"
+    end
+  end
+
   # New Action
   get '/signup' do
     if !session[:id]

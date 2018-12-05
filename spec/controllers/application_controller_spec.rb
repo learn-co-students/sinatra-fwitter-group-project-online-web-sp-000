@@ -98,6 +98,33 @@ describe ApplicationController do
       post '/login', params
       get '/login'
       expect(last_response.location).to include("/tweets")
+      
+    end
+
+    xit "displays a failure message if no user is found" do
+      params = {
+        :username => "becky567",
+        :password => "kittens"
+      }
+      post '/login', params
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Login failed: User becky567 not found.")
+    end
+
+    xit "displays a failure message if the password is incorrect" do
+      user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+      params = {
+        :username => "becky567",
+        :password => "kittensssss"
+      }
+      post '/login', params
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Login failed: Incorrect password.")
+      
     end
   end
 
