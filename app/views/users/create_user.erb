@@ -1,8 +1,4 @@
 <h1>Fwitter Signup</h1>
-<% if session[:flash] %>
-<p><%= session[:flash] %></p>
-<% session.delete(:flash) %>
-<% end %>
 <form action="/signup" method="POST">
 <p><label for="username">User name:</label>
   <input type="text" name="username" id="username" >
