@@ -2,7 +2,6 @@ class TweetController < ApplicationController
 
   # Index Action
   get '/tweets' do
-    # binding.pry
     if session[:id] 
       @user = User.find(session[:id])
       @tweets = Tweet.all
