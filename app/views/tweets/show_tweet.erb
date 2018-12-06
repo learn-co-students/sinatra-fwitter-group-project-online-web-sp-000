@@ -2,7 +2,7 @@
 <i>@<%= @tweet.user.username unless !@tweet.user %></i>
 
 <form action="/tweets/<%= @tweet.id %>/edit" method="GET">
-<input type="submit" id="submit" value="Edit Tweet"></form>
+<input type="submit" id="edit" value="Edit Tweet"></form>
 
 <form action="/tweets/<%= @tweet.id %>" method="POST">
   <input type="hidden" name="_method" value="delete">
