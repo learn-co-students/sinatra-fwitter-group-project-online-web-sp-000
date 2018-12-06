@@ -14,7 +14,6 @@ class TweetController < ApplicationController
   # New Action
   get '/tweets/new' do
     if session[:id] 
-      # @users = User.all
       erb :'/tweets/new'
     else
       redirect '/login'
@@ -47,17 +46,31 @@ class TweetController < ApplicationController
   
   # Edit Action
   get '/tweets/:id/edit' do
-    @tweet = Tweet.find(params[:id])
-    @users = User.all
-    erb :'/tweets/edit_tweet'
+    if !session[:id]
+      redirect '/login'
+    else
+      @tweet = Tweet.find(params[:id])
+      if session[:id] != @tweet.user.id 
+        session[:flash] = "You cannot edit another user's Tweet."
+        redirect "/tweets/#{params[:id]}/-e"
+      else 
+        @users = User.all
+        erb :'/tweets/edit_tweet'
+      end
+    end
   end
   
   # Patch Action
   patch '/tweets/:id' do
-    tweet = Tweet.find(params[:id])
-    tweet.update(params['tweet'])
-    tweet.save
-    redirect "tweets/#{tweet.id}"
+    if params['tweet']['content'].empty?
+      session[:flash] = "Please enter some content for your tweet."
+      redirect "/tweets/#{params[:id]}/edit"
+    else 
+      tweet = Tweet.find(params[:id])
+      tweet.update(params['tweet'])
+      tweet.save
+      redirect "tweets/#{tweet.id}"
+    end
   end
   
   # Delete Action
