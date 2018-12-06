@@ -1,0 +1,17 @@
+<h1>Fwitter Signup</h1>
+<% if session[:flash] %>
+<p><%= session[:flash] %></p>
+<% session.delete(:flash) %>
+<% end %>
+<form action="/signup" method="POST">
+<p><label for="username">User name:</label>
+  <input type="text" name="username" id="username" >
+</p>
+<p><label for="password">Password:</label>
+  <input type="text" name="password" id="password" >
+</p>
+<p><label for="email">Email:</label>
+  <input type="text" name="email" id="email" >
+</p>
+<p><input type="submit" value="Create"></p>
+</form>
