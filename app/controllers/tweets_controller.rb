@@ -76,9 +76,15 @@ class TweetController < ApplicationController
   # Delete Action
   delete '/tweets/:id' do
     tweet = Tweet.find(params[:id])
-    tweet.delete
-    session[:flash] = "Your Tweet has been deleted."
-    redirect "/tweets"
+
+    if session[:id] != tweet.user.id 
+      session[:flash] = "You cannot delete another user's Tweet."
+      redirect "/tweets/#{params[:id]}"
+    else 
+      tweet.delete
+      session[:flash] = "Your Tweet has been deleted."
+      redirect "/tweets"
+    end
   end
   
 end
