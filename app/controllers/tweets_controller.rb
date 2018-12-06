@@ -49,16 +49,13 @@ class TweetController < ApplicationController
   get '/tweets/:id/edit' do
     @tweet = Tweet.find(params[:id])
     @users = User.all
-    erb :'/tweets/edit'
+    erb :'/tweets/edit_tweet'
   end
   
   # Patch Action
   patch '/tweets/:id' do
-
     tweet = Tweet.find(params[:id])
     tweet.update(params['tweet'])
-    tweet.user = User.create(name: params['user_name']) unless params['user_name'].empty?
-
     tweet.save
     redirect "tweets/#{tweet.id}"
   end
