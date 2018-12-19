@@ -1,5 +1,5 @@
 <h1>Welcome, <%=current_user.username%></h1>
 <h2>Tweets</h2>
 <%@tweets.each do |tweet|%>
-<%= tweet.content %>
+<p><%= tweet.content %></p>
 <% end %>
