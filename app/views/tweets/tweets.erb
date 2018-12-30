@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
 
-    <title><%= current_user.username %>'s Tweets</title>
+    <title></title>
   </head>
   <body>
-  <%= current_user.username %>'s tweets!
+    <p>Welcome, <%= current_user.username.capitalize %>!</p>
+    <a href="/logout">Logout</a>
   </body>
 </html>
