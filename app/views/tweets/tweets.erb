@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title></title>
+  </head>
+  <body>
+    <p>Welcome, <%= current_user.username.capitalize %>!</p>
+    <form action="/tweets/new" method="GET">
+      <button type="submit" name="button">Create Tweet</button>
+    </form>
+    <br>
+    <% @tweets.reverse.each.with_index do |tweet, index| %>
+      <div>
+        <%= tweet.content %> <br>
+        <label style="color:blue;">- @<a href="/tweets/<%= tweet.id %>"><%= tweet.user.username.capitalize %></a></label>
+      </div>
+      <br>
+    <% end %>
+    <br><br>
+    <a href="/logout">Logout</a>
+  </body>
+</html>
