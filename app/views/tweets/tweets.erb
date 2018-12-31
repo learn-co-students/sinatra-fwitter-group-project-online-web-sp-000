@@ -12,10 +12,9 @@
     </form>
     <br>
     <% @tweets.reverse.each.with_index do |tweet, index| %>
-
       <div>
         <%= tweet.content %> <br>
-        <label style="color:blue;">- @<%= tweet.user.username.capitalize %></label>
+        <label style="color:blue;">- @<a href="/tweets/<%= tweet.id %>"><%= tweet.user.username.capitalize %></a></label>
       </div>
       <br>
     <% end %>
