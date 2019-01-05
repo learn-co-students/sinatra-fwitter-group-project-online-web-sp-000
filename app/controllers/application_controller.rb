@@ -66,7 +66,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets' do
-    if logged_in?
+    if !!session[:user_id]
       @user = User.find(session[:user_id])
       @tweets = Tweet.all
       erb :'tweets/tweets'
@@ -123,7 +123,7 @@ class ApplicationController < Sinatra::Base
 
   post '/tweets/:id/delete' do
     @tweet = Tweet.find(params[:id])
-    if logged_in? && @tweet.user_id == session[:user_id]
+    if logged_in? && current_session(@tweet)
       @tweet.delete
       redirect '/tweets'
     else
@@ -141,6 +141,11 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
-  end 
+    
+    def current_session(tweet)
+      tweet.user_id == session[:user_id]
+    end 
+    
+  end  #end of helpers 
 
 end #end of app controller

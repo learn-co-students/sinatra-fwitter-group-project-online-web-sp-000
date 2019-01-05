@@ -4,11 +4,11 @@
     <title> Fwitter Edit Page </title>
   </head>
   <body>
-    <form method="post" action="/tweets/<%=tweet.id %>">
+    <form method="post" action="/tweets/<%=@tweet.id %>">
       <input type="hidden" id="hidden" name="_method" value="patch"> 
       
         <label for="content"> What's Happening?: </label>
-        <input type="text" id="content" name="content" value="<%= @tweet.content %>">
+        <input type="text" id="content" name="content" value="<%=@tweet.content %>">
         
         <br> 
         <input type="submit" value="Edit" id="submit">
