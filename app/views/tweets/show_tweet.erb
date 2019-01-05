@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title> Fwitter Show Page </title>
+  </head>
+  <body>
+    
+    <%=@tweet.content%>
+    
+    <form method="post" action="/tweets/<%=@tweet.id%>/delete">
+      <input type="submit" value="Delete Tweet">
+    </form>
+    
+    <form method="post" action="/tweets/:id/edit">
+      <input type="submit" value="Edit Tweet">
+    </form>
+    
+  </body>
+</html>
