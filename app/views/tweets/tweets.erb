@@ -5,9 +5,8 @@
   </head>
   <body>
     Welcome, <%=@user.username%>
-    <%@tweets.each do |tweet|%>
-      <%=tweet.content%>
-      <%=tweet.index%>
+    <%@tweets.each_with_index do |tweet, index|%>
+      <p><%=index %>, <%=tweet.content%></p>
     <%end%>
       
   </body>
