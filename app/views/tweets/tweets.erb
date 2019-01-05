@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title> Fwitter Show Page </title>
+  </head>
+  <body>
+    Welcome, <%=@user.username%>
+    <%@tweets.each_with_index do |tweet, index|%>
+      <p><%=index %>, <%=tweet.content%></p>
+    <%end%>
+      
+  </body>
+</html>
