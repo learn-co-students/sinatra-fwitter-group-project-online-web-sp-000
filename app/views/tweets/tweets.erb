@@ -1,0 +1,17 @@
+<h1>Welcome, User</h1>
+<br>
+
+<label><h2>What's on your mind? </h2></label>
+<form action="/tweets" method="POST">
+  <label for="content">Content </label>
+  <input type="text" name="content" id="content">
+  <input type="submit" value="Tweet" id="Submit">
+</form>
+<br>
+
+<h2>Trending Tweets</h2>
+<%@tweets.each do |t|%>
+<a href="/tweets/<%=t.id%>" style="text-decoration:none"><h4><%=t.content%></h4></a>
+<%end%>
+
+<a href="/logout"><h5>Log Out</h5></a>
