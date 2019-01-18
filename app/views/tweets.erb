@@ -1,0 +1,9 @@
+<h2>Welcome, <%= @user.username %></h2>
+
+<ul>
+<% @tweets.each do |tweet| %>
+  <li><a href="/tweets/<%= tweet.id %>"</a><%= @user.username %> : <%= tweet.content %></li>
+  </%>
+  <% end %>
+</ul>
+<input type="submit" value="logout">
