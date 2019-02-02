@@ -2,10 +2,10 @@ class UsersController < ApplicationController
 
   #load signup form
   get '/signup' do 
-    if session[:user_id]
+    if logged_in?
       redirect to '/tweets'
     else
-      erb :'user/signup'
+      erb :'users/signup'
     end
   end
 
@@ -22,11 +22,11 @@ class UsersController < ApplicationController
 
   #login form
   get '/login' do 
-    if session[:user_id]
-      @user = User.find(session[:user_id])
+    if logged_in? 
+      @user = current_user 
       redirect to '/tweets'
     else
-      erb :'user/login'
+      erb :'users/login'
     end
   end
   
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   #logout
   get '/logout' do 
-    if session[:user_id]
+    if logged_in?
       session.clear
     end
     redirect to '/login'
@@ -52,17 +52,7 @@ class UsersController < ApplicationController
   #show tweets
   get "/users/:slug" do 
     @user = User.find_by_slug(params[:slug])
-    erb :'user/show'
-  end
-
-  #tweets landing page
-  get '/tweets' do 
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-      erb :'user/show'
-    else 
-      redirect to '/login'
-    end
+    erb :'users/show'
   end
 
 end
