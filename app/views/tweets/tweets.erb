@@ -1,7 +1,5 @@
 <h3> Welcome, <%= @user.username %> </h3>
 
-<% if @tweets != [] %>
 <% @tweets.each do |tweet| %>
-<p><%= tweet.content <%> </p>
-<% end %>
+<p><%= tweet.content %> </p>
 <% end %>
