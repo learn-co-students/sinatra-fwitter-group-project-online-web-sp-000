@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
   get "/tweets" do
     if session.has_key?(:id)
       @user = User.find(session[:id])
+      @tweets = Tweet.all
       erb :'tweets/tweets'
     else
       redirect to "/login"
