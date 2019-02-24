@@ -22,13 +22,17 @@ class UsersController < ApplicationController
     end
 
 
-    post '/users' do
+    post '/signup' do
 
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
   		 @user = User.create(params)
   		     redirect "/login"
+           #or we could log the user in then redirect to show page
+            # session[:user_id] = user.id
+            # redirect "/users/#{user.id}"
+
   		   else
-  		     erb :"users/failure"
+  		     redirect "/users"
   		  end
       end
 
