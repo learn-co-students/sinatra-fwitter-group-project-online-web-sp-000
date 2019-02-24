@@ -32,7 +32,7 @@ class UsersController < ApplicationController
             # redirect "/users/#{user.id}"
 
   		   else
-  		     redirect "/users"
+  		     redirect "/signup"
   		  end
       end
 
