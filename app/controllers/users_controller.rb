@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
-    # get '/login' do
-    #
-    #   erb :"users/login"
-    # end
+    get '/login' do
+    if logged_in?
+      redirect '/tweets'
+    else
+      erb :'/users/login'
+    end
+  end
+
     #
     # post '/login' do
     #   user = User.find_by(:username => params[:username])
@@ -18,8 +22,12 @@ class UsersController < ApplicationController
     # end
 
     get '/signup' do
-      erb :"users/create_user"
+    if logged_in?
+      redirect '/tweets'
+    else
+      erb :'/users/create_user'
     end
+  end
 
 
     post '/signup' do
