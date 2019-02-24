@@ -1,0 +1,6 @@
+<%if logged_in?%>
+  <h1>Welcome, <%=current_user.username%></h1>
+  <%Tweet.all.each do |tweet|%>
+  <p><%=tweet.content%></p>
+  <%end%>
+<%end%>
