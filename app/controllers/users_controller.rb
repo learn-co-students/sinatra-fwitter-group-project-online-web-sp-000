@@ -29,17 +29,15 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-
-    if params[:username] != "" && params[:email] != "" && params[:password] != ""
-  		 @user = User.create(params)
+      if params[:username] != "" && params[:email] != "" && params[:password] != ""
+  		  @user = User.create(params)
         session[:user_id] = user.id
 
         redirect "/tweets"
-
-  		   else
+  		 else
   		     redirect "/signup"
-  		  end
-      end
+  		 end
+    end
 
 
     get '/logout' do
