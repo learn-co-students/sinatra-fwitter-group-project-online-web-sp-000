@@ -5,11 +5,12 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, 'password_security'
   end
 
   get '/' do
-  	erb :layout
-    #this should be layout not index.  should have link to both login and signup page.
+  	erb :index
   end
 
   helpers do
