@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
-    if logged_in? && current_user
+    if logged_in? && params[:content] != ""
       @tweet = Tweet.new(content: params[:content])
       @tweet.user_id = current_user.id
       @tweet.save
