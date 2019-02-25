@@ -7,12 +7,16 @@ class TweetsController < ApplicationController
 
   get '/tweets/new' do
 
-    erb :'/tweets/new'
+    erb :"/tweets/new"
   end
 
   post '/tweets' do
-
-    redirect '/tweets/:id'
+    if logged_in && current_user
+      @tweet = Tweet.new(content: params[:content])
+      @tweet.user_id = current_user.id
+      @tweet.save
+    binding.pry
+    redirect '/tweets/show'
   end
 
 
