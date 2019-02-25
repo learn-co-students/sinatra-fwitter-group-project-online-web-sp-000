@@ -53,13 +53,14 @@ end
   end
 
   patch '/tweets/:id' do
+
     @tweet = Tweet.find(params[:id])
+
     if logged_in? && params[:content] != ""
       @tweet.update(content: params[:content])
-     redirect "/tweets/#{@tweet.id}"
+      redirect "/tweets/#{@tweet.id}"
 
-    else
-      logged_in? && params[:content] == ""
+    else logged_in? && params[:content] == ""
        redirect "/tweets/#{@tweet.id}/edit"
     end
   end
