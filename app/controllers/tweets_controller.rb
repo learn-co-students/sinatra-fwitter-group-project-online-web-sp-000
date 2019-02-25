@@ -36,6 +36,7 @@ end
   get '/tweets/:id' do
     if logged_in?
     @tweet = Tweet.find(params[:id])
+    binding.pry
 
     erb :"/tweets/show_tweet"
     else

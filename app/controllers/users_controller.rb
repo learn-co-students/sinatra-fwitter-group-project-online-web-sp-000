@@ -48,6 +48,11 @@ class UsersController < ApplicationController
      end
     end
 
+    # get 'users/:slug' do
+    #   binding.pry
+    #   @users = User.find {|user| user.slug == params[:slug]}
+    #   erb :"users/show"
+    # end
 
 
 end
