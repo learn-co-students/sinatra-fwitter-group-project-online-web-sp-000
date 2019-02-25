@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.new(content: params[:content])
       @tweet.user_id = current_user.id
       @tweet.save
-    binding.pry
+    end
     redirect '/tweets/show'
   end
 
