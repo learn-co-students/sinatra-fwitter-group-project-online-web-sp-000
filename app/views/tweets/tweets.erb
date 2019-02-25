@@ -1,4 +1,9 @@
 <h3>Welcome, here are all of your tweets</h3>
+<ul>
+  
+
 <% @tweets.each do |t| %>
-<%=t.content %>
+<li><%=t.content %></li>
 <%end%>
+
+</ul>
