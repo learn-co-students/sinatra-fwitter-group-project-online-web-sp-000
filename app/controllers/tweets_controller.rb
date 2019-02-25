@@ -1,8 +1,10 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
+    if logged_in?
       @tweets = Tweet.all
     erb :'/tweets/tweets'
+   end
   end
 
   get '/tweets/new' do
@@ -11,7 +13,7 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
-    if logged_in && current_user
+    if logged_in? && current_user
       @tweet = Tweet.new(content: params[:content])
       @tweet.user_id = current_user.id
       @tweet.save
