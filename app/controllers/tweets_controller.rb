@@ -19,7 +19,6 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     if logged_in? && params[:content] != ""
-
       @tweet = current_user.tweets.build(content: params[:content])
       @tweet.save
 
@@ -53,7 +52,6 @@ end
   end
 
   patch '/tweets/:id' do
-
     @tweet = Tweet.find(params[:id])
 
     if logged_in? && params[:content] != ""
@@ -65,4 +63,13 @@ end
     end
   end
 
+  delete '/tweets/:id' do
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
+      @tweet.delete
+      redirect '/tweets'
+
+    else redirect '/login'
+  end
+ end
 end
