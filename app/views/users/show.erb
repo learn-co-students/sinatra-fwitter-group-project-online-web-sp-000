@@ -1,1 +1,15 @@
+<<<<<<< HEAD
 <h1>S</h1>
+=======
+<h1>Your Tweets</h1>
+
+<ul>
+ <h3><%= @user.username %></h3>
+
+<%@user.tweets.each do |tweet| %>  
+  <li>
+    <p><%= tweet.content %></p>
+  </li>
+<% end %>
+</ul>
+>>>>>>> 27476222508c5968ed931f3f846ba89c15ad7628
