@@ -1,12 +1,12 @@
 <h1>Your Tweets</h1>
 
 <ul>
- <h3><%= @user.username %></h3>
+  <h3><%= @user.username %></h3>
 
-<%@user.tweets.each do |tweet| %>  
-  <li>
-    <p><%= tweet.content %></p>
-  </li>
-<% end %>
+  <%@user.tweets.each do |tweet| %>
+    <li>
+      <p><%= tweet.content %></p>
+    </li>
+  <% end %>
 </ul>
 

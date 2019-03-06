@@ -3,10 +3,13 @@ class User < ActiveRecord::Base
   has_many :tweets
 
   def slug
-    username.parameterize
+   username.parameterize
   end
 
   def self.find_by_slug(slug)
-    self.all.find{|string| string.slug == slug}
+    self.all.find{|data| data.slug == slug}
   end
+
+
+
 end

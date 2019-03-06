@@ -1,13 +1,14 @@
-<h1>Welcom, <%= current_user.username %></h1>
+<h1> Welcome, <%= current_user.username%></h1>
 
-<h2>Posted Tweets</h2>
-
+<h2> Posted Tweets:</h2>
 <ul>
-  <%@tweets.each do |tweet| %>
-    <li>
-      <p><%= tweet.content %></p>
-      <p><%= @tweet.username %></p>
-    </li>
+  <%  @tweets.each do |tweet| %>
+  <li> <%= tweet.content %> </li>
   <% end %>
-</ul>
+<ul>
+<br></br>
+  <h3><a href="tweets/new">Create Tweet</a></h3>
+
+ <h3><a href='/logout'>Log Out</a></h3><br>
+
 
