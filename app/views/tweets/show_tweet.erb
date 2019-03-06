@@ -1,8 +1,8 @@
+
 <h1> Show One Tweet </h1><br>
 
  <h2> <%= @tweet.content %></h2>
-
-
+ 
 <h3>Delete Tweet</h3>
 <form method="POST" action="/tweets/<%= @tweet.id %>/delete">
   <input type="hidden" name="_method" value="DELETE">

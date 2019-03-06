@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
-
-  get '/tweets' do
+  
+get '/tweets' do
     if logged_in?
       @tweets = Tweet.all
       erb :'/tweets/tweets'
@@ -18,15 +18,14 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
-    if params[:content] == ""
+    if params[:content].empty?
       redirect '/tweets/new'
     else
       @tweet = current_user.tweets.create(content: params[:content])
       redirect to "/tweets/#{@tweet.id}"
     end
   end
-
-
+  
   get '/tweets/:id' do
     if logged_in?
       @tweet = Tweet.find(params[:id])
@@ -66,8 +65,5 @@ class TweetsController < ApplicationController
       redirect "/tweets/#{@tweet.id}"
     end
   end
-
-
-
-
 end
+
