@@ -2,3 +2,15 @@
 <%@user.tweets.each do |tweet|%>
   <h3><%=tweet.content%></h3>
 <%end%>
+
+<br>
+
+<form action="/tweets" method="GET">
+  <button type="submit" id="delete">View Tweets</button>
+</form>
+
+<br>
+
+<form action="/logout" method="GET">
+  <button type="submit">Logout</button>
+</form>

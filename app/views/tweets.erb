@@ -1,4 +1,16 @@
 <h1>Welcome, <%=@user.username%></h1>
 <%Tweet.all.each do |tweet|%>
-  <h3><%=tweet.content%></h3>
+  <h3><%=tweet.user.username%>: <%=tweet.content%></h3>
 <%end%>
+
+<br>
+
+<form action="/users/<%=@user.slug%>" method="GET">
+  <button type="submit">View My Tweets</button>
+</form>
+
+<br>
+
+<form action="/logout" method="GET">
+  <button type="submit">Logout</button>
+</form>
