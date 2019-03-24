@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h4>Welcome, <%=@user.username%></h4>
+
+  <% if Tweet.all.empty? %>
+    <p> There are no tweets! </p>
+  <% else %>
+    <% Tweet.all.each do |tweet| %>
+    <p><%= tweet.content %></p>
+    <% end %>
+  <% end %>
+
+  <a href="/tweets/new">Create Tweet</a>
+  <br>
+  <a href="/logout">Logout</a>
+</body>
+
+</html>
