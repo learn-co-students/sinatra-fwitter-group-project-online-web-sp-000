@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class TweetsController < ApplicationController
+
+  use Rack::Flash
 
   get '/tweets' do
     @user = User.find_by(id: session[:user_id])
@@ -19,6 +23,7 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     if params[:content].empty?
+      flash[:message] = "Cannot create empty tweets. Let's try again."
       redirect to '/tweets/new'
     end
     tweet = Tweet.create(content: params[:content], user_id: session[:user_id])

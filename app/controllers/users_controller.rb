@@ -1,6 +1,8 @@
-require 'pry'
+require 'rack-flash'
 
 class UsersController < ApplicationController
+
+  use Rack::Flash
 
   get '/signup' do
     if logged_in?
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
       # cannot have empty fields
+      flash[:message] = "Unable to create user account. Fields missing."
       redirect to '/signup'
     end
     user = User.create(username: params[:username], email: params[:email], password: params[:password])
@@ -47,16 +50,6 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'users/show'
-  end
-
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
-
-    def current_user
-      User.find(session[:user_id])
-    end
   end
 
 end

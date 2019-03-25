@@ -3,3 +3,6 @@
   <br>
   <input type="submit" value="submit">
 </form>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
