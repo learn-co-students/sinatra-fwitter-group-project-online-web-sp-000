@@ -1,0 +1,8 @@
+<p> Here are your tweets, <%= current_user.username %>
+<% if @tweet.user == current_user %>
+<% @tweets.each do |tweet| %>
+  <div>
+    <%= tweet.content %>
+  </div>
+<% end %>
+<% end %>
