@@ -22,6 +22,31 @@ class TweetsController < ApplicationController
   end
 
   #Show
+  get '/tweets/:id' do
+    @tweet = Tweet.find_by_id(params[:id])
 
+    erb :'tweets/show_tweet.erb'
+  end
 
+  #Edit
+  get '/tweets/:id/edit' do
+    @tweet = Tweet.find_by_id(params[:id])
+
+    erb :'tweets/edit_tweet'
+  end
+
+  #Update
+  patch '/tweets/:id' do
+    @tweet = Tweet.find_by_id(params[:id])
+    @tweet.update(params[:tweet])
+
+    redirect to "/tweets/#{ @tweet.id}"
+  end
+
+  #Delete
+  delete '/tweets/:id' do
+    Tweet.destroy(params[:id])
+
+    redirect to '/tweets'
+  end
 end
