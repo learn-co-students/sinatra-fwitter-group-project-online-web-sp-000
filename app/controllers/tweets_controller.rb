@@ -21,4 +21,7 @@ class TweetsController < ApplicationController
     redirect to "/tweets/#{ @tweet.id}"
   end
 
+  #Show
+
+
 end
