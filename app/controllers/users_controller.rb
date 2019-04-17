@@ -22,10 +22,12 @@ class UsersController < ApplicationController
   end
 
   #Login
-
   get "/login" do
-
-    erb :'users/login'
+    if !logged_in?
+      erb :'users/login'
+    else
+      redirect to '/tweets'
+    end
   end
 
   post "/login" do
@@ -36,18 +38,17 @@ class UsersController < ApplicationController
 
       redirect to '/tweets'
     else
-      redirect to '/failure'
+      redirect to '/signup'
     end
   end
 
-  get "/failure" do
-
-    erb :'users/failure'
-  end
-
   get "/logout" do
-    session.clear
-    redirect '/login'
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
   end
 
 end
