@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+   
   #SignUp
   get '/signup' do
     if !logged_in?
