@@ -1,0 +1,14 @@
+<% if @login_failed %>
+  <h1>Incorrect username and/or password...</h1>
+<% end %>
+
+<h1>Sign In:</h1>
+<form method="POST" action="/users/login">
+  <p><label for="username">Username:</label>
+  <input type="text" name="user[username]" id="username"></p>
+
+  <p><label for="password">Password:</label>
+  <input type="password" name="user[password]" id="password" /></p>
+
+  <input type="submit" id="submit" name="submit" />
+</form>
