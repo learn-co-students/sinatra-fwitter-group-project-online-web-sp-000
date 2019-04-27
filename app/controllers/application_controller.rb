@@ -20,6 +20,14 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get 'login' do
+    if logged_in?
+      redirect '/tweets'
+    else
+      erb :'users/login'
+    end
+  end
+
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user = User.create(params)
