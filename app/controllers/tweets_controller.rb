@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
-    binding.pry
+    # binding.pry
     if logged_in?
       @user = current_user
       erb :'/tweets/index'
@@ -19,6 +19,7 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
+    # binding.pry
     if params[:content] != ""
       tweet = Tweet.create(content:params[:content], user: current_user)
       redirect "/users/#{current_user.slug}"
@@ -37,10 +38,13 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id/edit' do
-    @tweet = Tweet.find(params[:id])
-
-    if logged_in? && current_user.id == @tweet.user_id
-      erb :'/tweets/edit'
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
+      if @tweet && current_user.id == @tweet.user_id
+        erb :'/tweets/edit'
+      else
+        redirect '/tweets'
+      end
     else
       redirect '/login'
     end
