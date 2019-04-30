@@ -1,0 +1,10 @@
+<h1>Welcome, <%= @user.username %></h1>
+
+<form action="/logout" method="POST">
+  <label>Log Out: </label>
+  <input type="submit" id="submit" value="submit" />
+</form>
+
+<% @tweets.each do |tweet| %>
+<p><%= tweet.content %></p>
+<% end %>
