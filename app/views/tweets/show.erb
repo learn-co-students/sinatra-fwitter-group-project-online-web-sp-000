@@ -1,5 +1,6 @@
 <%= @tweet.content %>
 
+<<<<<<< HEAD
 <form action="/tweets/<%= @tweet.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="submit" name="edit" value="Edit Tweet">
@@ -9,3 +10,9 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" name="delete" value="Delete Tweet">
 </form>
+=======
+<a href='/tweets/<%= @tweet.id %>/edit'>Edit Tweet</a>
+
+
+expect(page.body).to include("Delete Tweet")
+>>>>>>> da46b1ae4b79a1c8aec6ede0eb63536d50371e2d
