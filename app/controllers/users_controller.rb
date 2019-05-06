@@ -4,12 +4,11 @@ class UsersController < ApplicationController
       redirect '/tweets'
       redirect to '/tweets'
     else
-      erb :signup
+      erb :'users/signup'
     end
   end
 
   post '/signup' do
-    #binding.pry
     if valid_signup?
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
@@ -23,7 +22,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "/tweets"
     else
-      erb :login
+      erb :'users/login'
     end
   end
 
