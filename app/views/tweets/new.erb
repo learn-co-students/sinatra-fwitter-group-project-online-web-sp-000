@@ -1,2 +1,7 @@
-<h1> Welcome, <%= @user.username %></h1>
-<h2> all the user tweets </h2>
+<h1> Create a new tweet </h1>
+
+<form action="/tweets" method="POST">
+  <label for="content">Content: </label>
+  <input type="text" id="content" name="content" required><br><br>
+  <input type="submit" id="submit" name="submit">
+</form>

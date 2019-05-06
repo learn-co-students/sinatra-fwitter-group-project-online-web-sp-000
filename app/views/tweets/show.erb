@@ -1,0 +1,8 @@
+
+<h1> Welcome, <%= session[:username] %></h1>
+<h2> <%= @tweet.content %> <br> </h2>
+<h3> <a href="<% "tweets/#{@tweet.id}/edit" %>"> Edit Tweet </a> </h3>
+<h3> <form action="tweets/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value ="delete" id="Delete Tweet">
+</h3>
