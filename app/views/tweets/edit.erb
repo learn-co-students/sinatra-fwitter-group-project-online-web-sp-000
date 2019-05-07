@@ -2,9 +2,9 @@
 
 <h2><%= @tweet.content %></h2>
 
-<form action="<% "/tweets/#{@tweet.id}" %>" method="POST">
+<form action="<%="/tweets/#{@tweet.id}"%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
   <label for="content">Content: </label>
   <input type="text" id="content" name="content" required><br><br>
-  <input type="submit" id="submit" name="submit">
+  <input type="submit" id="edit" name="edit" value="submit">
 </form>
