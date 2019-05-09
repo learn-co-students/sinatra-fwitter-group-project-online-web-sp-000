@@ -1,7 +1,9 @@
-<a href="/logout">Logout</a>
+<!-- <a href="/logout">Logout</a> -->
 <h1>Welcome, <%= @user.username %></h1>
-<h2>Your Tweets</h2>
-<% @tweets.each do |t| %>
-  <p>Username: <%= @user.username %></p>
-  <p><%= t.content %></p>
+<% if Tweet.all.empty? %>
+  No Flatiron tweets yet!
+<% else %>
+  <% @tweets.each do |t| %>
+    <p><%= t.content %></p>
+  <% end %>
 <% end %>
