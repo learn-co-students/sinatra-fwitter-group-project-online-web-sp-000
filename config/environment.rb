@@ -8,4 +8,10 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+configure do
+    enable :sessions
+    set :session_secret, "dont_tell_anyone"
+end
+
+
 require_all 'app'

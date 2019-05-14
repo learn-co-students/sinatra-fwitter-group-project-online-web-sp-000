@@ -1,0 +1,10 @@
+<%= "Must include characters" if @tweet && @tweet.errors.any? %>
+
+<h1>New Tweet</h1>
+
+<form action="/tweets" method="POST">
+    <label for="content"><h3>What's On Your Mind?</h3></label>
+    <textarea name="content" max-length="132" rows="8" cols="80"></textarea><br>
+    <br>
+    <input type="submit" value="submit">
+</form>

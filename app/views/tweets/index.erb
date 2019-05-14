@@ -1,0 +1,9 @@
+<h1>Tweet INdex</h1>
+
+<% @tweets.each do |tweet|%>
+    <ul>
+        <li>
+            <h3><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></h3>
+        </li><br>
+    </ul>
+<% end %>
