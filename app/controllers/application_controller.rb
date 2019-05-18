@@ -22,14 +22,40 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
+    params.delete :submit
+
     if params.all? { |param| !param.last.empty? }
-      params.delete :submit
       @user = User.create(params)
       session[:user_id] = @user.id
       redirect '/tweets'
     else
       redirect '/signup'
     end
+  end
+
+  get '/login' do
+    if Helpers.is_logged_in?(session)
+      redirect '/tweets'
+    else
+      erb :'users/login'
+    end
+  end
+
+  post '/login' do
+    params.delete :submit
+
+    if params.all? { |param| !param.last.empty? }
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect '/tweets'
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/login'
   end
 
 end
