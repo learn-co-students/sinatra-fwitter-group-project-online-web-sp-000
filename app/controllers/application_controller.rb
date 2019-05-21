@@ -42,10 +42,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    params.delete :submit
-
-    if params.all? { |param| !param.last.empty? }
-      @user = User.create(params)
+    @user = User.find_by username: params[:username]
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/tweets'
     else

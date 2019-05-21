@@ -192,6 +192,7 @@ describe ApplicationController do
       end
 
       it 'lets user create a tweet if they are logged in' do
+
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
         visit '/login'
@@ -206,6 +207,7 @@ describe ApplicationController do
 
         user = User.find_by(:username => "becky567")
         tweet = Tweet.find_by(:content => "tweet!!!")
+
         expect(tweet).to be_instance_of(Tweet)
         expect(tweet.user_id).to eq(user.id)
         expect(page.status_code).to eq(200)
