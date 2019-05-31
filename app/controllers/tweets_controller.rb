@@ -1,12 +1,16 @@
 class TweetsController < ApplicationController
+  get '/tweets' do
+
+    binding.pry
+      @tweets = Tweet.all
+      erb :'/tweets/tweets'
+  end
 
   get '/tweets/new' do
     erb :'/tweets/new'
   end
 
-  get '/tweets' do
-      erb :'/tweets/tweets'
-  end
+
 
   post '/tweets' do
 
