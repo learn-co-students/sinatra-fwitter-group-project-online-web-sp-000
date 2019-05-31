@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'/users/login'
+    erb :"/users/login"
   end
 
   post '/login' do
@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
 # binding.pry
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      binding.pry
+      # binding.pry
       redirect '/tweets'
     else
       redirect '/login'
@@ -54,4 +54,12 @@ class ApplicationController < Sinatra::Base
     redirect '/login'
   end
 
+  helpers do
+    def logged_in?
+        !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
 end
