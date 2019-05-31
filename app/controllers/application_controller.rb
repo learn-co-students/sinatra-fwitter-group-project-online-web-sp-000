@@ -36,8 +36,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
+    # binding.pry
     @user = User.find_by(username: params[:username])
-binding.pry
+# binding.pry
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       binding.pry

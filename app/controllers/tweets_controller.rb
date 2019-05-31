@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  binding.pry
+
   get '/tweets' do
 
     binding.pry
