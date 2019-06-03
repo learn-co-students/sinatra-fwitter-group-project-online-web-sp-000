@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  include Helpers
 
   configure do
     set :public_folder, 'public'
@@ -12,5 +13,11 @@ class ApplicationController < Sinatra::Base
   erb :index
   end
 
-  
+  get '/signup' do
+
+  erb :signup
+  end
+
+
+
 end
