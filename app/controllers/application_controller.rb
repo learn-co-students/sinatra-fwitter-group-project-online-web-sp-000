@@ -4,15 +4,14 @@ class ApplicationController < Sinatra::Base
 
 
   def current_user
-    if session[:id] != nil
-      User.all.find_by_id(session[:id])
-      binding.pry
+    if session[:user_id] != nil
+      @current_user = User.all.find_by_id(session[:user_id])
     end
   end
 
   def logged_in?
-    if session[:id] != nil
-      session[:id] = current_user.id
+    if session[:user_id]
+      return true
     end
   end
 
@@ -30,8 +29,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-
-  erb :'/users/create'
+    if logged_in?
+      binding.pry
+      redirect '/tweets'
+    else
+    erb :'/users/create'
+    end
   end
 
 end
