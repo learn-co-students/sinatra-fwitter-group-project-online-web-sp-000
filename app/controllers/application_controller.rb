@@ -3,16 +3,14 @@ require './config/environment'
 class ApplicationController < Sinatra::Base
 
 
-  def current_user
+  def current_user(session)
     if session[:user_id] != nil
       @current_user = User.all.find_by_id(session[:user_id])
     end
   end
 
-  def logged_in?
-    if session[:user_id]
-      return true
-    end
+  def logged_in?(session)
+    !!session[:user_id]
   end
 
   configure do
@@ -29,12 +27,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    if logged_in?
-      binding.pry
-      redirect '/tweets'
-    else
-    erb :'/users/create'
+    if logged_in?(session)
+      redirect to '/tweets'
     end
+
+    erb :'/users/create'
   end
 
 end
