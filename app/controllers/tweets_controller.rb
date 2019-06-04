@@ -11,7 +11,23 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/new' do
-    
+    if !logged_in?(session)
+      redirect "/login"
+    end
   erb :'/tweets/new'
+  end
+
+  get '/tweets/:id' do
+
+  erb :'tweets/show'
+  end
+
+  post '/tweets' do
+    @tweet = Tweet.create(:content => params[:content])
+    @tweet.user_id = current_user(session).id
+    @tweet.save
+
+
+    redirect "/tweets/#{@tweet.id}"
   end
 end
