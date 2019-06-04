@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
     end
     @user = current_user(session)
     @tweets = Tweet.all
-
+    # binding.pry
     erb :'/tweets/index'
   end
 end
