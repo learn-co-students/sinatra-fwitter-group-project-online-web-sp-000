@@ -48,17 +48,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/logout' do
-    if logged_in?(session)
-      session.clear
-      redirect '/login'
-    else
-      redirect '/'
-    end
-  end
-
-
-
   post '/login' do
     @user = User.all.find_by(:username => params[:username])
 
@@ -70,4 +59,19 @@ class ApplicationController < Sinatra::Base
       redirect '/login'
     end
   end
+
+  get '/logout' do
+    if logged_in?(session)
+      session.clear
+      redirect '/login'
+    else
+      redirect '/'
+    end
+  end
+
+  
+
+
+
+
 end
