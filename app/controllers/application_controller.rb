@@ -44,13 +44,23 @@ class ApplicationController < Sinatra::Base
   erb :'users/login'
   end
 
-  post '/login' do
 
-  erb :'/tweets/index'
+
+  post '/login' do
+    @user = User.all.find_by(:username => params[:username])
+
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/tweets"
+    else
+      flash[:user_error] = "Incorrect Login.  Please try Again!"
+      redirect '/login'
+    end
   end
 
   get '/tweets' do
 
+  erb :'/tweets/index'
   end
 
 end
