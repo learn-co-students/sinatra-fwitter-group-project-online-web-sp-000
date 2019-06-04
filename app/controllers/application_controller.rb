@@ -1,7 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
+  enable :sessions
 
   def current_user(session)
     if session[:user_id] != nil
@@ -15,7 +15,6 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
-    enable :sessions
     set :views, 'app/views'
   end
 
@@ -32,6 +31,20 @@ class ApplicationController < Sinatra::Base
     end
 
     erb :'/users/create'
+  end
+
+  get '/login' do
+
+  erb :'users/login'
+  end
+
+  post '/login' do
+
+  erb :'/tweets/index'
+  end
+
+  get '/tweets' do
+
   end
 
 end
