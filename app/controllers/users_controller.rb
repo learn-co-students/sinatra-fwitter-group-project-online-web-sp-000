@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
 
     session[:user_id] = @user.id
-    # binding.pry
+    binding.pry
 
 
-    redirect to "/tweets"
+    redirect "/tweets"
   end
 
   get '/login' do
