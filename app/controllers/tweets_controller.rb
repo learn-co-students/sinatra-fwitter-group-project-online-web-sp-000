@@ -64,7 +64,8 @@ class TweetsController < ApplicationController
     end
   end
 
-  get '/tweets/:id/delete' do
+  post 'tweets/:id/delete' do
 
-  end 
+    erb :'tweets/delete'
+  end
 end

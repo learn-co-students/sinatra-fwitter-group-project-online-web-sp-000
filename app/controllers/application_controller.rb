@@ -16,10 +16,23 @@ class ApplicationController < Sinatra::Base
   end
 
   def logged_in?(session)
-    
+
     !!session[:user_id]
   end
 
+  post '/tweets/tweets/:id/delete' do
+    @tweet = Tweet.find_by_id(params[:id])
+    if !logged_in?(session)
+      redirect '/login'
+    end
+
+    if current_user(session).id != @tweet.user.id
+      redirect "/tweets"
+    end
+    
+    @tweet.delete
+    redirect '/tweets'
+  end
 
 
   get '/' do
