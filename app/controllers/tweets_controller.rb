@@ -49,4 +49,22 @@ class TweetsController < ApplicationController
     redirect "/tweets/new"
     end
   end
+
+  patch '/tweets/:id' do
+    if !logged_in?(session)
+      redirect '/login'
+    end
+    @tweet = Tweet.find_by_id(params[:id])
+    if !params[:content].empty?
+      @tweet.update(:content => params[:content])
+      @tweet.save
+      redirect "/tweets/#{@tweet.id}"
+    else
+      redirect "/tweets/#{@tweet.id}/edit"
+    end
+  end
+
+  get '/tweets/:id/delete' do
+
+  end 
 end
