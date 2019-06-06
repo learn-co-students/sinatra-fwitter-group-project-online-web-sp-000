@@ -1,3 +1,7 @@
+<% if flash.has?(:user_error) %>
+ <%= flash[:user_error] %>
+ <% end %>
+
 <div class="container">
   <h1>Welcome to Fwitter!</h1>
 
@@ -6,10 +10,10 @@
 <h2>Create a Fwitter Account</h2>
 <form action="/signup" method="post">
 <label for="username">Username:</label>
-<input type="text" id="username" name="username" required/><br>
+<input type="text" id="username" name="username"/><br>
 <label for="email">Email:</label>
-<input type="text" id="email" name="email" required/><br>
+<input type="text" id="email" name="email"/><br>
 <label for="password">Password:</label>
-<input type="text" id="password" name="password" required/>
+<input type="text" id="password" name="password"/>
 <button type="submit">Create Account</button>
 </form>
