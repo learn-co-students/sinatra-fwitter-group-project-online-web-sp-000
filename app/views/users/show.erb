@@ -1,0 +1,8 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% @user.boxes.each do |box| %>
+  <h3>Tweet <%= box.id %></h3>
+  <p><%= box.name %></p>
+  <% box.items.each do |item| %>
+    <!-- List box items -->
+    <% end %>
+<% end %>
