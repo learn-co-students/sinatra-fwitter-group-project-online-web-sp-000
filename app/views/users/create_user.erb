@@ -1,0 +1,14 @@
+<h3>Sign Up</h3>
+
+<% if flash.has?(:signup_error) %>
+  <%= flash[:signup_error] %>
+<% end %>
+
+<form action="/signup" method="POST">
+  <input type="text" name="username" placeholder="Name"><br></br>
+  <input type="text" name="email" placeholder="Email"><br></br>
+  <input type="text" name="password" placeholder="Password"><br></br>
+  <input type="submit" name="submit" value="Sign Up">
+</form>
+
+<p>If you have already have an account, <a href="/login">Log In here.</a></p>
