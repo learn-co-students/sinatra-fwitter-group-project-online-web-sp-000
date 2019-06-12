@@ -41,7 +41,6 @@ class TweetsController < ApplicationController
         #binding.pry
         redirect "/login"
       else
-        binding.pry
         @tweet = Tweet.find(params[:id])
         if @tweet.user_id == current_user.id
           erb :'tweets/edit'
@@ -50,6 +49,7 @@ class TweetsController < ApplicationController
         end
       end
     end
+  end
 
   patch '/tweets/:id' do
     tweet = Tweet.find(params[:id])
