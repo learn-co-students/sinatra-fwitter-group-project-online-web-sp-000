@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   get "/signup" do
-    if session[:id]
+    if session[:user_id]
       redirect "/tweets"
     else
-      erb :signup
+      erb :'users/signup'
     end
   end
 
   post "/signup" do
-	  if params[:username]? && params[:email]? && params[:password]?
-      user = User.new(username: params[:username], email: params[:email], password: params[:password])
-      session[:id] = user.id
+    user = User.create(username: params[:username], email: params[:email], password: params[:password])
+	  if user.username? && user.email? && user.password_digest?
+      session[:user_id] = user.id
 	    redirect "/tweets"
     else
       redirect "/signup"
@@ -18,42 +18,35 @@ class UsersController < ApplicationController
 	  end
   end
 
-  get '/account' do
-    @user = User.find(session[:user_id])
-    erb :account
-  end
-
   get "/login" do
-    erb :login
+    if logged_in?
+      redirect "/tweets"
+    else
+      erb :'users/login'
+    end
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username])
-
+    user = User.find_by(username: params[:username])
+    if !user
+      user = User.find_by(email: params[:email])
+    end
 	  if user && user.authenticate(params[:password])
 	    session[:user_id] = user.id
-	    redirect "/account"
+	    redirect "/tweets"
 	  else
-	    redirect "/failure"
+	    redirect "/login"
+      # Include flash message stating what went wrong
 	  end
-  end
-
-  get "/failure" do
-    erb :failure
   end
 
   get "/logout" do
     session.clear
-    redirect "/"
+    redirect "/login"
   end
 
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
-
-    def current_user
-      User.find(session[:user_id])
-    end
+  get "/users/:slug" do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 end
