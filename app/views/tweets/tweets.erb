@@ -1,0 +1,22 @@
+
+<h3><%="Welcome, #{@current_user.username}"%></h3> <br>
+
+<form action='tweets/new' method='get'>
+  <input type='submit' value='New Tweet'>
+</form>
+
+<h4>All Tweets</h4>
+<% Tweet.all.each do |tweet| %>
+<h5>-------------------------------------------------------------------</h5>
+  <h5><%=tweet.author_name%></h5>
+  <p><%=tweet.content%></p>
+  <% if tweet.author == current_user %>
+    <form action=<%="/tweets/#{tweet.id}/edit"%> method='get' style='display:inline'>
+      <input type='submit' value='Edit'>
+    </form>
+    <form action=<%="/tweets/#{tweet.id}"%> method='post' style='display:inline'>
+      <input type='hidden' name='_method' value='DELETE'>
+      <input type='submit' value='Delete'>
+    </form>
+  <% end %>
+<% end %>
