@@ -1,12 +1,13 @@
 <nav>
 <a href="/logout"><button>Logout</button></a>
 <a href="/users/<%= @user.slug %>"><button>My Fweets</button></a>
+<a href="/tweets/new"><button>New Fweet</button></a>
 </nav>
 <h2>Welcome, <%= @user.username %></h2>
 
 <% @tweets.each do |tweet|%>
   <table style="width:100%">
     <tr> <td> <%= tweet.user.username %> </td></tr>
-    <tr> <td><%= tweet.content %></td></tr>
+    <tr> <td><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></td></tr>
   </table>
 <% end %>
