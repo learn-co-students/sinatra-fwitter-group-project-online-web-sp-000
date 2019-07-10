@@ -1,0 +1,18 @@
+
+<%= @tweet.content %>
+
+</br></br>
+
+<button onclick="window.location.href = '/tweets';">User Tweet(s)</button>
+
+</br>
+
+<button onclick="window.location.href = '/tweets/<%= @tweet.id %>/edit';">Edit Tweet</button>
+
+</br>
+
+<form method="POST" action="/tweets/<%= @tweet.id %>/delete">
+  <input type="submit" value="Delete Tweet">
+</form>
+
+<button onclick="window.location.href = '/logout';">Logout</button>
