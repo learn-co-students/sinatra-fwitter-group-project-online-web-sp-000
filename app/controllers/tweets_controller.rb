@@ -16,7 +16,6 @@ class TweetsController < ApplicationController
     user = Helpers.current_user(session)
 
     if params["content"].empty?
-      flash[:empty_tweet] = "Please enter content for your tweet"
       redirect to '/tweets/new'
     end
 
@@ -59,7 +58,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
 
     if Helpers.current_user(session).id != @tweet.user_id
-      flash[:wrong_user_edit] = "Sorry you can only edit your own tweets"
       redirect to '/tweets'
     end
 

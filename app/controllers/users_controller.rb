@@ -1,4 +1,3 @@
-require 'rack-flash'
 
 class UsersController < ApplicationController
 
@@ -16,14 +15,12 @@ class UsersController < ApplicationController
 
     params.each do |param, input|
       if input.empty?
-        flash[:new_user_error] = "Please enter a value for #{param}"
         redirect to '/signup'
       end
     end
 
     user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
     session[:user_id] = user.id
-
     redirect to '/tweets'
 
   end
@@ -46,6 +43,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect to '/tweets'
     else
+      flash[:login_error] = "Incorrect login. Please try again."
       redirect to '/login'
     end
 

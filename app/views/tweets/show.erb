@@ -1,13 +1,14 @@
 
 <%= @tweet.content %>
 
-</br></br>
+</br></br></br></br>
 
-<button onclick="window.location.href = '/tweets';">User Tweet(s)</button>
+<button onclick="window.location.href = '/tweets';">Tweet(s)</button>
 
 </br>
 
-<button onclick="window.location.href = '/tweets/<%= @tweet.id %>/edit';">Edit Tweet</button>
+<button onclick="location.href = '/tweets/<%= @tweet.id %>/edit';" type="button">Edit Tweet</button>
+
 
 </br>
 
