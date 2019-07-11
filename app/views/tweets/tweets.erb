@@ -1,0 +1,11 @@
+
+<h1>----Welcome, <%= @user.username %>----</h1>
+ <p>---Posts---</p>
+
+<% @tweets.each do |tweet| %>
+<ul>
+  <li><a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a></li>
+</ul>
+<% end %>
+
+<button onclick="location.href = '/tweets/new';" type="button">New Tweet</button>
