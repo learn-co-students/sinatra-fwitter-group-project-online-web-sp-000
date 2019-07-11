@@ -20,8 +20,7 @@ class UsersController < ApplicationController
 
     params.each do |param, input|
       if input.empty?
-        flash[:user_error] = "Please enter a value for #{param}"
-        redirect to '/signup'
+      redirect to '/signup', locals: {message: "Please sign up before you sign in"}
       end
     end
 

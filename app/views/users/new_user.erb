@@ -1,9 +1,10 @@
-<% if flash.has?(:user_error) %>
-  <%= flash[:user_error] %>
+<% if locals.empty? == false %>
+  <%= message %>
 <% end %>
 
+
 <strong>Account Sign Up</strong>
-<p>Please complete the form below to create a new user account</p>
+<p>Please complete the form below to create a new user account.</p>
 
 <form method="POST" action="/signup">
   <label><strong>Username:</strong><input type = "text" name="username" id="username"><br><br>
