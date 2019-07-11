@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     params.each do |param, input|
       if input.empty?
-      redirect to '/signup', locals: {message: "Please sign up before you sign in"}
+        redirect to '/signup'
       end
     end
 

@@ -1,5 +1,5 @@
-<% if locals.empty? == false %>
-  <%= message %>
+<% if flash.has?(:user_error) %>
+  <%= flash[:user_error] %>
 <% end %>
 
 
