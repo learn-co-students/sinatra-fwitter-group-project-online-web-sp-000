@@ -1,5 +1,10 @@
+require 'sinatra/base'
+require 'rack-flash'
 
 class UsersController < ApplicationController
+
+  enable :sessions
+  use Rack::Flash
 
   get '/signup' do
 
@@ -15,6 +20,7 @@ class UsersController < ApplicationController
 
     params.each do |param, input|
       if input.empty?
+        flash[:user_error] = "Please enter a value for #{param}"
         redirect to '/signup'
       end
     end
