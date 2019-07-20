@@ -1,0 +1,8 @@
+<% if flash.has?(:empty_tweet) %>
+  <%= flash[:empty_tweet] %>
+<% end %>
+<form method="POST" action="/tweets">
+  <label>Content:</label><br>
+  <input type="text" name="content" id="content"><br><br>
+  <input type="submit" value="submit">
+</form>
