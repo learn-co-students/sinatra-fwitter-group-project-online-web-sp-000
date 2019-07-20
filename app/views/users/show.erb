@@ -1,0 +1,9 @@
+<h2>Tweets from <%= @user.username %></h2>
+
+<% @user_tweets.each do |tweet| %>
+  <p><%= tweet.content %></p>
+<% end %>
+
+<br><br><br>
+
+<p><a href="/tweets">Twitter Feed</a></p>
