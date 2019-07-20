@@ -1,26 +1,33 @@
 class UsersController < ApplicationController
 
   get '/login' do
-    if !logged_in?
-      erb :'/users/login'
+    if logged_in?
+      redirect '/tweets'
     else
-      redirect :'/tweets'
+      erb :'/users/login'
     end
   end
 
   get '/signup' do
     if logged_in?
       redirect '/tweets'
+    else
+      erb :'/users/signup'
     end
-    erb :'/users/signup'
   end
   
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     tweets = Tweet.all
-    @user_tweets = tweets.collect do |tweet|
-      tweet[user] == @user
+    @user_tweets = []
+    tweets.each do |tweet|
+      if tweet.user_id == @user.id
+        @user_tweets << tweet
+      end
     end
+    #@user_tweets = tweets.collect do |tweet|
+    #  tweet.user_id == @user.id
+    #end
     erb :'/users/show'
   end
 
