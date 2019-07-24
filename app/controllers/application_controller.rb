@@ -9,10 +9,22 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
-#  get '/' do
-#  if logged in to tweets else index
+  get "/" do
+    if logged_in?
+      redirect "/tweets"
+    else
+    erb :index
+    end
+  end
 
 
-  # tu ide samo helper methods sa kraja (logged_in?, current user)
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
 
+    def current_user
+      User.find(session[:user_id])
+    end
+  end
 end
