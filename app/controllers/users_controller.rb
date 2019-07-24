@@ -48,13 +48,13 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
       redirect '/login'
-
-    elsif !logged_in? &&
+    else
       redirect "/"
-    elsif !logged_in?
-      redirect '/login'
     end
   end
-
+  #    elsif !logged_in? &&
+  #      redirect "/"
+  #    elsif !logged_in?
+  #      redirect '/login'
 
 end
