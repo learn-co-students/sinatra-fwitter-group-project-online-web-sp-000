@@ -21,14 +21,6 @@ class UsersController < ApplicationController
 
 
 
-
-
-#  get '/account' do
-#    @user = User.find(session[:user_id])
-#    redirect '/tweets'
-#  end
-
-
   get "/login" do
     if logged_in?
       redirect '/tweets'
@@ -50,6 +42,19 @@ class UsersController < ApplicationController
     redirect '/tweets'
   end
 
+
+
+  get "/logout" do
+    if logged_in?
+      session.clear
+      redirect '/login'
+
+    elsif !logged_in? &&
+      redirect "/"
+    elsif !logged_in?
+      redirect '/login'
+    end
+  end
 
 
 end
