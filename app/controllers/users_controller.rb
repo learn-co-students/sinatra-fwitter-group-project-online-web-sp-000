@@ -15,8 +15,8 @@ class UsersController < ApplicationController
         @user = User.create(params)
         session[:user_id] = @user.id
         redirect "/tweets"
+      end
   end
-end
 
 
   post "/signup" do
@@ -66,8 +66,5 @@ end
       @user = User.all.find_by_id(params[:id])
       erb :'/users/show'
   end
-
-
-
 
 end
