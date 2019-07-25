@@ -62,7 +62,10 @@ end
 
 
 
-
+  get '/users/:id' do
+      @user = User.all.find_by_id(params[:id])
+      erb :'/users/show'
+  end
 
 
 

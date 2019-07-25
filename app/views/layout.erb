@@ -5,11 +5,19 @@
   </head>
   <body>
 
+    <% if logged_in? %>
 
+                <a href="/tweets">Fwitter</a>
+                    <ul>
+                        <li><a href="/tweets/tweets">All Tweets</a></li>
+                        <li><a href="/users/<%= current_user.id %>">My Tweets</a></li>
+                        <li><a href="/tweets/new">Create New Tweet</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+    <%end %>
 
     <div class="container">
         <%= yield %>
     </div>
-
   </body>
 </html>
