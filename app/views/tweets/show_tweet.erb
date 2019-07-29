@@ -1,9 +1,7 @@
 <%= @tweet.user.username %><br>
 <%= @tweet.content %>
 <a href="/tweets/<%= @tweet.id %>/edit" id="Edit Tweet">Edit Tweet</a>
-<% if Helpers.current_user(session) == @tweet.user %>
-  <form action="/tweets/<%= @tweet.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Tweet" id="delete">
-  </form>
-<% end %>
+<form action="/tweets/<%= @tweet.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Tweet" id="Delete Tweet">
+</form>

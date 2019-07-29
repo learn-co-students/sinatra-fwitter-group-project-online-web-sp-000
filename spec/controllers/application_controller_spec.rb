@@ -111,7 +111,7 @@ describe ApplicationController do
         :password => "kittens"
       }
       post '/login', params
-      get '/logout'
+      post '/logout'
       expect(last_response.location).to include("/login")
     end
 
@@ -308,6 +308,7 @@ describe ApplicationController do
         fill_in(:password, :with => "kittens")
         click_button 'submit'
         visit '/tweets/1/edit'
+
         expect(page.status_code).to eq(200)
         expect(page.body).to include(tweet.content)
       end
@@ -370,7 +371,6 @@ describe ApplicationController do
     context "logged out" do
       it 'does not load -- requests user to login' do
         get '/tweets/1/edit'
-        # binding.pry
         expect(last_response.location).to include("/login")
       end
     end
