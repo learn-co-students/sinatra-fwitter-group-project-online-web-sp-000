@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
-  get "/logout" do
+  post "/logout" do
     session.clear
     redirect to "/login"
   end

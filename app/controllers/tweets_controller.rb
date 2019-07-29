@@ -9,33 +9,55 @@ class TweetsController < ApplicationController
     end
 
     get "/tweets/new" do
-      erb :"tweets/new"
+      if Helpers.logged_in?(session)
+        erb :"tweets/new"
+      else
+        redirect to "/login"
+      end
     end
 
-    get "/tweet/:id" do
-      @tweet = Tweet.find(params[:id])
-      erb :"tweets/show_tweet"
+    get "/tweets/:id" do
+      if Helpers.logged_in?(session)
+        @tweet = Tweet.find(params[:id])
+        erb :"tweets/show_tweet"
+      else
+        redirect to "/login"
+      end
     end
 
-    get "/tweet/:id/edit" do
+    get "/tweets/:id/edit" do
       @tweet = Tweet.find(params[:id])
-      erb :"tweets/edit_tweet"
+      if @tweet.user == Helpers.current_user(session)
+        erb :"tweets/edit_tweet"
+      elsif Helpers.logged_in?(session)
+        redirect to "/tweets/#{@tweet.id}"
+      else
+        redirect to "/login"
+      end
     end
 
     post "/tweets" do
-      tweet = Tweet.create(content: params[:content], user: Helpers.current_user(session))
+      if !params[:content].empty?
+        tweet = Tweet.create(content: params[:content], user: Helpers.current_user(session))
+        redirect to "/tweets/#{tweet.id}"
+      else
+        redirect to "/tweets/new"
+      end
 
-      redirect to "/tweet/#{tweet.id}"
     end
 
-    patch "/tweet/:id" do
+    patch "/tweets/:id" do
       @tweet = Tweet.find(params[:id])
       # raise params.inspect
-      @tweet.update(content: params[:content])
-      redirect to "/tweet/#{@tweet.id}"
+      if !params[:content].empty?
+        @tweet.update(content: params[:content])
+        redirect to "/tweets/#{@tweet.id}"
+      else
+        redirect to "/tweets/#{@tweet.id}/edit"
+      end
     end
 
-    delete  "/tweet/:id" do
+    delete  "/tweets/:id" do
       Tweet.find(params[:id]).destroy
       redirect to "/tweets"
     end
