@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    set :session_secret, "{SecureRandom.urlsafe_base64}"
   end
 
 end
