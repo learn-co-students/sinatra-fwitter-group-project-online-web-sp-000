@@ -1,0 +1,5 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% Tweet.all.sort { |twe1, twe2| twe2.id <=> twe1.id }.each do |tweet| %>
+  <h2><%= tweet.user.username %> says: </h2>
+  <p><%= tweet.content %></p>
+<% end %>
