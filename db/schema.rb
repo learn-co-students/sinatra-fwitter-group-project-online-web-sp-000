@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 20190730173154) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "email"
     t.string "password_digest"
-    t.string "user_name"
+    t.string "username"
   end
 
-  add_index "users", ["user_name"], name: "index_users_on_user_name"
+  add_index "users", ["username"], name: "index_users_on_username"
 
 end
