@@ -8,4 +8,8 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "{SecureRandom.urlsafe_base64}"
   end
 
+  get '/' do
+    erb :'static_pages/home'
+  end
+
 end

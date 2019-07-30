@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
+gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 
 group :test do
   gem 'rspec'
