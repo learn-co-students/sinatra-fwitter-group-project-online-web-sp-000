@@ -1,0 +1,14 @@
+<h2><%= @tweet.user.username %> says: </h2>
+<p><%= @tweet.content %>
+  <% #if @tweet.user.id == session[:user_id] %>
+  <% #tests require buttons to show even if the user is logged out? %>
+    <form method="post" action="/tweets/<%= @tweet.id %>">
+      <input type="hidden" value="get" name="_method">
+      <input type="submit" value="Edit Tweet">
+    </form>
+    <form method="post" action="/tweets/<%= @tweet.id %>">
+      <input type="hidden" value="delete" name="_method">
+      <input type="submit" value="Delete Tweet">
+    </form>
+  <% #end %>
+</p>
