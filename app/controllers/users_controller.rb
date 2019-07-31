@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :'users/new'
+    if !Helpers.is_logged_in?(session)
+      erb :'users/new'
+    else
+      redirect to "/tweets"
+    end
   end  
 
   post '/signup' do
     @user = User.new(params)
-    if @user.save 
-      flash[:message] = "Welcome to Flat Iron Twiter!!!"
+
+    if @user.save
+      Helpers.log_in(@user, session)
       redirect to "/tweets"
     else
       redirect to '/signup'
