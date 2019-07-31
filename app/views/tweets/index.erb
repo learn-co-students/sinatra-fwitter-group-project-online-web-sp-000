@@ -1,0 +1,23 @@
+
+<style type="text/css">
+  a.plain {
+    color: black;
+    text-decoration: none;
+  }
+</style>
+
+<% if Helpers.is_logged_in?(session) %>
+  <% @tweets.each do |tweet| %>
+    <a class="plain" href="/users/<%= tweet.user.id %>"><h3><%= tweet.user.username %></h3></a>
+    <a class="plain" href="/tweets/<%= tweet.id %>"><p><%= tweet.content %></p></a>
+  <% end %>
+  <br>
+  <a href="/users/<%= session[:user_id] %>">Homepage</a><br>
+  <a href="/tweets/new">New Tweet</a>
+
+  <br><br>
+  <a href="/logout">Log Out</a>
+<% else %>
+  <h3>Please log in to view feed!</h3>
+  <a href="/login">Log In</a>
+<% end %>
