@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <link rel="stylesheet" href="stylesheets/layout/header.css" type="text/css" >
+    <link rel="stylesheet" href="stylesheets/layout/footer.css" type="text/css" >
+
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+  <%= erb :'partials/header' %>
+  <%= yield %>
+  <%= erb :'partials/footer' %>
 
   </body>
 </html>

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/stylesheets/sessions/log_in_page.css">
+
+</head>
+<body>
+<br><br>  
+<h2>Login Form</h2>
+
+<form method="post" action="/login">
+  <div class="imgcontainer">
+    <img src="/images/welcome.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="username"><b>Enter User Name</b></label>
+    <input type="text" id="username" placeholder="Enter Username" name="username" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" id="password" placeholder="Enter Password" name="password" required>
+        
+    <input type="submit" value="submit">
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
