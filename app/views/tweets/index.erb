@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="stylesheets/users/tweets.css" type="text/css" >
+<div class="container">
+  <br><br>
+  <h1>Welcome,</h1>
+  <% @tweets.each do |tweet| %>
+    <div class="container">
+      <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+      <p><%= tweet.content %></p>
+      <span class="time-right">11:00</span>
+    </div>
+  <% end %>
+</div>

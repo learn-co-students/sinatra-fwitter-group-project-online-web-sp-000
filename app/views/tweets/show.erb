@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="stylesheets/users/tweets.css" type="text/css" >
+<div class="container">
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p><%= @tweet.content %></p>
+  <span class="time-right">11:00</span>
+</div>
+<a class="button" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+<form action='/tweets/<%= @tweet.id %>' method='POST'>
+    <input type='hidden' name='_method' value='DELETE'/>
+  <button type='submit' class='super-sport'>Delete Tweet</button>
+</form>
