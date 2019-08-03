@@ -1,0 +1,9 @@
+<h1>Welcome, <%= @user.username %></h1>
+<h2>Your Tweets:</h2>
+<ol>
+<% @tweets.each do |tweet| %>
+    <li>
+      <a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+    </li><br>
+<% end %>
+</ol>
