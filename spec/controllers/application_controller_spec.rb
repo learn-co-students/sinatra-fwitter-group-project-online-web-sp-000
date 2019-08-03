@@ -65,6 +65,12 @@ describe ApplicationController do
         :password => "rainbows"
       }
       post '/signup', params
+      #user hasn't been logged in yet...
+      params= {
+        username: "skittles123",
+        password: "rainbows"
+      }
+      post '/login', params
       get '/signup'
       expect(last_response.location).to include('/tweets')
     end
