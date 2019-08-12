@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class TweetsController < ApplicationController
+  use Rack::Flash
+  
   get '/tweets' do
     # binding.pry
     if is_logged_in?(session)
