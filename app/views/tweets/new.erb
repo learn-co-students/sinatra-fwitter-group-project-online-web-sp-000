@@ -1,3 +1,8 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <br><br>
+<% end %>
+
 <% if is_logged_in?(session) %>
   <form action='/tweets' method="post">
     Content:
