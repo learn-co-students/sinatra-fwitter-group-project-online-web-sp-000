@@ -1,0 +1,13 @@
+<h1>Welcome to Fwitter</h1>
+<h4>Sign up or login below</h4>
+<br>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <br><br>
+<% end %>
+
+<a class="button" href="/login" style="padding-right: 25px">Log In</a>
+<a class="button" href="/logout" style="padding-right: 25px">Log Out</a>
+<a class="button" href="/signup" style="padding-right: 25px">Sign Up</a>
+<a class="button" href="/tweets">Tweets</a>
