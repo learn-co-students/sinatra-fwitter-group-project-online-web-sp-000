@@ -1,0 +1,10 @@
+<h1>Tweets: </h1>
+  <% if !@tweets.empty? %>
+    <ul>
+      <% @tweets.each do |tweet| %>
+      <li><%= tweet.content %> tweeted by: <%= current_user.username %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No Tweets have been posted</p>
+  <% end %>
