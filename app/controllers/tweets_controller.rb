@@ -41,23 +41,33 @@ class TweetsController < ApplicationController
 
   get '/tweets/:id/edit' do
     #binding.pry
-    @tweet=Tweet.find(params[:id])
-    if Helpers.current_user(session)==@tweet.user
-      erb :'/tweets/edit'
-    elsif Helpers.is_logged_in?(session)
-      redirect to '/tweets'
-    else
-      redirect to '/login'
-    end
+     @tweet=Tweet.find(params[:id])
+     if Helpers.is_logged_in?(session) && Helpers.current_user(session)==@tweet.user
+        erb :'/tweets/edit'
+     else
+        redirect to '/login'
+     end
   end
 
   patch '/tweets/:id' do
-    unless params[:content].empty?
-      @tweet=Tweet.find(params[:id])
-      @tweet.update(:content=>params[:content])
+    @tweet=Tweet.find(params[:id])
+    if @tweet
+      unless params[:content].empty?
+        @tweet.update(:content=>params[:content])
+        redirect to '/tweets'
+      else
+        redirect to "/tweets/#{@tweet.id}/edit"
+      end
+    end
+  end
+
+  delete '/tweets/:id/delete' do
+    @tweet=Tweet.find(params[:id])
+    if @tweet && Helpers.current_user(session)==@tweet.user
+      @tweet.delete
       redirect to '/tweets'
     else
-      redirect to '/tweets/<%= @tweet.id %>/edit'
+      redirect to '/login'
     end
   end
 
