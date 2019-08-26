@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
+
     erb :'/users/signup'
   end
 
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
     if @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/tweets/index"
+      # redirect "/tweets/#{@user.id}"
     else
       redirect '/users/login'
     end

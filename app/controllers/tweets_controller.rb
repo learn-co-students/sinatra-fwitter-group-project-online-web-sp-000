@@ -21,19 +21,30 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id' do
-    @tweet = Tweet.find(params[:id])
+    set_tweet
     erb :'/tweets/show'
   end
 
+  get '/tweets/new' do
+    erb :'tweets/new'
+  end
+
   get '/tweets/:id/edit' do
-    erb :"/tweets/#{@tweet.id}"
+    set_tweet
+    erb :'/tweets/edit'
   end
 
   patch '/tweets/:id' do
-
+    set_tweet
+    @tweet.update(params)
   end
 
   post '/tweets/:id/delete' do
 
+  end
+
+  private
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
