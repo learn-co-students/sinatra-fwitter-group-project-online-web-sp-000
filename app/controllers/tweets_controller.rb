@@ -31,12 +31,29 @@ class TweetsController < ApplicationController
 
   get '/tweets/:id/edit' do
     set_tweet
-    erb :'/tweets/edit'
+    if logged_in?
+      if @tweet.user == current_user
+        erb :'/tweets/edit'
+      else
+        redirect "/users/#{current_user.id}"
+      end
+    else
+      redirect '/'
+    end
   end
 
   patch '/tweets/:id' do
     set_tweet
-    @tweet.update(params)
+    if logged_in?
+      if @tweet.user == current_user
+        @tweet.update(content: params[:content])
+        redirect "/tweets/#{@tweets.id}"
+      else
+        redirect "/users/#{current_user.id}"
+      end
+    else
+      redirect '/'
+    end
   end
 
   post '/tweets/:id/delete' do
