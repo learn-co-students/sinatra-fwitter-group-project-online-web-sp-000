@@ -1,7 +1,11 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
-    erb :'/tweets/index'
+    if logged_in?
+      erb :'/tweets/index'
+    else
+      redirect '/users/login'
+    end
   end
 
   get '/tweets/new' do
@@ -42,12 +46,12 @@ class TweetsController < ApplicationController
     end
   end
 
-  patch '/tweets/:id' do
+  post '/tweets/:id' do
     set_tweet
     if logged_in?
       if @tweet.user == current_user
         @tweet.update(content: params[:content])
-        redirect "/tweets/#{@tweets.id}"
+        redirect "/tweets/#{@tweet.id}"
       else
         redirect "/users/#{current_user.id}"
       end

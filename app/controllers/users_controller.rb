@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-
-    erb :'/users/signup'
+    if logged_in?
+      redirect "/tweets/index"
+    else
+      erb :'/users/signup'
+    end
   end
 
   post '/signup' do
@@ -16,14 +19,18 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :'/users/login'
+    if logged_in?
+      redirect "/tweets/index"
+    else
+      erb :'/users/login'
+    end
   end
 
   post '/login' do # creating a session, adding key/value pair to session hash
     @user = User.find_by(username: params[:username])
-    if @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/tweets/index"
+      redirect '/tweets'
       # redirect "/tweets/#{@user.id}"
     else
       redirect '/users/login'
@@ -36,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
+    session.clear
     redirect '/users/login'
   end
 end
