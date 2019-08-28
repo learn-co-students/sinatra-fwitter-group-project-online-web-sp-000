@@ -1,7 +1,12 @@
 <%= @tweet.content %>
 
+<% if authorized?(@tweet) %>
+
 Edit:
 <a href="/tweets/<%= @tweet.id %>/edit">Edit tweet</a>
 
 Delete:
+<form action="/tweets/<%= @tweet.id %>/delete" method="post">
 <input type="submit" name="submit" value="Delete Tweet">
+</form>
+<% end %>

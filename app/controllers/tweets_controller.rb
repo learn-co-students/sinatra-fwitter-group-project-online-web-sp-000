@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+# before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   get '/tweets' do
     if logged_in?
@@ -36,13 +37,13 @@ class TweetsController < ApplicationController
   get '/tweets/:id/edit' do
     set_tweet
     if logged_in?
-      if @tweet.user == current_user
+      if authorized?(@tweet)
         erb :'/tweets/edit'
       else
         redirect "/users/#{current_user.id}"
       end
     else
-      redirect '/'
+      redirect '/users/login'
     end
   end
 
@@ -56,12 +57,18 @@ class TweetsController < ApplicationController
         redirect "/users/#{current_user.id}"
       end
     else
-      redirect '/'
+      redirect "/login"
     end
   end
 
   post '/tweets/:id/delete' do
-
+    set_tweet
+    if authorized?(@tweet)
+      @tweet.destroy
+      redirect '/tweets/index'
+    else
+      redirect '/tweets/index'
+    end
   end
 
   private
