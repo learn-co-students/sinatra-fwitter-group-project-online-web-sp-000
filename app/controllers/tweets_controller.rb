@@ -28,11 +28,19 @@ class TweetsController < ApplicationController
 
   get '/tweets/:id' do
     set_tweet
-    erb :'/tweets/show'
+    if logged_in?
+      erb :'/tweets/show'
+    else
+      redirect '/users/login'
+    end
   end
 
   get '/tweets/new' do
-    erb :'tweets/new'
+    if logged_in?
+      erb :'tweets/new'
+    else
+      redirect '/users/login'
+    end
   end
 
   get '/tweets/:id/edit' do
@@ -64,11 +72,11 @@ class TweetsController < ApplicationController
 
   delete '/tweets/:id' do
     set_tweet
-    if authorized?(@tweet)
+    if logged_in? && authorized?(@tweet)
       @tweet.destroy
       redirect '/tweets'
     else
-      redirect '/tweets'
+      redirect '/users/login'
     end
   end
 

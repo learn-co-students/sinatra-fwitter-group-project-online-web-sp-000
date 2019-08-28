@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect "/tweets/index"
+      redirect '/tweets'
     else
       erb :'/users/login'
     end
@@ -30,20 +30,23 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/tweets/#{@user.id}"
-      # redirect "/tweets/#{@user.id}"
+      redirect '/tweets'
     else
       redirect '/users/login'
     end
   end
 
-  get '/users/:id' do
-    @user = User.find_by(id: params[:id])
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end
 
   get '/logout' do
-    session.destroy
+    if logged_in?
+      session.clear
+    else
+      redirect '/'
+    end
     redirect '/users/login'
   end
 end
