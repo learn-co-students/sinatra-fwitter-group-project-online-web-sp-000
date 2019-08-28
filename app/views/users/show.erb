@@ -1,4 +1,7 @@
-<h1>Page for <%= @user.id %></h1>
+<h2><%= @user %>'s Show Page</h2>
+
+<p>Email:</p>
+<%= @user.email %>
 
 <% @user.tweets.each do |tweet| %>
 <ol>

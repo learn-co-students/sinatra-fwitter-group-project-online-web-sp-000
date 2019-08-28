@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
-# before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   get '/tweets' do
+    @tweets = Tweet.all
     if logged_in?
       erb :'/tweets/index'
     else
@@ -19,7 +19,8 @@ class TweetsController < ApplicationController
     end
     if params[:content] != ""
       @tweet = Tweet.create(content: params[:content], user_id: current_user.id)
-      redirect "/tweets/#{@tweet.id}"
+      @tweet.save
+      redirect "/tweets"
     else
       redirect '/tweets/new'
     end
@@ -47,27 +48,27 @@ class TweetsController < ApplicationController
     end
   end
 
-  post '/tweets/:id' do
+  patch '/tweets/:id' do
     set_tweet
     if logged_in?
-      if @tweet.user == current_user
+      if @tweet.user == current_user && params[:content] != ""
         @tweet.update(content: params[:content])
         redirect "/tweets/#{@tweet.id}"
       else
         redirect "/users/#{current_user.id}"
       end
     else
-      redirect "/login"
+      redirect '/login'
     end
   end
 
-  post '/tweets/:id/delete' do
+  delete '/tweets/:id' do
     set_tweet
     if authorized?(@tweet)
       @tweet.destroy
-      redirect '/tweets/index'
+      redirect '/tweets'
     else
-      redirect '/tweets/index'
+      redirect '/tweets'
     end
   end
 

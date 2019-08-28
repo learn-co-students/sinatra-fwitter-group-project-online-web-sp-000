@@ -4,9 +4,19 @@
     <title>Fwitter</title>
   </head>
   <body>
+    <nav>
+      <ul>
+        <% if logged_in? %>
+            <li>Welcome, <%= current_user.username %></li>
+            <li><a href="/tweets">Post a Tweet!</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        <% end %>
+      </ul>
+    </nav>
+    <div class="container">
 
-    <!-- <%= yield %> -->
+      <h1>Welcome to Fwitter!</h1>
 
-
+      <%= yield %>
   </body>
 </html>
