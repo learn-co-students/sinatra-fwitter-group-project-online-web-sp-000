@@ -1,0 +1,16 @@
+<% if logged_in? %>
+  <p>You are already logged in. Go to your tweets here: <a href="/tweets">Fwitter Feed</a></p>
+<% else %>
+<h2>Signup for a Fwitter Account</h2>
+
+<form action="/signup" method="POST">
+  <label for="username">Username: </label>
+    <input type="text" id="username" name="username" required><br><br>
+  <label for="email">Email: </label>
+    <input type="text" id="email" name="email" required><br><br>
+  <label for="password">Password: </label>
+    <input type="password" id="password" name="password" required><br><br>
+  <input type="submit" id="submit" value="Sign Up">
+</form>
+
+<% end %>
