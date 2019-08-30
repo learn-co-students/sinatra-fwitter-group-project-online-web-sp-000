@@ -1,8 +1,11 @@
 <h1>Create Tweet</h1>
 
+<% if authorized?(@tweet) %>
+
 <form action="/tweets/new" method="post">
 
   <label for="content">What's on your mind?</label>
   <textarea type="text" name="content" style="width:auto; height:auto">
   <input type="submit" name="submit" value="Submit">
 </form>
+<% end %>
