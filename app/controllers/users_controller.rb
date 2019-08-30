@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     binding.pry
-     @user = User.create(username: params["username"], :email params["email"], password: params["password"]
-     redirect erb :"/tweets"
+     @user = User.create(username: params["username"], email: params["email"], password: params["password"]
+     redirect to '/tweets'
   end
 end
