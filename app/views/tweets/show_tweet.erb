@@ -1,9 +1,8 @@
-<% if logged_in? %>
+
 <p><%= @tweet.content %></p>
 
-<% if authorized?(@tweet) %>
 
-<a href="/tweets/<%= @tweet.id %>/edit"><button>Edit Tweet</button></a>
+<a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
 <br>
 
 <form action="/tweets/<%= @tweet.id %>/delete" method="post">
@@ -12,5 +11,3 @@
   <input type="submit" id="submit" name="submit" value="Delete Tweet">
 </form>
 <a href="/tweets"><button>Back to Tweets</button></a>
-<% end %>
-<% end %>
