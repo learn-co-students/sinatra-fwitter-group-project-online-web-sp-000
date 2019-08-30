@@ -1,10 +1,10 @@
-<h2><%= @user.name %>'s Show Page</h2>
+<h2><%= @user.username %>'s Tweets</h2>
 
 <p>Email:</p>
 <%= @user.email %>
 
 <% @user.tweets.each do |tweet| %>
 <ol>
-  <li>tweet</li>
+  <li><%= tweet.content %></li>
 </ol>
 <% end %>

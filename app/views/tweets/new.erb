@@ -2,10 +2,10 @@
 
 <% if authorized?(@tweet) %>
 
-<form action="/tweets/new" method="post">
+<form action="/tweets" method="post">
 
   <label for="content">What's on your mind?</label>
-  <textarea type="text" name="content" style="width:auto; height:auto">
-  <input type="submit" name="submit" value="Submit">
+  <textarea type="text" id="content" name="content" style="width:auto; height:auto">
+  <input type="submit" id="submit" name="submit" value="Submit">
 </form>
 <% end %>

@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   get '/tweets' do
     @tweets = Tweet.all
     if logged_in?
-      erb :index
+      erb :'/tweets'
     else
       redirect '/login'
     end
@@ -53,7 +53,7 @@ class TweetsController < ApplicationController
       if authorized?(@tweet)
         erb :'/tweets/edit_tweet'
       else
-        redirect "/users/#{current_user.id}"
+        redirect "/tweets/#{current_user.id}"
       end
     else
       redirect '/login'
@@ -74,7 +74,7 @@ class TweetsController < ApplicationController
     end
   end
 
-  delete '/tweets/:id' do
+  post '/tweets/:id/delete' do
     set_tweet
     if logged_in? && authorized?(@tweet)
       @tweet.destroy
