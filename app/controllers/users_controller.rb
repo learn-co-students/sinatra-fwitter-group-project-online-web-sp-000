@@ -10,9 +10,9 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
-      @user = User.create(params)
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
-      redirect "/tweets/#{@user.id}"
+      redirect '/tweets'
     else
       redirect '/signup'
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
-  post '/login' do # creating a session, adding key/value pair to session hash
+  post '/login' do
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    erb :show
+    erb :'/users/show'
   end
 
   get '/logout' do
