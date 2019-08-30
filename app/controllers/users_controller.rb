@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     params.each do |label, input|
       if input.empty?
         flash[:new_user_error] = "Please fill in #{label}."
+        redirect '/signup'
       end
     end
      @user = User.create(username: params["username"], email: params["email"], password: params["password"])
