@@ -1,5 +1,5 @@
-<% if Helpers.logged_in?(session) %>
-<%= @error %>
+<% if logged_in? %>
+<!--<%= @error %>-->
   <form action='/tweets' method="post">
     Content:
     <input type="text" name="content"><br>
