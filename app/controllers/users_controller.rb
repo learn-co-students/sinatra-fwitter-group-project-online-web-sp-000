@@ -42,8 +42,14 @@ class UsersController < ApplicationController
     if Helpers.is_logged_in?(session)
       session.clear
       redirect to '/login'
-    else
+    elsif
+      !Helpers.is_logged_in?(session)
       redirect to '/'
+    elsif '/tweets'
+      !Helpers.is_logged_in?(session)
+      redirect to '/login'
+    else '/tweets'
+      redirect to '/tweets'
     end
   end
 
