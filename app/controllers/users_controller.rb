@@ -34,9 +34,19 @@ class UsersController < ApplicationController
        redirect to '/tweets'
      else
        flash[:login_error] = "Incorrect username and/or password. Please try again"
-       redirect to 'login'
+       redirect to '/login'
      end
   end
+
+  get '/logout' do
+    if Helpers.is_logged_in?(session)
+      session.clear
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
+  end
+
 
 
 
