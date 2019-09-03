@@ -1,5 +1,6 @@
+require 'rack-flash'
 class TweetsController < ApplicationController
-
+use Rack::Flash
   #tweets index page
   get '/tweets' do
     if logged_in?
@@ -29,6 +30,7 @@ class TweetsController < ApplicationController
     else
       @tweet = current_user.tweets.build(content: params[:content])
       if @tweet.save
+        flash[:message] = "Successfully created tweet."
         redirect to "/tweets/#{@tweet.id}"
       else
         redirect to '/tweets/new'
