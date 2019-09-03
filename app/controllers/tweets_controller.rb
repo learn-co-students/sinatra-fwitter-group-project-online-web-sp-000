@@ -41,9 +41,13 @@ class TweetsController < ApplicationController
 
   #displays info for a single tweet
   get '/tweets/:id' do
-    if logged_in?
-      @tweet =Tweet.find(params[:id])
-      erb :'tweets/show'
+    if logged_in?  #go to tweets/show only if tweet exits
+      @tweet =Tweet.find_by_id(params[:id])
+      if @tweet
+        erb :'tweets/show'
+      else
+        redirect to '/tweets'
+      end
     else
       redirect to '/login'
     end

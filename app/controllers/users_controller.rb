@@ -65,7 +65,6 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-
     if logged_in?
       session.clear
 
