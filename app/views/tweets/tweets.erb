@@ -4,5 +4,8 @@
 <% @tweets.each do |tweet| %>
   <div>
     <%= tweet.content %>
+    <a href="/tweets/<%= tweet.id %>">View Tweet</a>
   </div>
 <% end %>
+
+<a href="/tweets/new">Create a new tweet!</a>
