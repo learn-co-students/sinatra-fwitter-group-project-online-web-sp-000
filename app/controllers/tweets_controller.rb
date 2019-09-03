@@ -64,6 +64,7 @@ use Rack::Flash
      if @tweet && @tweet.user == current_user
        erb :'tweets/edit'
      else # The tweet does not exist, or the user is trying to edit someone else's tweet.
+       flash[:error] = "Can't edit another user's tweet."
        redirect to '/tweets'
      end
    else # The user is not logged in.
