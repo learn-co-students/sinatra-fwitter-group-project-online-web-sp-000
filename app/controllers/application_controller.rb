@@ -16,6 +16,14 @@ class ApplicationController < Sinatra::Base
 
   #helper methods
   helpers do
+
+    def logged_in?
+      # Returns a boolean value: true if the user is logged in, false if not.
+      # The user is logged in if current_user is truthy (because the session's user_id is not nil).
+
+      !!current_user
+    end
+
     def current_user
       # Finds the current user, whose id is the same as the session's user_id. Or return nil.
       # Note that #find breaks with an ActiveRecord::RecordNotFound error if it can't find a user, but #find_by_id returns nil.
@@ -29,12 +37,6 @@ class ApplicationController < Sinatra::Base
       @user ||= User.find_by_id(session[:user_id])
     end
 
-    def logged_in?
-      # Returns a boolean value: true if the user is logged in, false if not.
-      # The user is logged in if current_user is truthy (because the session's user_id is not nil).
-
-      !!current_user
-    end
   end
 
 
