@@ -18,6 +18,16 @@ get '/tweets/new' do
   end
 end
 
+post '/tweets' do
+  user = Helpers.current_user(session)
+  if params["content"].empty?
+    flash[:empty_tweet] = "Fill in the Tweet"
+    redirect to '/tweets/new'
+  else
+  tweet = Tweet.create(:content => params[:content], :user_id => user.id)
+  redirect to '/tweets'
+  end
+end
 
 
 
@@ -33,6 +43,7 @@ end
 get '/users/:slug' do
  @user = User.find_by(params[:slug])
 end
+
 
 
 end
