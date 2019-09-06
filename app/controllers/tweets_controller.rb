@@ -2,12 +2,24 @@ class TweetsController < ApplicationController
 
 get '/tweets' do
   if Helpers.is_logged_in?(session)
-
+#binding.pry
     erb :'tweets/tweets'
   else
     redirect '/login'
   end
 end
+
+get '/tweets/new' do
+  #binding.pry
+  if Helpers.is_logged_in?(session)
+    erb :'tweets/new'
+  else
+    redirect to '/login'
+  end
+end
+
+
+
 
 get '/tweets/:id' do
   if !Helpers.is_logged_in?(session)
@@ -21,11 +33,6 @@ end
 get '/users/:slug' do
  @user = User.find_by(params[:slug])
 end
-
-
-
-
-
 
 
 end
