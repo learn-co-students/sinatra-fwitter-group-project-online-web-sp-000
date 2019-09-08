@@ -29,6 +29,17 @@ post '/tweets' do
   end
 end
 
+get '/tweets/:id' do
+  #binding.pry
+  if !Helpers.is_logged_in?(session)
+    redirect to '/login'
+  else
+    @tweet = Tweet.find(params[:id])
+    erb :'tweets/show_tweet'
+  end
+end
+
+
 get 'tweets/:id/edit' do
   if !Helpers.is_logged_in?(session)
     redirect to 'login'
@@ -69,14 +80,14 @@ end
 
 
 
-get '/tweets/:id' do
-  if !Helpers.is_logged_in?(session)
-    redirect to '/login'
-  else
-    @tweet = Tweet.find(params[:id])
-    erb :'tweets/show_tweet'
-  end
-end
+# get '/tweets/:id' do
+#   if !Helpers.is_logged_in?(session)
+#     redirect to '/login'
+#   else
+#     @tweet = Tweet.find(params[:id])
+#     erb :'tweets/show_tweet'
+#   end
+# end
 
 
 get '/users/:slug' do
