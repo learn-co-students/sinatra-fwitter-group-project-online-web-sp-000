@@ -2,7 +2,6 @@ class TweetsController < ApplicationController
 
 get '/tweets' do
   if Helpers.is_logged_in?(session)
-#binding.pry
     erb :'tweets/tweets'
   else
     redirect '/login'
@@ -10,7 +9,6 @@ get '/tweets' do
 end
 
 get '/tweets/new' do
-  #binding.pry
   if Helpers.is_logged_in?(session)
     erb :'tweets/new'
   else
@@ -30,7 +28,6 @@ post '/tweets' do
 end
 
 get '/tweets/:id' do
-  #binding.pry
   if !Helpers.is_logged_in?(session)
     redirect to '/login'
   else
@@ -40,9 +37,10 @@ get '/tweets/:id' do
 end
 
 
-get 'tweets/:id/edit' do
+get '/tweets/:id/edit' do
+  #binding.pry
   if !Helpers.is_logged_in?(session)
-    redirect to 'login'
+    redirect to '/login'
   end
   @tweet = Tweet.find(params[:id])
   if Helpers.current_user(session).id != @tweet.user_id
@@ -63,30 +61,17 @@ tweet.save
 redirect to '/tweets/#{tweet.id}'
 end
 
-post '/tweets/:id/delete' do
-if Helpers.is_logged_in?(session)
-  redirect to '/login'
-end
-@tweet = Tweet.find(params[:id])
-if Helpers.current_user(session).id != @tweet.user_id
-  flash[:wrong_user] = "You could only delete your own tweets"
-  redirect to '/tweets'
-end
-@tweet.delete
-redirect to '/tweets'
-end
-
-
-
-
-
-# get '/tweets/:id' do
-#   if !Helpers.is_logged_in?(session)
-#     redirect to '/login'
-#   else
-#     @tweet = Tweet.find(params[:id])
-#     erb :'tweets/show_tweet'
-#   end
+# post '/tweets/:id/delete' do
+# if Helpers.is_logged_in?(session)
+#   redirect to '/login'
+# end
+# @tweet = Tweet.find(params[:id])
+# if Helpers.current_user(session).id != @tweet.user_id
+#   flash[:wrong_user] = "You could only delete your own tweets"
+#   redirect to '/tweets'
+# end
+# @tweet.delete
+# redirect to '/tweets'
 # end
 
 
