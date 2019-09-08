@@ -48,6 +48,7 @@ get '/tweets/:id/edit' do
   else
   erb :"tweets/edit_tweet"
   end
+  erb :"/login"
 end
 
 patch '/tweets/:id' do
@@ -61,18 +62,18 @@ tweet.save
 redirect to "/tweets/#{tweet.id}"
 end
 
-# post '/tweets/:id/delete' do
-# if Helpers.is_logged_in?(session)
-#   redirect to '/login'
-# end
-# @tweet = Tweet.find(params[:id])
-# if Helpers.current_user(session).id != @tweet.user_id
-#   flash[:wrong_user] = "You could only delete your own tweets"
-#   redirect to '/tweets'
-# end
-# @tweet.delete
-# redirect to '/tweets'
-# end
+post '/tweets/:id/delete' do
+if Helpers.is_logged_in?(session)
+  redirect to '/login'
+end
+@tweet = Tweet.find(params[:id])
+if Helpers.current_user(session).id != @tweet.user_id
+  flash[:wrong_user] = "You could only delete your own tweets"
+  redirect to '/tweets'
+end
+@tweet.delete
+redirect to '/tweets'
+end
 
 
 get '/users/:slug' do
