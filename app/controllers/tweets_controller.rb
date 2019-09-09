@@ -36,6 +36,27 @@ get '/tweets/:id' do
   end
 end
 
+# get '/tweets/:id/edit' do
+#   if Helpers.is_logged_in?(session)
+#     @tweet = Tweet.find(params[:id])
+#     if @tweet &&  @tweet.user == Helpers.current_user?(session)
+#     erb :"/tweets/edit_tweet"
+#   else
+#     flash[:wrong_user_edit] = "You could only edit your own tweets"
+#     redirect to "/tweets"
+#   end
+#   else
+#     redirect to "/login"
+#   end
+# end
+
+
+
+
+
+
+
+
 
 get '/tweets/:id/edit' do
   #binding.pry
@@ -46,6 +67,7 @@ get '/tweets/:id/edit' do
     flash[:wrong_user_edit] = "You could only edit your own tweets"
     redirect to '/tweets'
   else
+  @tweet = Tweet.find(params[:id])
   erb :"tweets/edit_tweet"
   end
 end
@@ -73,6 +95,7 @@ end
 @tweet.delete
 redirect to '/tweets'
 end
+
 
 
 end
