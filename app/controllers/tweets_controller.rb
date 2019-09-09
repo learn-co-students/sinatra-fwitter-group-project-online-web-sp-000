@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
       @tweets = Tweet.all
       erb :'tweets/tweets'
     else
-      redirect '/signup'
+      redirect '/login'
     end
   end
 
@@ -17,5 +17,5 @@ class TweetsController < ApplicationController
 
   get '/tweets/:id/edit' do
   end
-  
+
 end
