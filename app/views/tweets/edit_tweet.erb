@@ -1,3 +1,5 @@
+Hi <%=@tweet.user.username%>
+
 <% if flash.has?(:empty_tweet)%>
 <%=flash[empty_tweet]%>
 <%end%>

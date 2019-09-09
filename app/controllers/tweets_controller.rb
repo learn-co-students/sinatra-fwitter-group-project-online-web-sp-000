@@ -48,7 +48,6 @@ get '/tweets/:id/edit' do
   else
   erb :"tweets/edit_tweet"
   end
-  erb :"/login"
 end
 
 patch '/tweets/:id' do
@@ -74,12 +73,6 @@ end
 @tweet.delete
 redirect to '/tweets'
 end
-
-
-get '/users/:slug' do
- @user = User.find_by(params[:slug])
-end
-
 
 
 end

@@ -1,5 +1,7 @@
-Welcome,<br><br>
+Welcome,
+<br><br>
 
 <%Tweet.all.each do |instance|%>
-<%=instance.content%>
+
+<%=instance.user.username%> <%=instance.content%>
 <%end%>
