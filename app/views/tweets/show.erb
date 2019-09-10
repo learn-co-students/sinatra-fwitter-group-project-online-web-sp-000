@@ -1,0 +1,17 @@
+<nav>
+<a href="/logout"><button>Logout</button></a>
+<a href="/users/<%= @user.slug %>"><button>My Fweets</button></a>
+<a href="/tweets/new"><button>New Fweet</button></a>
+</nav>
+<table>
+  <tr><td><%= @tweet.user.username %></td></tr>
+  <tr><td><%= @tweet.content %></td></tr>
+  <tr>
+    <td>
+      <form action="/tweets/<%= @tweet.id %>" method="post">
+        <input type="hidden" id="hidden" name="_method" value="delete"/>
+        <p>Delete Tweet<input type="submit" id="Delete Tweet" value="Delete"/></p>
+      </form>
+      <a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+  </tr>
+</table>

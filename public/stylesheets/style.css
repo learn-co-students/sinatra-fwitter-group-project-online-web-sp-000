@@ -1,0 +1,61 @@
+body {
+    background-color: #e2d8d0;
+}
+h1 {background: url("./images/empty-sea-beach-background_74190-313.jpg");
+    background-size: cover;
+    color: #fff;
+    font-family: Impact;
+    font-size: 3em;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -ms-text-fill-color: transparent;
+    -ms-background-clip: text;
+    background-clip: text;
+    padding: 0px;
+    margin-bottom: -10px;
+}
+
+header {
+    display: flex;
+    align-content: space-between;
+    justify-content: flex-start;
+    background-color: #eff2f4;
+    width: 100%;
+    height: 110px;
+}
+
+.logo {
+    height: 100%
+}
+
+nav {
+    background-color: #998171;
+    width: 100%;
+    height: 30px
+}
+
+footer {background-color: #998171;
+        position: absolute;
+        height: 30px;
+        width: 100%;
+        bottom: 0px}
+
+.wrapper {
+    display:flex;
+    flex-direction: column
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background-color: #998171;
+    border: none;
+    height: 100%;
+
+}
+
+button hover {
+  cursor: pointer;
+}

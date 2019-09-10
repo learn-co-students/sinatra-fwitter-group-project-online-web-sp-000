@@ -111,7 +111,7 @@ describe ApplicationController do
         :password => "kittens"
       }
       post '/login', params
-      get '/logout'
+      post '/logout'
       expect(last_response.location).to include("/login")
     end
 
@@ -144,6 +144,12 @@ describe ApplicationController do
   describe 'user show page' do
     it 'shows all a single users tweets' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+
+      params = {
+      :username => "becky567",
+      :password => "kittens"
+      }
+      post '/login', params
       tweet1 = Tweet.create(:content => "tweeting!", :user_id => user.id)
       tweet2 = Tweet.create(:content => "tweet tweet tweet", :user_id => user.id)
       get "/users/#{user.slug}"

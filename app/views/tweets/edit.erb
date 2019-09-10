@@ -1,0 +1,12 @@
+<nav>
+<a href="/logout"><button>Logout</button></a>
+<a href="/users/<%= @user.slug %>"><button>My Fweets</button></a>
+<a href="/tweets/new"><button>New Fweet</button></a>
+</nav>
+<h2> Edit Fweet </h2>
+
+<form action="/tweets/<%= @tweet.id %>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="patch"/>
+  <p>Fweet: <input type="text" name="content" value="<%= @tweet.content %>"/></p>
+  <input type="submit" id="submit" value="Edit"/>
+</form>
