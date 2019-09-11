@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.new(params[:user])
+    @user = User.new(params)
 
     if @user.save
       session[:user_id] = @user.id
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  
   get '/login' do
     if logged_in?
       redirect '/tweets'
