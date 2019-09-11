@@ -41,9 +41,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:user][:username])
+    @user = User.find_by(username: params[:username])
 
-    if @user && @user.authenticate(params[:user][:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/tweets'
     else
@@ -52,8 +52,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
-    session.clear
-    redirect '/login'
+    if logged_in?
+      session.clear
+      redirect "/login"
+    else
+      redirect '/'
+    end
   end
 
   helpers do
