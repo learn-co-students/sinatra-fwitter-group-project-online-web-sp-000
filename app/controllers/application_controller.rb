@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
     if @user.save
       session[:user_id] = @user.id
-      redirect '/tweets'
+      redirect "/tweets"
     else
       redirect '/signup'
     end
@@ -57,7 +57,6 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
