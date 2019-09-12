@@ -9,13 +9,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if signup_form_incomplete?(params)
-      redirect to '/signup'
-    else
-      @user = User.new(params) #=> adjusted input names in signup form to pass tests (our inputs were ie: name=user[:email], but RSpec was wanting name=email.)
-      @user.save
+    @user = User.new(params)
+
+    if @user.save
       session[:user_id] = @user.id
       redirect to '/tweets'
+    else
+      redirect to '/signup'
     end
   end
 
