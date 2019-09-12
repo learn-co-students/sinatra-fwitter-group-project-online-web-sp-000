@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20190906004505) do
 
   create_table "tweets", force: :cascade do |t|
-    t.string   "post"
+    t.string   "content"
     t.datetime "date_created"
     t.integer  "user_id"
   end

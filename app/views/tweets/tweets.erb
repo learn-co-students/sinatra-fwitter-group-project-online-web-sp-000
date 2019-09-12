@@ -1,5 +1,6 @@
-<ul>
-  <% @tweets.each do |tweet| %>
-  <li><%= tweet.content =%> </li>
-  <% end %>
-</ul>
+<h1>Welcome, <%=@current_user.username%>!</h1>
+<h2> Here are all the tweets so far in the universe:</h2>
+<% @tweets.each do |tweet| %>
+<%@user = User.find_by(tweet.user_id) %>
+<p> <%= @user.username %> --> "<%=tweet.content %>" </p>
+<%end%>
