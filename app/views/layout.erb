@@ -5,11 +5,22 @@
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+    <div class="container">      
+      <h1>Welcome to Fwitter</h1>
+      <h2>        
+        <a href="/">Home</a>
+        <% if !!Helpers.is_logged_in?(session) == false %>
+          <a href="/signup">Sign Up</a>  
+          <%if !!@login == false%>
+            <a href="/login">Log In</a>  
+          <%end%>
+        <%else%>
+          <a href="/tweets/new">New Tweet</a>
+          <a href="/tweets">Show All</a>
+          <a href="/logout">Log Out</a>
+        <%end%>
+      </h2>
     </div>
-
+    <%= yield %>    
   </body>
 </html>
