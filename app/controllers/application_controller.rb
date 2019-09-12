@@ -23,17 +23,14 @@ class ApplicationController < Sinatra::Base
   end 
 
   post '/signup' do
-    if !!Helpers::is_logged_in?(session) == false
-      user = User.find_by username: params[:username]
-      if user == nil && params[:username] != "" && params[:email] != "" && params[:password] != ""
-        user = User.create(username: params[:username], email: params[:email], password: params[:password])    
-        session[:user_id] = user.id
-        redirect to ('/tweets')
-      else
-        redirect to ('/signup')
-      end
-    else
+    user = User.find_by username: params[:username]
+    if user == nil && params[:username] != "" && params[:email] != "" && params[:password] != ""
+      user = User.create(username: params[:username], email: params[:email], password: params[:password])    
+      session[:user_id] = user.id
       redirect to ('/tweets')
+    else
+      redirect to ('/signup')
     end
+    
   end  
 end
