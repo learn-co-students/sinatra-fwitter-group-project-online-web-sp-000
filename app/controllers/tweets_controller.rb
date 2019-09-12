@@ -16,7 +16,6 @@ class TweetsController < ApplicationController
   post '/tweets' do
     @tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
     current_user.tweets << @tweet
-    # binding.pry
     redirect :"tweets/#{@tweet.id}"
   end
 

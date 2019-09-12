@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    if logged_in?
-      redirect '/tweets'
+    if !logged_in?
+      erb :'/users/create_user'
     else
-      erb :signup
+      redirect to '/tweets'
     end
   end
 
   post '/signup' do
-    @user = User.new(params[:user])
-
-    if @user.save
-      session[:user_id] = @user.id
-      redirect "/tweets"
+    if signup_form_incomplete?(params)
+      redirect to '/signup'
     else
-      redirect '/signup'
+      @user = User.new(params) #=> adjusted input names in signup form to pass tests (our inputs were ie: name=user[:email], but RSpec was wanting name=email.)
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/tweets'
     end
   end
 
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
+    binding.pry
     @user = User.find_by(username: params[:username])
 
     if @user && @user.authenticate(params[:password])
