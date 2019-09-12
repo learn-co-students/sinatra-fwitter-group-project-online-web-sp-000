@@ -57,7 +57,6 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id/delete' do
-    binding.pry
     if !!Helpers.is_logged_in?(session)
       Tweet.delete(params[:id].to_i)      
       redirect to ('/tweets')
