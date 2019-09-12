@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def signup_form_incomplete?(params)
-      !!(params[:username].empty? || params[:email].empty? || params[:password].empty?)
+      (params[:username].empty? || params[:email].empty? || params[:password].empty?)
     end
 
     def current_user
