@@ -1,25 +1,13 @@
 
-class UsersController < ApplicationController 
-
-  get '/signup' do 
-    erb :'/users/create_user'
-  end 
-
-  post '/signup' do
-    user = User.find_by username: params[:username]
-    if user == nil
-      user = User.create(username: params[:username], email: params[:email], password: params[:password])    
-    end
-    session[:user_id] = user.id
-    redirect to ('/')
-  end
+class UsersController < ApplicationController   
 
   get '/login' do
     @username = ""
+    @login = true
     erb :'/users/login'
   end
 
-  post '/login' do
+  post '/login' do    
     user = User.find_by username: params[:username]
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -34,7 +22,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.clear
-    redirect '/'
+    redirect '/login'
   end
 
 end

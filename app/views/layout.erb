@@ -5,9 +5,18 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container">      
       <h1>Welcome to Fwitter</h1>
-      <h2><a href="/signup">Sign Up</a>  <a href="/login">Log In</a>  <a href="/logout">Log Out</a></h2>
+      <h2>
+        <% if !!Helpers.is_logged_in?(session) == false %>
+          <a href="/signup">Sign Up</a>  
+          <%if !!@login == false%>
+            <a href="/login">Log In</a>  
+          <%end%>
+        <%else%>
+          <a href="/logout">Log Out</a>
+        <%end%>
+      </h2>
     </div>
 
     <%= yield %>    

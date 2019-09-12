@@ -1,5 +1,9 @@
 class Helpers
-  def self.display_welcome(session, true_false)
-    session["display_welcome"] = true_false
+  def self.current_user(session)
+    User.find(session[:user_id]) 
+  end
+
+  def self.is_logged_in?(session)
+    !!session[:user_id]
   end
 end
