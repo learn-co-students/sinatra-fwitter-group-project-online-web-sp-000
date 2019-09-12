@@ -7,9 +7,17 @@
 
     <div class="container">
 
-<% if logged_in?%>
-<h2><a href="/logout"><%="logout"%></a> or <a href="/tweets/new"><%="create a new tweet"%></a></h2>
-<%end%>
+<% if logged_in? %>
+  <div class="nav">
+    <a href="/logout"><button type="button">Log out</button></a>
+    <a href="/tweets/new"><button type="button">New Tweet</button></a>
+  </div>
+<% else %>
+  <div class="nav">
+    <a href="/login"><button type="button">Log In</button></a>
+    <a href="/signup"><button type="button">Sign-Up</button></a>
+  </div>
+<% end %>
 
       <%= yield %>
 
