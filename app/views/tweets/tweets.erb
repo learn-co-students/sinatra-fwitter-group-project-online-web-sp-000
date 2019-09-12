@@ -1,1 +1,9 @@
-<h1>Tweets</h1>
+<h1>Welcome,</h1>
+
+<div>  
+  <% if !!@tweets%>
+    <% @tweets.each do |t|%>  
+      <div><%= t.content%></div><br>
+    <%end%>
+  <%end%>
+</div>

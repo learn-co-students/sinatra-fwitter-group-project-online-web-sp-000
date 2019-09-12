@@ -1,13 +1,16 @@
 
 class UsersController < ApplicationController   
 
+  get '/users/:id' do       
+    erb :'/tweets'
+  end
   get '/login' do
     if !!Helpers::is_logged_in?(session) == false
       @username = ""
       @login = true
       erb :'/users/login'
-    else
-      redirect to ('/tweets')
+    else      
+      erb :'/tweets/tweets'
     end
   end
 

@@ -1,0 +1,7 @@
+<h2>Your new tweet</h2>
+
+<div><%=@tweet.content%></div>
+<div>
+  <a href="/tweets/<%=@tweet.id%>/edit">Edit Tweet</a>  
+  <button onclick="window.location.href = '/tweets/<%=@tweet.id%>/delete';">Delete Tweet</button>
+ </div>
