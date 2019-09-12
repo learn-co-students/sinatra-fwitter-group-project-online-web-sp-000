@@ -7,7 +7,8 @@
 
     <div class="container">      
       <h1>Welcome to Fwitter</h1>
-      <h2>
+      <h2>        
+        <a href="/">Home</a>
         <% if !!Helpers.is_logged_in?(session) == false %>
           <a href="/signup">Sign Up</a>  
           <%if !!@login == false%>
@@ -15,11 +16,11 @@
           <%end%>
         <%else%>
           <a href="/tweets/new">New Tweet</a>
+          <a href="/tweets">Show All</a>
           <a href="/logout">Log Out</a>
         <%end%>
       </h2>
     </div>
-
     <%= yield %>    
   </body>
 </html>

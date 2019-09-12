@@ -1,3 +1,7 @@
-<% if !!Helpers.is_logged_in?(session) %>
-  <h1>Welcome,</h2>
+<% if !!Helpers.is_logged_in?(session) == false %>
+  <h2>Welcome,</h2>
+  <h3>I hope you enjoy my little redition of Fwitter</h3>
+  <p>Select New Tweet from the menu above to get started</p>
+<%else%>
+  <h3>Vist the <a href="/tweets">Tweets</a> page to view all available tweets</h3>  
 <%end%>

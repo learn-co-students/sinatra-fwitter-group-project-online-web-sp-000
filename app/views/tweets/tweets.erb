@@ -1,9 +1,10 @@
-<h1>Welcome,</h1>
+<h2>Here's a list of all available Tweets</h2>
+<p>Click to Edit/Delete</p>
 
 <div>  
   <% if !!@tweets%>
     <% @tweets.each do |t|%>  
-      <div><%= t.content%></div><br>
+      <div><a href="/tweets/<%=t.id%>"><%= t.content%></a></div><br>
     <%end%>
   <%end%>
 </div>

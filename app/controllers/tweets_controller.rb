@@ -56,9 +56,11 @@ class TweetsController < ApplicationController
     end
   end
 
-  get '/tweets/:id/delete' do
+  delete '/tweets/:id/delete' do
     if !!Helpers.is_logged_in?(session)
-      Tweet.delete(params[:id].to_i)      
+      if Helpers.current_user(session).id == Tweet.find(params[:id].to_i).user_id
+        Tweet.delete(params[:id].to_i)  
+      end    
       redirect to ('/tweets')
     else
       redirect to ('/login')
