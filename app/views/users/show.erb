@@ -1,0 +1,11 @@
+
+
+
+<br>
+<%=@user.username%>
+
+<br><br>
+
+<%@user.tweets.each do |t|%>
+<%=t.content%><br>
+<%end%>

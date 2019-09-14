@@ -5,11 +5,23 @@
   </head>
   <body>
 
-    <div class="container">
+    <%# <div class="container">
       <h1>Welcome to Fwitter!</h1>
       <h2>This is located in layout.erb!</h2>
       <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+    </div> %>
 
+  <%=yield%>
+
+
+<br><br>
+  <%if logged_in?%>
+    <%="You are logged in"%>
+  <%else%>
+    <%="You are NOT logged in"%>
+  <%end%>
+  <br><br>
+  <a href="/logout" name="logout" value="logout">Logout</a>
+  <br>
   </body>
 </html>
