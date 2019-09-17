@@ -1,0 +1,11 @@
+<h1>Tweets</h1>
+<h2>Welcome, <%= @user.username %></h2>
+
+<% @tweets.each do |tweet| %>
+    <% @user = User.find_by(id: tweet.user_id) %>
+    <%= @user.username %>: <%= tweet.content %> </br>
+<% end %>
+
+<form action="/tweets/new" method="get">
+<button type='submit'>submit</button>
+</form>
