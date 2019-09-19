@@ -84,15 +84,15 @@ redirect to "/tweets/#{tweet.id}"
 end
 
 post '/tweets/:id/delete' do
-if Helpers.is_logged_in?(session)
+if !Helpers.is_logged_in?(session)
   redirect to '/login'
 end
 @tweet = Tweet.find(params[:id])
-if Helpers.current_user(session).id != @tweet.user_id
-  flash[:wrong_user] = "You could only delete your own tweets"
-  redirect to '/tweets'
-end
+if Helpers.current_user(session).id == @tweet.user_id
+  #flash[:wrong_user] = "You could only delete your own tweets"
+#end
 @tweet.delete
+end
 redirect to '/tweets'
 end
 
