@@ -62,3 +62,24 @@ footer a {
 footer a:hover {
   background-color: #111;
 }
+
+/* ---------- INTRO ---------- */
+
+.intro {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.intro h2 {
+  padding-top: 50px;
+}
+
+.choice {
+  text-align: center;
+}
+
+input {
+  background-color: #bfbfbc;
+  font-size: 14px;
+  width: 75px;
+}
