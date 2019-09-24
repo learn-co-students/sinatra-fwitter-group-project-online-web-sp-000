@@ -208,7 +208,6 @@ describe ApplicationController do
         visit '/tweets/new'
         fill_in(:content, :with => "tweet!!!")
         click_button 'submit'
-
         user = User.find_by(:username => "becky567")
         tweet = Tweet.find_by(:content => "tweet!!!")
         expect(tweet).to be_instance_of(Tweet)
