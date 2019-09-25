@@ -9,13 +9,14 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
+#gets the url request, the loads the index page for the viewer
   get '/' do
     erb :index
   end
 
   helpers do
     def logged_in?
-      !!current_user #turns current_user into boolearn (true/false) Where did current_user come from?
+      !!current_user #turns current_user into boolearn (true/false)
     end
 
     def current_user
