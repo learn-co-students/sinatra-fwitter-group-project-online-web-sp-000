@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    binding.pry
+    # binding.pry
     if !logged_in?
       erb :'/users/create_user'
     else
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
+    # binding.pry
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect :'/signup'
     else
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    binding.pry
+    # binding.pry
     @user = User.find_by(username: params[:username])
 
       if @user && @user.authenticate(params[:password])
