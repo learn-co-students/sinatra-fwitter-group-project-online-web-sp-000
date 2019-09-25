@@ -42,20 +42,20 @@ class UsersController < ApplicationController
       end
   end
 
-  # get '/users/:slug' do
-  #   @user = User.find_by_slug(params[:slug])
-  #   @user_tweets = []
-  #   if current_user = @user
-  #     Tweet.all.each do |t|
-  #       if t.user_id == current_user.id
-  #         @user_tweets << t
-  #       end
-  #     end
-  #   else
-  #     redirect '/login'
-  #   end
-  #   erb :'/users/show'
-  # end
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    # @user_tweets = []
+    # if current_user = @user
+    #   Tweet.all.each do |t|
+    #     if t.user_id == current_user.id
+    #       @user_tweets << t
+    #     end
+    #   end
+    # else
+    #   redirect '/login'
+    # end
+    erb :'/users/show'
+  end
 
   get '/logout' do
     if logged_in?
