@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!current_user #turns current_user into boolearn (true/false)
+      !!current_user #turns current_user into boolearn (true/false) Where did current_user come from?
     end
 
     def current_user

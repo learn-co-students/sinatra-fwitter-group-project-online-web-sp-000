@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
+    # binding.pry
     if !logged_in?
       erb :'/users/create_user'
     else
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     else
       # @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       @user = User.create(params)
-      session[:user_id] = @user_id
+      session[:user_id] = @user.id #:user_id is a session key. @user.id is assigning the session key to the user's id that is in session.
 
       redirect :'/tweets'
     end
