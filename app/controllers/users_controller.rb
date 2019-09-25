@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    # binding.pry
     if !logged_in?
       erb :'/users/create_user'
     else
@@ -13,7 +12,6 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect :'/signup'
     else
-      # @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       @user = User.create(params)
       session[:user_id] = @user.id #:user_id is a session key. @user.id is assigning the session key to the user's id that is in session.
 
@@ -39,8 +37,23 @@ class UsersController < ApplicationController
       end
   end
 
+  # get '/users/:slug' do
+  #   @user = User.find_by_slug(params[:slug])
+  #   @user_tweets = []
+  #   if current_user = @user
+  #     Tweet.all.each do |t|
+  #       if t.user_id == current_user.id
+  #         @user_tweets << t
+  #       end
+  #     end
+  #   else
+  #     redirect '/login'
+  #   end
+  #   erb :'/users/show'
+  # end
+
   get '/logout' do
-    if logged_in?
+    if !logged_in?
       session.clear
       redirect :'/login'
     else
