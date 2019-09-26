@@ -2,6 +2,6 @@
 <br>
 <ul>
 <% @user.tweets.each do |tweet| %>
-  <li><%=tweet.content%></li>
+  <li><a href="/users/<%=@user.slug%>"><%=tweet.content%></a></li>
   <%end%>
 </ul>
