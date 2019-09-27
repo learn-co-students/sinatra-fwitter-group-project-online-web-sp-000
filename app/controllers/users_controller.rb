@@ -43,7 +43,8 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = current_user
+    @user = User.find_by_slug(params[:slug])
+    @tweets = @user.tweets
     erb :'/users/show'
   end
 
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
       session.destroy
       redirect to '/login'
     else
-      redirect to '/tweets'
+      redirect to '/'
     end
   end
 
