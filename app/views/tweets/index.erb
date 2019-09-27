@@ -1,0 +1,16 @@
+<h1>Welcome, <%= @user.username %></h1>
+
+<h3>Your Fwitter Feed</h3>
+<div>
+  <% @tweet.each do |tweet| %>
+    <% if tweet.user_id == @user.id %>
+      <p><a href="/tweets/<%= tweet.id%>"><%=tweet.content%>
+    <% else %>
+      <p><%=tweet.content%></a></p>
+    <%end%>
+  <%end%>
+</div>
+
+<div>
+  <a href="/tweets/new"><button type="button" value="submit">New Tweet</button></a>
+</div>

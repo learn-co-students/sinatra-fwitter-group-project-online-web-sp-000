@@ -130,9 +130,9 @@ describe ApplicationController do
     it 'loads /tweets if user is logged in' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
-
+      # binding.pry
       visit '/login'
-
+      # binding.pry
       fill_in(:username, :with => "becky567")
       fill_in(:password, :with => "kittens")
       click_button 'submit'

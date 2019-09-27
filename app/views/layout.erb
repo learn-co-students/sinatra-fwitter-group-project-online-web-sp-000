@@ -1,15 +1,32 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Fwitter</title>
   </head>
   <body>
+    <header>
+      <navigation>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/logout"><button type="button" value="Submit">Logout</button></a></li>
+          <li><a href="/tweets/show">Tweets</a></li>
+        </ul>
+      </navigation>
+    </header>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
-
+      <div class="container">
+        <!-- <h1>Welcome to Fwitter!</h1>
+        <h2>This is located in layout.erb!</h2>
+        <h2>Don't forget to <strong>yield</strong> your views!</h2> -->
+        <%=yield%>
+      </div>
+    <footer>
+      <a href="/">Home</a>
+      <a href="/login">Login</a>
+      <a href="/logout">Logout</a>
+      <p>Fwitter 2019</p>
+    </footer>
   </body>
 </html>
