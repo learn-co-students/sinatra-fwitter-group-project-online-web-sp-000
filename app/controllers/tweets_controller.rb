@@ -45,7 +45,7 @@ class TweetsController < ApplicationController
             @tweet = Tweet.find_by(id: params[:id])
             @user = User.find_by(id: @tweet.user_id)
             if @user == current_user
-                erb :"/tweets/edit"
+                erb :"/tweets/edit_tweet"
             else
                 redirect '/tweets'
             end
@@ -66,10 +66,11 @@ class TweetsController < ApplicationController
       end
     end
 
+
     delete '/tweets/:id/delete' do
     if logged_in?
       @tweet = Tweet.find_by(id: params[:id])
-      if @tweet && @user == current_user
+      if @tweet && @tweet.user == current_user
         @tweet.delete
       end
       redirect '/tweets'
