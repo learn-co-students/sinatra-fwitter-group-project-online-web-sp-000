@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe ApplicationController do
 
@@ -83,10 +84,11 @@ describe ApplicationController do
         :password => "kittens"
       }
       post '/login', params
+
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("Welcome,")
+      expect(last_response.body).to include("Welcome")
     end
 
     it 'does not let user view login page if already logged in' do
@@ -98,6 +100,7 @@ describe ApplicationController do
       }
       post '/login', params
       get '/login'
+      
       expect(last_response.location).to include("/tweets")
     end
   end
