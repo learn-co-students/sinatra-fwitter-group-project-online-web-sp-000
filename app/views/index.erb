@@ -1,1 +1,7 @@
-<div>Please <a href="/signup">Sign Up</a> or <a href="/login">Log In</a> to continue.</div> 
+
+<% if logged_in? %> 
+<h3>You are Signed in already Please Create a tweet, Log out, or go to Tweets Home now</h3>
+<p><a href="/tweets">Tweets</a></p>
+
+
+<% end %>

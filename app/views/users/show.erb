@@ -1,0 +1,13 @@
+
+<p> Here are your tweets, <%= @user.username %>
+<body>
+<% @user.tweets.each do |tweet| %>
+<h4><p>- "<%= tweet.content %>"</p></h4>
+<% end %>  
+  
+</body>
+
+
+
+<p><a href="/tweets">Twitter Home</a></p>
+<p><a href="/">MAIN PAGE</a></p>

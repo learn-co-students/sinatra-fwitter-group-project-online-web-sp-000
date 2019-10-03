@@ -1,0 +1,16 @@
+<h1>Edit Tweet</h1>
+<br>
+<h2>Current Content:</h2>
+<%= @tweet.content %>
+<br>
+ <form action='/tweets/<%= @tweet.id %>' method="post">
+ <input id="hidden" type="hidden" name="_method" value="patch"> 
+   <br>
+    New Content:
+    <input type="text" name="content"><br>
+    Edit Tweet:
+    <input type="submit" name="submit" id="submit">
+
+  </form>
+  <br>
+  <a href="/tweets">BACK</a>
