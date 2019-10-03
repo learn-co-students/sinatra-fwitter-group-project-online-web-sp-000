@@ -1,0 +1,23 @@
+
+
+<h1>HOME</h1>
+<h2>Welcome, <%= @user.email %></h2>
+
+<h3>This is what's going on:</h3>
+
+  <ul>
+  <% @tweets.each do |tweet| %>
+  <li><a href ="/tweets/<%= tweet.id %>">- "<%= tweet.content %>"</a>by <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a></li>
+  
+  <% end %>
+  </ul>
+
+ 
+<br>
+<% if logged_in? %> 
+<p><a href="/users/<%= @user.slug %>">User Profile</a></p>
+<% end %>
+<p><a href="/">HOME</a></p>
+
+
+
