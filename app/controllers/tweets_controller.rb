@@ -64,6 +64,11 @@ class TweetsController < ApplicationController
   end
 
 
+  patch '/tweets/:id' do
+
+  end
+
+
   delete '/tweets/:id' do
     @tweet = Tweet.find_by_id(params[:id])
     erb :'/tweets/tweet_page'
