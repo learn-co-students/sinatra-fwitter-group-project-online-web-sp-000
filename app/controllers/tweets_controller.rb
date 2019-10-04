@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
 
+# Always check if logged in
+
   get '/tweets' do
     if logged_in?
       @tweets = Tweet.all
@@ -32,6 +34,23 @@ class TweetsController < ApplicationController
       end
     else
       redirect '/login'
+    end
+  end
+
+  delete '/tweets/:id' do
+    @tweet = Tweet.find_by_id(params[:id])
+    erb :'/tweets/tweet_page'
+  end
+
+  post '/tweets/:id/delete' do
+    if logged_in?
+      @tweet = Tweet.find_by_id(params[:id])
+      if @tweet && @tweet.user == current_user
+        @tweet.delete
+      end
+      redirect to '/tweets'
+    else
+      redirect to '/login'
     end
   end
 end
