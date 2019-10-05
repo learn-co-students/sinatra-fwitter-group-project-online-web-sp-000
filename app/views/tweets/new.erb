@@ -3,13 +3,12 @@
   <form action='/tweets' method="post">
     Content:
     <input type="text" name="content"><br>
-    Create Your Tweet:
-
-    <input type="submit" name="submit" id="submit">
-
-    <input type="submit" name="submit">
-
-  </form>
+    
+    <h2>Add a tweet</h2>
+    <form action="/tweets" method="POST">
+      <p>Status: <input type="text" name="content"></p>
+      <input class="btn btn-primary" type="submit" value="submit">
+    </form>
 
   <% else %>
       <h1> You Must Be Logged in to Make Tweets </h1>
