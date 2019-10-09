@@ -17,8 +17,12 @@ class ApplicationController < Sinatra::Base
     erb :signup
   end
   
-  post '/tweets/tweets' do
-    user = User.create(params)
-    redirect "/tweets/tweets"
+  post '/signup' do
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect "/signup"
+    else
+      user = User.create(params)
+      redirect "/tweets"
+    end
   end
 end
