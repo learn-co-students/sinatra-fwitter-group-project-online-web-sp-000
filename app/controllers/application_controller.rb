@@ -1,7 +1,6 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -13,16 +12,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
   
-  get '/signup' do
-    erb :signup
-  end
-  
-  post '/signup' do
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      redirect "/signup"
-    else
-      user = User.create(params)
-      redirect "/tweets"
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
     end
   end
 end
