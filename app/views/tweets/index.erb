@@ -1,0 +1,6 @@
+<%# binding.pry %>
+<%= "Welcome, #{current_user.username}" %>
+
+<% Tweet.all.each do |tweet| %>
+<%= tweet.content %>
+<% end %>

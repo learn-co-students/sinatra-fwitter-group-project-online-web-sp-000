@@ -1,0 +1,19 @@
+<!--this would be a form to make a new tweet. see what an erb comment looks like below -->
+<%#=   %>
+<!---- checkout out activerecrd and sinatra, and whatever i have seem to get stuck on. sql and ORMS probably not necessary, those are more so you understand whats going on under the hood. bcrypt also --->
+
+<h1>Create a new Tweet</h1>
+
+<form action="/tweets" method="POST">
+  <label>Content:</label>
+
+  <br></br>
+
+  <input type="text" name="content" id="content">
+<%# binding.pry %>
+  <input type="submit" value="submit">
+
+
+
+
+</form>

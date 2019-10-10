@@ -1,0 +1,8 @@
+<%user = User.find_by(:id => session[:user_id])%>
+<h2>Welcome, <%=user.username%></h2>
+<h2>All tweets below:</h2>
+<ul>
+<%Tweet.all.each do |tweet|%>
+  <li><%=User.find_by(:id => tweet.user_id).username%>:<%=tweet.id%>. <%=tweet.content%></li>
+<%end%>
+</ul>

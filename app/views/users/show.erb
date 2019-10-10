@@ -1,0 +1,11 @@
+<h1>Fwitter</h1>
+
+<h2><%= @user.username %>'s Tweets</h2>
+
+<ul>
+<% @tweets.each do |tweet| %>
+    <% if tweet.user_id == @user.id %>
+        <li><%= tweet.content %></li>
+    <% end %>
+<% end %>
+</ul> 
