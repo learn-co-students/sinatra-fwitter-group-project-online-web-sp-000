@@ -55,7 +55,22 @@ class ApplicationController < Sinatra::Base
    end
 
    get '/tweets' do
+    if !Helpers.logged_in?(session)
+      redirect '/login'
+    else
+    # @user = Helpers.current_user(session)
+    # binding.pry
      erb :'tweets/index'
+    end
+   end
+
+   get '/logout' do
+     if Helpers.logged_in?(session)
+       session.clear
+       redirect "/login"
+     else
+       redirect '/'
+     end
    end
 
 
