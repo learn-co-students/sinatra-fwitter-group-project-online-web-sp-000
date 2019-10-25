@@ -82,6 +82,66 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/tweets/:id' do
+    if !Helpers.logged_in?(session)
+      redirect to '/login'
+    end
+    @tweet = Tweet.find(params[:id])
+    erb :"tweets/show"
+  end
+
+  get '/tweets/:id/edit' do
+    if !Helpers.logged_in?(session)
+      redirect to '/login'
+    end
+    @tweet = Tweet.find(params[:id])
+    if Helpers.current_user(session).id != @tweet.user_id
+      redirect to '/tweets'
+    end
+    erb :"tweets/edit"
+  end
+
+  patch '/tweets/:id' do
+      tweet = Tweet.find(params[:id])
+
+      if params[:content].empty?
+        redirect to "/tweets/#{params[:id]}/edit"
+      end
+      tweet.update(:content => params["content"])
+
+      tweet.save
+
+      redirect to "/tweets/#{tweet.id}"
+    end
+
+  # patch '/tweets/:id' do
+  #   @tweet = Tweet.find(params[:id])
+  #   if !params[:content].empty?
+  #   @tweet.update(:content => params["content"])
+  #   @tweet.save
+  #   redirect '/tweets/#{@tweet.id}'
+  #  else
+  #    redirect '/tweets/#{@tweet.id}/edit'
+  #  end
+  # end
+
+  post '/tweets/:id/delete' do
+    if !Helpers.logged_in?(session)
+      redirect to '/login'
+    end
+    @tweet = Tweet.find(params[:id])
+    if Helpers.current_user(session).id != @tweet.user_id
+      redirect to '/tweets'
+    end
+    @tweet.delete
+    redirect to '/tweets'
+  end
+
+  get '/users/:slug' do
+      slug = params[:slug]
+      @user = User.find_by_slug(slug)
+      erb :"users/show"
+    end
 
    get '/logout' do
      if Helpers.logged_in?(session)
