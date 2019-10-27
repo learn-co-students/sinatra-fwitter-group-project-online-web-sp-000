@@ -8,27 +8,29 @@ class ApplicationController < Sinatra::Base
     enable :sessions 
     set :session_secret, 'secret'
   end
-
-  helpers do
-
-  end
+ 
 
   get '/' do 
     erb:'/homepage'
   end 
 
   get '/signup' do 
+     if logged_in?
+        redirect to "/tweets"
+     else 
       erb:'/signup'
+     end 
   end 
 
   post '/signup' do 
-    if params[:username] != "" && params[:email] != "" && params[:password] != "" 
+    if params[:username] != "" && params[:email] != "" && params[:password] != ""
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id 
       redirect to '/tweets'
-      else  
+    else  
       redirect to '/signup'
     end 
+    
   end 
 
   get '/login' do  
@@ -36,11 +38,23 @@ class ApplicationController < Sinatra::Base
   end 
 
   get '/tweets' do 
-    if session[:user_id]
-
-    end 
+   
   end
 
+  helpers do 
+    
+    def current_user 
+      @user = User.find_by(session["user_id"])
+    end 
 
+    def logged_in?
+      if session[:user_id]
+        true 
+      else 
+        false 
+      end 
+    end
+  end  
 
 end
+
