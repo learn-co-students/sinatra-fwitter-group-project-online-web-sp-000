@@ -1,1 +1,7 @@
+require 'pry'
+
 <label>Tweet Index</label>
+ 
+<% @tweets.each do |tweet|%>
+    <%= tweet.content %>
+    <% end %>

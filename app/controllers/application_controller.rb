@@ -35,19 +35,25 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do 
     if !logged_in? 
-      erb:'/login'
+      erb:"/users/login"
     else 
-      erb:'/tweets'
+      redirect to '/tweets'
     end 
   end 
 
   post '/login' do 
-    erb:"tweets/index"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to '/tweets'
+    else 
+      redirect to '/login'
+    end  
   end 
 
   get '/tweets' do 
-    if current_user
       @tweets = Tweet.all 
+    if logged_in?
       erb:'tweets/index' 
     else 
       redirect to "/login"
@@ -56,14 +62,19 @@ class ApplicationController < Sinatra::Base
 
   get '/logout' do 
     if logged_in?
-      redirect to "/tweets"
-    else 
       session.clear 
       redirect to "/login"
+    else 
+      redirect to "/"
     end 
   end 
 
-  get '/:slug' do 
+  get '/users/:id' do  
+    @user = User.find_by_id(params[:id])
+    erb:"/users/show"
+  end 
+
+  get '/users/:slug' do 
     
   end 
 
