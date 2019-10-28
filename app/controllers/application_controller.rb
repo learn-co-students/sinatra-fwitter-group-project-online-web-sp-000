@@ -70,7 +70,7 @@ class ApplicationController < Sinatra::Base
   end 
 
   get '/users/:id' do  
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by(username: params["id"])
     erb:"/users/show"
   end 
 
