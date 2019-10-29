@@ -1,3 +1,4 @@
+require 'pry'
 class TweetsController < ApplicationController
 
     get '/tweets' do 
@@ -12,5 +13,11 @@ class TweetsController < ApplicationController
     get '/tweets/new' do 
             erb:'/tweets/new'
     end 
+
+    post '/tweets' do 
+        @tweet = Tweet.create(content: params[:content])
+        current_user.tweets << @tweet
+    end 
+
 
 end
