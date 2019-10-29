@@ -1,4 +1,3 @@
-<% if Helpers.is_logged_in?(session) %>
 <%= @error %>
   <form action='/tweets' method="post">
 
@@ -10,6 +9,3 @@
 
   </form>
 
-  <% else %>
-      <h1> You Must Be Logged in to Make Tweets </h1>
-  <% end %>
