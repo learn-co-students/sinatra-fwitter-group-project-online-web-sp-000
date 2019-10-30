@@ -1,16 +1,20 @@
 require 'pry'
 <label>Show page</label>
 
-<form action='/tweets/:id/delete' method="POST">
+<%= @tweet.content %>
 
-<% @user.tweets.each do |tweet| %>
-    <%= tweet.content %>
-    <% end %>
+
+<form action='/tweets/<%=@tweet.id%>/delete' method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+  
 
 
     <input type="submit" value="Delete Tweet">
 
-    <input type="submit" value="Edit Tweet">
+    
 </form>
 
+
+<a href= "/tweets/#{@tweet.id}/edit">"Edit Tweet"</a>
 
