@@ -11,7 +11,11 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets/new' do 
-            erb:'/tweets/new'
+      if logged_in?
+         erb:'/tweets/new'
+      else 
+        redirect to "/login"
+      end 
     end 
 
     post '/tweets' do 
@@ -21,6 +25,13 @@ class TweetsController < ApplicationController
         else 
             redirect to "/tweets/new"
         end 
+    end 
+
+    get '/tweets/:id' do 
+      @user = User.find_by(username: params["id"])
+      if logged_in?
+        erb:"tweets/show"
+      end
     end 
 
     

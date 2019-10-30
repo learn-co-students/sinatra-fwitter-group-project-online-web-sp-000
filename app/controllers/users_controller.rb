@@ -45,13 +45,13 @@ class UsersController < ApplicationController
          session.clear 
          redirect to "/login"
        else 
-         redirect to "/"
+         redirect to "/login"
        end 
      end 
    
-     get '/users/:id' do  
-       @user = User.find_by(username: params["id"])
-       erb:"/users/show"
+     get '/users/:id' do   
+        @user = User.find_by(id: params[:id])
+        erb:"/users/show"
      end 
    
    
