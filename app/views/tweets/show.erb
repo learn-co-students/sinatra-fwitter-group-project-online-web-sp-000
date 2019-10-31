@@ -4,7 +4,7 @@ require 'pry'
 <%= @tweet.content %>
 
 
-<form action='/tweets/<%=@tweet.id%>/delete' method="POST">
+<form action="/tweets/<%=@tweet.id%>/delete" method="POST">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
 
   
