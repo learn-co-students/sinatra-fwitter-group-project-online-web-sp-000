@@ -3,6 +3,7 @@
 <br>
 <br>
 
+
 <form action="/tweets/<%=@tweet.id%>" method="post">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" name="delete_tweet" id="delete_tweet" value="Delete Tweet">
@@ -12,7 +13,8 @@
 <input type="submit" name="edit_tweet" id="edit_tweet" value="Edit Tweet">
 </form>
 
-<form action="/users/<%=@tweet.user.slug%>" method="get">
+
+<form action="/users/<%=@user.slug%>" method="get">
 <input type="submit" name="my_tweets" id="my_tweets" value="Back to my Tweets">
 </form>
 
