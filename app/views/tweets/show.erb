@@ -11,3 +11,11 @@
 <form action="/tweets/<%=@tweet.id%>/edit" method="post">
 <input type="submit" name="edit_tweet" id="edit_tweet" value="Edit Tweet">
 </form>
+
+<form action="/users/<%=@tweet.user.slug%>" method="get">
+<input type="submit" name="my_tweets" id="my_tweets" value="Back to my Tweets">
+</form>
+
+<form action="/tweets" method="get">
+<input type="submit" name="all_tweets" id="all_tweets" value="Back to all Tweets">
+</form>

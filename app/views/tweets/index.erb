@@ -10,3 +10,11 @@
 <form action='/logout' method="post">
 <input type= "submit" value="Log Out">
 </form>
+
+<form action='/tweets/new' method="get">
+<input type= "submit" value="New Tweet">
+</form>
+
+<form action="/users/<%=@user.slug%>" method="get">
+<input type="submit" name="my_tweets" id="my_tweets" value="View my Tweets">
+</form>
