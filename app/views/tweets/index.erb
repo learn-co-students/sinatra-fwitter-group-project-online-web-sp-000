@@ -1,7 +1,7 @@
 <p>Welcome, <%=@user.username%>. Here are all the lovely tweets</p>
 
 <ul><%@tweets.each do |tweet|%>
-<li><%=tweet.content%></li>
+<li><a href="/tweets/<%=tweet.id%>"><%=tweet.content%></a></li>
 <%end%>
 
 <br>

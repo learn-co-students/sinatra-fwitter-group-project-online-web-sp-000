@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
     get "/users/:id" do
       @user=User.find_by_slug(params[:id])
-      binding.pry
       erb :"/users/show"
     end
 
