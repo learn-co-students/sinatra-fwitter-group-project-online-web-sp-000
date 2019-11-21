@@ -1,1 +1,12 @@
-"here are all the lovely tweets"
+<p>Welcome, <%=@user.username%>. Here are all the lovely tweets</p>
+
+<ul><%@tweets.each do |tweet|%>
+<li><%=tweet.content%></li>
+<%end%>
+
+<br>
+<br>
+
+<form action='/logout' method="post">
+<input type= "submit" value="Log Out">
+</form>
