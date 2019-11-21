@@ -1,13 +1,26 @@
 <!doctype html>
 <html>
   <head>
-  <link rel="stylesheet" href="../public/style.css">
+ <style>
+  .container {
+    color: white;
+    background-color: lightblue;
+    align-content: center;
+    height: 100px;
+  }
+
+  #welcome {
+    text-align: center;
+    font-size: 3em;
+  }
+  
+ </style>
     <title>Fwitter</title> 
   </head>
   <body>
 
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
+      <h1 id="welcome">Welcome to Fwitter!</h1>
        </div>
       <%=yield%>
    
