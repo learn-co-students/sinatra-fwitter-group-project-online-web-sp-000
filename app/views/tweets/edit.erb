@@ -1,11 +1,14 @@
-
+<% if @tweet.user_id== session[:user_id]%>
  <form action="/tweets/<%=@tweet.id%>" method="post">
 <input type="hidden" name="_method" value="patch">
 <p>Content:
     <input type="text" name="content" value="<%=@tweet.content%>"></p><br>
 <input type="submit" name="submit" id="submit" value="Submit">
 </form>
+<%end%>
 
-<form action="/users/<%=@tweet.user.slug%>" method="get">
+
+
+<form action="/users/<%=@user.slug%>" method="get">
 <input type="submit" name="my_tweets" id="my_tweets" value="Back to my Tweets">
 </form>

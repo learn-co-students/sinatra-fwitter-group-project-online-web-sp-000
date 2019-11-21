@@ -50,6 +50,7 @@ class TweetsController < ApplicationController
     post "/tweets/:id/edit" do
         if Helpers.is_logged_in?(session)
         @tweet=Tweet.find_by_id(params[:id])
+        @user=User.find_by_id(session[:user_id])
         erb :"tweets/edit" 
         else redirect to "/login"  
         end 
@@ -58,6 +59,7 @@ class TweetsController < ApplicationController
     get "/tweets/:id/edit" do
         if Helpers.is_logged_in?(session)
         @tweet=Tweet.find_by_id(params[:id])
+        @user=User.find_by_id(session[:user_id])
         erb :"tweets/edit" 
         else redirect to "/login"  
         end 
@@ -66,6 +68,7 @@ class TweetsController < ApplicationController
     patch  "/tweets/:id" do
 
         @tweet=Tweet.find_by_id(params[:id])
+        @user=User.find_by_id(session[:user_id])
     if !session[:user_id]==@tweet.user_id
         redirect to '/tweets'
     elsif params[:content]==""
