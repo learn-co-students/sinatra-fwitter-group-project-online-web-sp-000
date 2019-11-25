@@ -1,14 +1,18 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Fwitter</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible">
+  <title>Fwitter</title>
+</head>
+<body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+
+    <header>Fwitter</header>
+    <main>
+      <%= yield %>
+    </main>
     </div>
 
   </body>

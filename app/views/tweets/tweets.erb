@@ -1,0 +1,10 @@
+<h1>Welcome, <%=@user.username%></h1>
+
+  <h2>Tweets</h2>
+
+  <% @tweets.each_with_index do |t, i| %>
+    <h3>User: <%user = User.find(t.user_id)%><%= user.username %></h3>
+    <p><%= user.username %> tweeted: <%= t.content %></p>
+  <% end %>
+<a href="/tweets/new">New Tweet</a><br>
+<a href="/logout">Log Out</a>
