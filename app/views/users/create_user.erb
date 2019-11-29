@@ -1,16 +1,7 @@
-<h2>Fwitter Sign Up or Sign In</h2>
-
-<% if flash[:message] %>
-  <%= flash[:message]%>
-<% end %>
-
 <h3>Sign Up</h3>
-  <form action="/signup" method="post">
-    <input type="text" name="username" placeholder="Username:">
-    <input type="text" name="email" placeholder="Email:">
-    <input type="password" name="password" placeholder="Password:">
-    <input class="btn btn-primary" type="submit" value="Sign Up">
-  </form>
-    <br></br>
-  <p> Or, </p>
-<a href="/login">Sign In</a>
+<form action="/signup" method="POST">
+	<input type="text" name="username" placeholder="Username:">
+  <input type="text" name="email" placeholder="E-mail:">
+	<input type="password" name="password" placeholder="Password:">
+	<input type="submit" value="Sign Up">
+</form>

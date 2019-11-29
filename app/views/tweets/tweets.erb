@@ -1,12 +1,8 @@
-<h3>Tweets</h3>
-<h3>Welcome, <%= current_user.username %></h3>
+<h1>Welcome, <%= Helpers.current_user(session).username %></h1>
+	<h2>All tweets</h2>
 
-<% if logged_in? %>
-<ul>
-<% @tweets.each_with_index do |tweet, i| %>
-<li> <%= i + 1 %>, <a href="/tweets/<%= tweet.content %>"><%= tweet.content %></a></li>
-<% end %>
-</ul>
-<% end %>
-
-<p>Not signed in? Please <a href="/login">Sign In</a></p>
+	<hr>
+	<% @tweets.each do |tweet| %>
+	  <h4> <%= tweet.user.username %> : <%= tweet.content %> <h4>
+	  <hr>
+	<% end %>

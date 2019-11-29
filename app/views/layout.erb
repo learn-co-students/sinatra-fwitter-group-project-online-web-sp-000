@@ -1,24 +1,10 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Fwitter</title>
   </head>
 
   <body>
-
     <%= yield %>
-
-      <% if logged_in? %>
-    <ul>
-        <li><a href="/tweets/new"> Create Tweet </a></li>
-        <li><a href="/logout"> Log Out </a><li>
-        <p>Welcome, <%=current_user[:username] %></p>
-      <% else %>
-        <li><a href="/login">Log In</a></li>
-      <%end %>
-    </ul>
-
-
   </body>
 </html>
