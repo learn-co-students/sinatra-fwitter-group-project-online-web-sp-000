@@ -1,11 +1,13 @@
-<h1>You tweeted:</h1>
-<h2><%= @tweet.content %></h2></br>
+<p><a href='/tweets'>Home</a> </p>
+<h3> Tweet </h3>
 
-<form action="/tweets/<%= @tweet.id %>/edit" method=get>
-  <input type="submit" value="Edit Tweet"/>
-</form></br>
+<p> <%= @tweet.content %> </p>
 
-<form action="/tweets/<%= @tweet.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete"/>
-  <input type="submit" value="Delete Tweet" />
+<a href='/tweets/<%= @tweet.id%>/edit'>Edit Tweet</a>
+
+<br></br>
+
+<form method="post" action="/tweets/<%= @tweet.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Tweet">
 </form>

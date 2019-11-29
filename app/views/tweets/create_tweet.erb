@@ -1,11 +1,6 @@
-<h1>Tweeting</h1>
+<h3>Create a Tweet</h3>
 
-
-<form action="/tweets" method="post" >
-
-	<label for='content'>What's on your mind? </label></br></br>
-	<textarea type="text" name="tweet[content]" id="content" rows="35" cols="100"></textarea></br></br>
-
-	<input type='submit' name='submit' value='submit' id='submit'/>
-
+<form method="post" action="/tweets" id="form">
+  Content:   <br><textarea name="content" rows="10" cols="50"></textarea><br><br>
+  <input type="submit" value="submit" id="submit">
 </form>

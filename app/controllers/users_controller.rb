@@ -1,27 +1,53 @@
 class UsersController < ApplicationController
 
-  get '/login' do
-    erb :"/users/login"
+  # SIGN UP
+  get '/signup' do
+    if logged_in?
+      redirect to :'/tweets'
+    end
+    erb :'/users/create_user'
   end
 
-  get "/login" do
-    erb :login
-  end
-
-  post "/login" do
-    puts params
-    user = User.find_by(:username => params[:username])
-    if user
-      session[:user_id] = user.id
-      redirect "/tweets/index"
+  post '/signup' do
+    @user = User.new(params)
+    if @user.save
+      session[:id] = @user.id
+      redirect to :'/tweets'
     else
-      redirect "/users/signup"
+      redirect to :'/signup'
     end
   end
 
-  get "/logout" do
-    session.destroy
-    redirect "/login"
+  # LOG IN
+  get '/login' do
+    if logged_in?
+      redirect to :'/tweets'
+    end
+    erb :'/users/login'
+  end
+
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+    session[:id] = @user.id
+    redirect to :'/tweets'
+  end
+
+
+  # USER SHOW PAGE
+  get '/users/:slug' do
+    if @user = User.find_by_slug(params[:slug])
+      erb :'/users/show'
+    else
+      redirect to '/tweets'
+    end
+  end
+
+  # LOG OUT
+  get '/logout' do
+    if logged_in?
+      session.clear
+    end
+    redirect to '/login'
   end
 
 end
