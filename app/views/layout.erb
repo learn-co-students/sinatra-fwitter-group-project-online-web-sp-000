@@ -3,8 +3,31 @@
   <head>
     <title>Fwitter</title>
   </head>
+<<<<<<< HEAD
 
   <body>
     <%= yield %>
+=======
+  <body>
+    <nav>
+      <ul>
+        <% if logged_in? %>
+          <li>Welcome, <%= current_user.username %></li>
+          <li><a href="/tweet">Post a Tweet!</a></li>
+          <li><a href="/logout">Logout</a></li>
+        <% else %>
+          <li><a href="/login">Login</a></li>
+          <lo><a href="/signup">Sign Up</a></li>
+        <% end %>
+      </ul>
+    </nav>
+    <div class="container">
+
+      <h1>Welcome to Fwitter!</h1>
+
+      <%= yield %>
+
+    </div>
+>>>>>>> 9db9c00ae07ce678f82be18f781240cb8a38a652
   </body>
 </html>
