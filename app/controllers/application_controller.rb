@@ -6,32 +6,22 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "secret"
+    set :session_secret, "fwitter_secret"
   end
 
-  # HOME PAGE
   get '/' do
-
     erb :index
   end
 
   helpers do
+
     def logged_in?
-      !!session[:id]
+      !!current_user
     end
 
     def current_user
-      User.find(session[:id])
-    end
-
-    def find_tweet
-        Tweet.find(params[:id])
-    end
-
-    def belongs_to_user?(tweet)
-        tweet.user == current_user
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
   end
-
 end

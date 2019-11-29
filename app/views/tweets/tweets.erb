@@ -1,13 +1,8 @@
-<h3> Welcome, <%= @user.username %> </h3>
-<p>Create a new tweet <a href='/tweets/new'>here</a></p>
+<p> Welcome, <%= current_user.username %>
+<h2> Tweets </h2>
 
-<h2>Tweets</h2>
-
-<% Tweet.all.each do |tweet| %>
-    <p> <%= tweet.user.username %>: <a href='/tweets/<%= tweet.id %>'><%= tweet.content %></a></p>
- </p>
-
+<% @tweets.each do |tweet| %>
+  <div>
+    <%= tweet.content %>
+  </div>
 <% end %>
-<form action='/logout'>
- <input type="submit" value="Logout">
-</form>
