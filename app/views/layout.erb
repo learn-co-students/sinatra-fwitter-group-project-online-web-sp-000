@@ -1,15 +1,24 @@
+
 <!doctype html>
 <html>
   <head>
     <title>Fwitter</title>
   </head>
+
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+    <%= yield %>
+
+      <% if logged_in? %>
+    <ul>
+        <li><a href="/tweets/new"> Create Tweet </a></li>
+        <li><a href="/logout"> Log Out </a><li>
+        <p>Welcome, <%=current_user[:username] %></p>
+      <% else %>
+        <li><a href="/login">Log In</a></li>
+      <%end %>
+    </ul>
+
 
   </body>
 </html>
