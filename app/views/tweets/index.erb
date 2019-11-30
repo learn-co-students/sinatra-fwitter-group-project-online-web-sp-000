@@ -1,0 +1,10 @@
+<h2>Welcome,</h2>
+
+<h3>Fwitter Feed</h3>
+
+<% @tweets.each do |tweet| %>
+  <p>From User: <%= tweet.user.username %></p>
+  <p><%= tweet.content %></p><br><br>
+<% end %>
+
+<p><a href="/tweets/new">New Tweet</a></p>
