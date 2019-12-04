@@ -1,9 +1,4 @@
-<% if flash.has?(:wrong_user) %>
-  <%= flash[:wrong_user] %>
-<% end %>
-<% if flash.has?(:wrong_user_edit) %>
-  <%= flash[:wrong_user_edit] %>
-<% end %>
+
 <h1>Welcome, <%= @user.username %></h1>
 <% @tweets.each do |tweet| %>
 <ul>

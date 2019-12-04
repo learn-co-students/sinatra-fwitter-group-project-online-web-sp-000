@@ -1,3 +1,5 @@
+
+
 class UsersController < ApplicationController
 
   get '/' do
@@ -6,9 +8,9 @@ class UsersController < ApplicationController
 
   get '/signup' do
 
-    # if is_logged_in?(session)
-    #   redirect to '/tweets'
-    # end
+    if is_logged_in?(session)
+      redirect to '/tweets'
+    end
 
     erb :'users/create_user'
   end
@@ -16,7 +18,6 @@ class UsersController < ApplicationController
   post '/signup' do
     params.each do |label, input|
       if input.empty?
-        flash[:new_user_error] = "Please enter a value for #{label}"
         redirect to '/signup'
       end
     end
