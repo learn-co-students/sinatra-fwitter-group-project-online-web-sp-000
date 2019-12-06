@@ -1,5 +1,5 @@
 require './config/environment'
-
+require 'pry'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -40,12 +40,26 @@ class ApplicationController < Sinatra::Base
   end 
 
   post '/login' do
-    @user = User.find_by(username: params[:username], password: params[:password])
 
-    if @user
+    # authenticate the password after you find the user
+    # decrypts the password and then compare the password in the db
+
+    @user = User.find_by(username: params[:username])
+
+  
+    if @user && @user.authenticate(params[:password])
+      # authenticate the password 
+      #then set the session ID
       session[:user_id] = @user.id
+      
       redirect to '/tweets'
     end
+
+    redirect to '/login'
+
+  end
+
+  post '/tweets' do
 
   end
 

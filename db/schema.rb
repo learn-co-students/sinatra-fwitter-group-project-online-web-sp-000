@@ -25,4 +25,4 @@ ActiveRecord::Schema.define(version: 2019_12_06_212012) do
     t.string "password_digest" #encrypts the password and works with the secure_password, password_digest is a set name
   end
 
-end
+end 
