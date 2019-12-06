@@ -22,7 +22,7 @@ describe ApplicationController do
         :username => "skittles123",
         :email => "skittles@aol.com",
         :password => "rainbows"
-      }
+      } 
       post '/signup', params
       expect(last_response.location).to include("/tweets")
     end
@@ -78,7 +78,7 @@ describe ApplicationController do
 
     it 'loads the tweets index after login' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-      params = {
+      params = { 
         :username => "becky567",
         :password => "kittens"
       }
