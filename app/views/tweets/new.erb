@@ -1,4 +1,7 @@
+<% require 'pry' %>
+
 <% if Helpers.is_logged_in?(session) %>
+
 <%= @error %>
   <form action='/tweets' method="post">
     Content:
