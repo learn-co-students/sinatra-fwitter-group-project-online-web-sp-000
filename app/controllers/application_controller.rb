@@ -6,28 +6,21 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    set :session_secret, "fwitter_secret"
   end
 
   get '/' do
     erb :index
   end
-
-# @user =  Helpers.current_user(session)
-# @user = @user.find(session[:user_id])   # finding the id for the current user
-# @user.tweets # all the tweets that belong to the user  
-# @tweets.each do |t|
-
-  get '/signup' do
-   if Helpers.is_logged_in?(session)
-
-      redirect '/tweets'
-
-    else
-     
-      erb :'users/signup'
-
+ 
+    get '/signup' do
+    if Helpers.is_logged_in?(session)
+      # the user does not get redirected here
+        redirect to '/tweets'
+      else
+        erb :'users/signup'
+      end
     end
-  end
 
   post '/signup' do
    
@@ -40,17 +33,12 @@ class ApplicationController < Sinatra::Base
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id 
-
-      redirect to '/tweets'
+     
+     # binding.pry
+     
+      erb :'/tweets/new'
     end
 
-  end
-
-  get '/tweets' do
-   
-    binding.pry
-
-    erb :'/tweets/new'
   end
 
   get '/login' do
@@ -77,8 +65,11 @@ class ApplicationController < Sinatra::Base
 
   end
 
-  post '/tweets' do
-
+  post '/logout' do
+    session.clear
+    redirect to '/login'
   end
+
+
 
 end
