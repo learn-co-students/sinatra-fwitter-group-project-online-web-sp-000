@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     end
 
   post '/signup' do
-   
+   #the sign up route doesn't show anymore now
     if params[:username] == ""
         redirect to '/signup'
     elsif params[:email] == ""
@@ -33,10 +33,9 @@ class ApplicationController < Sinatra::Base
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id 
-     
      # binding.pry
-     
-      erb :'/tweets/new'
+     redirect to 'tweets/new'
+      #erb :'/tweets/new'
     end
 
   end
@@ -69,7 +68,5 @@ class ApplicationController < Sinatra::Base
     session.clear
     redirect to '/login'
   end
-
-
 
 end

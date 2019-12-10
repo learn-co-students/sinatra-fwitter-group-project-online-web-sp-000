@@ -3,6 +3,11 @@ class TweetsController < ApplicationController
 
    
   # we want this in a separate controller but may have inheritence issues
+
+  get '/tweets/new' do
+    erb :'tweets/new'
+  end
+
   get '/tweets' do
     
     # binding.pry
