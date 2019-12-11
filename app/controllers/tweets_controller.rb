@@ -7,17 +7,7 @@ class TweetsController < ApplicationController
     erb :'tweets/new'
   end
 
-  # get '/tweets/signup' do
-    
-  # end
-
   get '/tweets' do
-     
-    # binding.pry
-    # @user =  Helpers.current_user(session)
-    # @user = @user.find(session[:user_id])   # finding the id for the current user
-    # @user.tweets # all the tweets that belong to the user  
-    # @tweets.each do |t|      
 
     if !(Helpers.is_logged_in?(session))
       redirect to '/login'
@@ -36,6 +26,7 @@ class TweetsController < ApplicationController
         @tweets = Tweet.create(content: params[:content])       
         redirect to '/tweets'
       end
+
   end  
 
     # following route does not work successfully
@@ -51,9 +42,30 @@ class TweetsController < ApplicationController
     end
 
     # edit a tweet - for specific user
+    # if id does not match, redirect to error edit page
 
-    # get '/tweets/:id/edit' do
-    #     @tweet = Tweet.find_by_id(params[:id])
+ß    get '/tweets/:id/edit' do
+        @tweet = Tweet.find_by_id(params[:id])
+    end
+
+    patch '/tweets/:id' do
+      
+    end
+
+    # if id does not match, redirect to deelete error page
+
+    # delete '/tweets/:id' do
+    
+    #   @tweet = Tweet.find_by_id(params[:id])
+
+    #   session[:user_id] = @user.id
+
+    #   if @tweet.user_id == @user.id
+    #     @tweet.delete
+    #   else
+    #     erb :'/tweets/error'
+    #   end
+
     # end
 
 end
