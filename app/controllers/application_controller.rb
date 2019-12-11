@@ -25,12 +25,12 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
    #the sign up route doesn't show anymore now
-    if params[:username] == ""
+    if params[:username].blank?
         redirect to '/signup'
-    elsif params[:email] == ""
+    elsif params[:email].blank?
         redirect to '/signup'
-    elsif params[:password] == ""
-        redirect to '/signup'
+    elsif params[:password].blank?
+        redirect to '/signup' 
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id 

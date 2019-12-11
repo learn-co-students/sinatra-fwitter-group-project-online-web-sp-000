@@ -1,7 +1,6 @@
 require 'pry'
 class TweetsController < ApplicationController
 
-   
   # we want this in a separate controller but may have inheritence issues
 
   get '/tweets/new' do
@@ -31,17 +30,20 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
 
-      @tweets = Tweet.create(content: params[:content])
-      
-      redirect to '/tweets'
+      if params[:content].blank? 
+        erb :'/tweets/error'
+      else
+        @tweets = Tweet.create(content: params[:content])       
+        redirect to '/tweets'
+      end
   end  
 
     # following route does not work successfully
     get '/tweets/:id' do
-  
-      if Helper.is_logged_in?(session) 
+ 
+      if Helpers.is_logged_in?(session) 
         @tweet = Tweet.find_by_id(params[:id])
-        erb :show
+        erb :'tweets/show'
       else
         redirect to '/login'
       end
