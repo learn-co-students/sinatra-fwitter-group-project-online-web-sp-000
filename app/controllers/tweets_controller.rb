@@ -44,28 +44,37 @@ class TweetsController < ApplicationController
     # edit a tweet - for specific user
     # if id does not match, redirect to error edit page
 
-ß    get '/tweets/:id/edit' do
+    get '/tweets/:id/edit' do
         @tweet = Tweet.find_by_id(params[:id])
+        erb :edit
     end
 
     patch '/tweets/:id' do
-      
+      @tweet = Tweet.find_by_id(params[:id])
+      session[:user_id] = @user.id
+
+      if @tweet.user_id == @user.id
+        @tweet.content = params[:content]
+      else
+        erb :'/tweets/error_delete_edit'
+      end
     end
 
     # if id does not match, redirect to deelete error page
 
-    # delete '/tweets/:id' do
+    delete '/tweets/:id' do
     
-    #   @tweet = Tweet.find_by_id(params[:id])
+      @tweet = Tweet.find_by_id(params[:id])
 
-    #   session[:user_id] = @user.id
+      session[:user_id] = @user.id
 
-    #   if @tweet.user_id == @user.id
-    #     @tweet.delete
-    #   else
-    #     erb :'/tweets/error'
-    #   end
+      if @tweet.user_id == @user.id
+        @tweet.delete
+        redirect to '/tweets'
+      else
+        erb :'/tweets/error_delete'
+      end
 
-    # end
+    end 
 
 end
