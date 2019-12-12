@@ -1,10 +1,10 @@
-<form method="POST" action="">
+<form action="/tweets/<%=@tweet.id%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch"/>
-    <label>Current Conent:</label>
-    <p>@tweet.content</p>
+    <label>Current Content:</label>
+    <p><%=@tweet.content%></p>
 
     <label>New Content:</label>
-    <input type="text" name="content" value="<%=@tweet.content%>"/>
+    <input type="text" name="content"/>
 
     <input type="submit"/>
-</form>
+</form> 
