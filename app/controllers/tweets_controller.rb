@@ -37,18 +37,37 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     if logged_in?
-      @tweet = Tweet.create(params)
-      @tweet.save
-      redirect to '/tweets/tweets'
+      if params[:content] == ""
+        redirect to "/tweets/new"
+      else
+        @tweet = current_user.tweets.create(content: params[:content])
+        if @tweet.save
+          redirect to "/tweets/#{@tweet.id}"
+        else
+          redirect to "/tweets/new"
+        end
+      end
     else
       redirect to '/login'
     end
   end
 
-  post '/tweets/:id' do
+  patch '/tweets/:id' do
     if logged_in?
-      @tweet = Tweet.find_by(params[:id])
-      @tweet.update
+      if params[:content] == ""
+        redirect to "/tweets/#{params[:id]}/edit"
+      else
+        @tweet = Tweet.find_by(params[:id])
+        if @tweet and @tweet.user == current_user
+          if @tweet.update(contents: params[:content])
+            redirect to "/tweets/#{@tweet.id}"
+          else
+            redirect to "/tweets/#{params[:id]}/edit"
+          end
+        else
+          redirect to "/tweets/tweets"
+        end
+      end
     else
       redirect to '/login'
     end
