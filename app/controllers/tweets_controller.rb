@@ -57,7 +57,7 @@ class TweetsController < ApplicationController
       if Helpers.is_logged_in?(session)
         @tweet = Tweet.find_by_id(params[:id])
         @user = User.find_by_id(session[:user_id])
-
+        
         if @tweet.user == @user
           if @tweet.update(content: params[:content])
           redirect to "/tweets/#{@tweet.id}"
@@ -65,11 +65,12 @@ class TweetsController < ApplicationController
             redirect to "tweets/#{@tweet.id}/edit"
           end
         else
-          redirect to '/tweets'
+          erb :'/tweets/error_delete_edit' 
         end
 
       else
-        erb :'/tweets/error_delete_edit' 
+       # erb :'/tweets/error_delete_edit' # error is user not logged in
+       erb :'/users/login'
       end
     end
 
@@ -78,14 +79,14 @@ class TweetsController < ApplicationController
     delete '/tweets/:id' do
     
       @tweet = Tweet.find_by_id(params[:id])
-
+      @user = User.find_by_id(session[:user_id])
       #session[:user_id] = @user.id
 
       if @tweet.user_id == @user.id
         @tweet.delete
         redirect to '/tweets'
       else
-        erb :'/tweets/error_delete'
+        erb :'/tweets/error_delete_edit'
       end
 
     end 
