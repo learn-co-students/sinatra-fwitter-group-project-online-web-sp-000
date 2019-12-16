@@ -23,7 +23,7 @@ class TweetsController < ApplicationController
       if params[:content].blank? 
         erb :'/tweets/error'
       else
-        @tweets = Tweet.create(content: params[:content])       
+        @tweets = Tweet.create(content: params[:content], user_id: session[:user_id])       
         redirect to '/tweets'
       end
 
@@ -51,12 +51,23 @@ class TweetsController < ApplicationController
 
 
     # -------------------------------- patch + delete need to work
+    # fix code below, semi works
     patch '/tweets/:id' do
-      @tweet = Tweet.find_by_id(params[:id])
-      session[:user_id] = @user.id
+    
+      if Helpers.is_logged_in?(session)
+        @tweet = Tweet.find_by_id(params[:id])
+        @user = User.find_by_id(session[:user_id])
 
-      if @tweet.user_id == @user.id
-        @tweet.content = params[:content]
+        if @tweet.user == @user
+          if @tweet.update(content: params[:content])
+          redirect to "/tweets/#{@tweet.id}"
+          else
+            redirect to "tweets/#{@tweet.id}/edit"
+          end
+        else
+          redirect to '/tweets'
+        end
+
       else
         erb :'/tweets/error_delete_edit' 
       end
@@ -68,7 +79,7 @@ class TweetsController < ApplicationController
     
       @tweet = Tweet.find_by_id(params[:id])
 
-      session[:user_id] = @user.id
+      #session[:user_id] = @user.id
 
       if @tweet.user_id == @user.id
         @tweet.delete
