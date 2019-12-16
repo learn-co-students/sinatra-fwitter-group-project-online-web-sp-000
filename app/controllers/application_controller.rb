@@ -31,4 +31,8 @@ class ApplicationController < Sinatra::Base
       redirect '/tweets'
     end
   end
+
+  get 'login' do
+    erb :login
+  end
 end
