@@ -45,9 +45,23 @@ class TweetsController < ApplicationController
   end
 
   patch '/tweets/:id' do #edit action
+    if params[:content] == ""
+      redirect "/tweets/#{params[:id]}/edit"
+    else
+      @tweet = Tweet.find_by_id(params[:id])
+      @tweet.content = params[:content]
+      @tweet.save
+      redirect "/tweets/#{@tweet.id}"
+    end
+  end
+
+  delete '/tweets/:id' do #delete action
     @tweet = Tweet.find_by_id(params[:id])
-    @tweet.content = params[:content]
-    @tweet.save
-    redirect "/tweets/#{@tweet.id}"
+    if @tweet.user_id != session[:user_id]
+      redirect '/tweets'
+    else
+      @tweet.delete
+      redirect '/tweets'
+    end
   end
 end
