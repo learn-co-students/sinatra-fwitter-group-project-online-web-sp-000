@@ -1,0 +1,14 @@
+<h1>
+
+ Tweet Landing Page
+</h1>
+
+
+<% Tweet.all.each do |tweet| %>
+  <a href="/tweets/<%= tweet.id %>"><%= tweet.id %></a> <br>
+<% end %>
+<br><br>
+<a href="/tweets/new">Add a New Tweet</a>
+
+<br>
+<a href="/users/logout"> Logout </a>
