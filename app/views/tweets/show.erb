@@ -3,20 +3,15 @@
 
 <h3> <%= @tweet.content %>  </h3>
 
-
-
-
-
-
 -----------------------------------------------------------------------------
 <br>
-<a href="/tweets/<%= @tweet.id %>/edit">Edit tweet</a>
+<a href='/tweets/<%=@tweet.id%>/edit'>Edit Tweet</a>
 <a href = "/tweets">Fwitter Home</a>
 
 
 <br><br><br><br><br><br>
-
-<form method="post" action="/tweets/<%= @tweet.id %>">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete">
+Delete Tweet
+<form action="/tweets/<%= @tweet.id %>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Tweet">
 </form>
