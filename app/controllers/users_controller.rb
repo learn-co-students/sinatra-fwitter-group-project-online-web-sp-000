@@ -9,8 +9,6 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
-    =begin
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
@@ -19,7 +17,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/tweets'
     end
-    =end
   end
 
 
