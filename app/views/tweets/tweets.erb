@@ -1,1 +1,7 @@
-tweets/tweets
+<h2>Welcome, <%= current_user %>!</h2>
+
+<ul>
+<% Tweet.all.each do |tweet| %>
+    <li><%= tweet.content %></li>
+<% end %>
+</ul>
