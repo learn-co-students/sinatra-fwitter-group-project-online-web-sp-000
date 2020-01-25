@@ -108,7 +108,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (= 4.2.5)
+  activerecord
   bcrypt
   capybara
   database_cleaner
@@ -120,7 +120,7 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-activerecord
-  sqlite3 (= 1.3.11)
+  sqlite3
   thin
   tux
 

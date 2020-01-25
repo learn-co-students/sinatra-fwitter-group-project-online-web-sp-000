@@ -211,6 +211,7 @@ describe ApplicationController do
 
         user = User.find_by(:username => "becky567")
         tweet = Tweet.find_by(:content => "tweet!!!")
+        # binding.pry
         expect(tweet).to be_instance_of(Tweet)
         expect(tweet.user_id).to eq(user.id)
         expect(page.status_code).to eq(200)
