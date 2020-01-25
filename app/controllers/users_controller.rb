@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
+        # binding.pry
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
             redirect to '/signup'
         end
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
         @user = User.new(params)
         @user.save
         session[:user_id] = @user.id
-        # binding.pry
+        #  binding.pry
         redirect to '/tweets'
     end
 
@@ -59,7 +60,6 @@ class UsersController < ApplicationController
         @user = User.find_by_slug(params[:slug])
         erb :'users/show'
     end
-
 
 
     get '/users/:id' do
