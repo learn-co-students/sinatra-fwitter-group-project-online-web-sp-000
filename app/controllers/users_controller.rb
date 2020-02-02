@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'users/create_user', locals: {message: "Please sign up if you do not have an account."}
          else
-            redirect '/tweets'
+            redirect "/tweets"
         end
     end
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
             @user.save
             session[:user_id] = @user.id
-            redirect '/tweets'
+            redirect "/tweets"
         end
     end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'users/login'
         else
-            redirect '/tweets'
+            redirect "/tweets"
         end
     end
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         user = User.find_by(:username => params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect '/tweets'
+            redirect "/tweets"
         else
             redirect '/signup'
         end
