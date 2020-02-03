@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-          binding.pry
-    if !!session[:user_id]
-      redirect to "/tweets"
+    #binding.pry
+    if session[:user_id] == nil
+      erb :'/users/create_user'
     else
-      erb '/users/create_user'
+      binding.pry
+      redirect to "/tweets"
     end
   end
 
