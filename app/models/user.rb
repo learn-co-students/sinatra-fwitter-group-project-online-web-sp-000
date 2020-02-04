@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_slug(slug)
-    #binding.pry
     from_slug = slug.gsub!(/[-]/, " ")
     self.find_by(username: from_slug)
   end

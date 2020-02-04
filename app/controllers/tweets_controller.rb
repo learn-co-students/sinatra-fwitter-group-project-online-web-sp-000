@@ -20,6 +20,13 @@ class TweetsController < ApplicationController
     @tweet.save
   end
 
+
+  get "/tweets/:slug" do
+    #binding.pry
+    @user = current_user
+    erb :"/users/show"
+  end
+
   # get '/tweets/:id' do
   #   binding.pry
   #   @tweet = Tweet.find_by(id: params[:id])
