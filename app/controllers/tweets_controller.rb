@@ -20,11 +20,11 @@ class TweetsController < ApplicationController
     @tweet.save
   end
 
-  get '/tweets/:id' do
-    binding.pry
-    @tweet = Tweet.find_by(id: params[:id])
-    erb :'/tweets/show_tweet'
-  end
+  # get '/tweets/:id' do
+  #   binding.pry
+  #   @tweet = Tweet.find_by(id: params[:id])
+  #   erb :'/tweets/show_tweet'
+  # end
 
 
 end
