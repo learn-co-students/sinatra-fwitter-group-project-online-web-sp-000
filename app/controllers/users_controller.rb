@@ -1,44 +1,50 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    #binding.pry
-    if session[:user_id] == nil
-      erb :'/users/create_user'
-    else
-      binding.pry
+    if logged_in?
+      #binding.pry
       redirect to "/tweets"
+    else
+      erb :'/users/create_user'
     end
   end
 
   post '/signup' do
     if !params[:username].empty? && !params[:password].empty? && !params[:email].empty?
       @user = User.new(:username => params[:username], :password => params[:password], :email => params[:email])
-      if @user.save
-        redirect "/tweets"
-      end
+      @user.save
+      session[:user_id] = @user.id
+      redirect to "/tweets"
     else
-      redirect "/signup"
+      redirect to "/signup"
     end
   end
 
   get '/login' do
-    erb :'/users/login'
+    if logged_in?
+      redirect to "/tweets"
+    else
+      erb :'/users/login'
+    end
   end
 
   post "/login" do
     @user = User.find_by(:username => params[:username])
-    if !params[:username].empty? && !params[:password].empty && !params[:email].empty && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/tweets"
+    if !params[:username].empty? && !params[:password].empty? && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to "/tweets"
     else
-      redirect "/login"
+      redirect to "/login"
     end
   end
 
-  helpers do
-    def current_user
-      User.find(session[:user_id])
-    end
+  get "/logout" do
+    session.clear
+    redirect "/login"
+  end
+
+  get "/users/:slug" do
+    binding.pry
   end
 
 end

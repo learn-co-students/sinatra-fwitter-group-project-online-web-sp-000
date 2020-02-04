@@ -1,5 +1,13 @@
 Show all tweets!
 
+
+<h2>Welcome, @user.username</h2>
+
 <%Tweet.all.each do |tweet|%>
-  <%= Tweet.content%>
+  <%= tweet.content%>
 <%end%>
+
+
+  <form>
+    <input type="submit" id="submit" value="Log Out">
+  </form>
