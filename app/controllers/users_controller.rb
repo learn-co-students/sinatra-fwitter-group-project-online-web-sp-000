@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
 
+
+  get '/users/:slug' do
+    @user = current_user
+    erb :"/users/show"
+  end
+
   get '/signup' do
     if logged_in?
-      #binding.pry
       redirect to "/tweets"
     else
       erb :'/users/create_user'
@@ -10,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-
     if !params[:username].empty? && !params[:password].empty? && !params[:email].empty?
       @user = User.new(:username => params[:username], :password => params[:password], :email => params[:email])
       @user.save

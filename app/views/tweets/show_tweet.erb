@@ -1,1 +1,16 @@
-Show One Tweet 
+<h1>Show One Tweet</h1>
+<div><%=@tweet.content%></div>
+
+<% if logged_in?%>
+  <form action="/tweets/<%=@tweet.id%>" method="patch">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="submit" id="edit" name="Edit Tweet">
+  </form>
+
+  <form action="/tweets/<%=@tweet.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" id="delete" name="Delete Tweet">
+
+  </form>
+
+<%end%>

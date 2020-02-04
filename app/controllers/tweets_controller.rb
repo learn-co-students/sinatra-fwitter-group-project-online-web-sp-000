@@ -10,28 +10,62 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/new' do
-    erb :'/tweets/new'
+    if logged_in?
+      erb :'/tweets/new'
+    else
+      redirect "/login"
+    end
   end
 
   post '/tweets' do
     @user = current_user
-    @tweet = Tweet.new(content: params[:content])
-    @tweet.user_id = @user.id
-    @tweet.save
+    if !params[:content].empty?
+      @tweet = Tweet.new(content: params[:content])
+      @tweet.user_id = @user.id
+      @tweet.save
+      redirect "/tweets"
+    else
+      redirect "/tweets/new"
+    end
   end
 
+  get '/tweets/:id' do
+    if logged_in?
+      @tweet = Tweet.find_by(id: params[:id])
+      erb :'/tweets/show_tweet'
+    else
+      redirect "/login"
+    end
+  end
 
-  get "/tweets/:slug" do
+  get '/tweets/:id/edit' do
+    if logged_in?
+      @tweet = Tweet.find_by(id: params[:id])
+      erb :'/tweets/edit_tweet'
+    else
+      redirect "/login"
+    end
+  end
+
+  patch '/tweets/:id' do
+    @tweet = Tweet.find_by(id: params[:id])
+    if !params[:content].empty?
+      @tweet.content = params[:content]
+      @tweet.save
+
+    else
+      #binding.pry
+      redirect "/tweets/#{@tweet.id}/edit"
+    end
+  end
+
+  delete '/tweets/:id' do
     #binding.pry
-    @user = current_user
-    erb :"/users/show"
+    @tweet = Tweet.find_by(id: params[:id])
+    if current_user.id == @tweet.user_id
+      @tweet.delete
+    end
+    redirect "/tweets"
   end
-
-  # get '/tweets/:id' do
-  #   binding.pry
-  #   @tweet = Tweet.find_by(id: params[:id])
-  #   erb :'/tweets/show_tweet'
-  # end
-
 
 end
