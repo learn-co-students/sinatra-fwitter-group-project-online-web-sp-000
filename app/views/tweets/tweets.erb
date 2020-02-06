@@ -1,0 +1,22 @@
+<h1>Welcome, <%=@current_user.username%>!</h1>
+
+<br><br>
+
+<h2>Tweets:</h2>
+<p>(Click to Edit)</p>
+
+<br>
+
+<% if @tweets.empty? %>
+  <%="Sweet Nothingness..."%>
+<% else %>
+  <% @tweets.each do |tweet| %>
+      <a href="/tweets/<%=tweet.id%>"><%=tweet.content%></a><br>
+  <% end %>
+<% end %>
+
+<br><br><br>
+
+<a href="/tweets/new"><button>Create a Tweet</button></a>
+<br>
+<a href="/"><button>Main Menu</button></a>
