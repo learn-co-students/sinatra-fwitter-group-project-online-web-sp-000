@@ -1,0 +1,8 @@
+<h2>Tweets Index Page</h2>
+
+<% @tweets.all.each do |tweet| %>
+ <%= tweet.user.username%> - <%= tweet.content %>
+<hr>
+<% end %>
+<h4><a href="/tweets/new">New Tweet</a></h4>
+
