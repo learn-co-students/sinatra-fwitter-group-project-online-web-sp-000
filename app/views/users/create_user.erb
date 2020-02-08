@@ -1,0 +1,21 @@
+<h1>Users</h1>
+
+<% unless locals.empty? %>
+    <%= message %>
+<% end %>
+
+<h3>Sign Up</h3>
+<form action="/signup" method="POST">
+    <label for="username">Username: </label>
+    <input type="text" name="username" placeholder="Username">
+    <br>
+
+    <label for="email">Email: </label>
+    <input type="text" name="email" placeholder="Email">
+    <br>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Password">
+    <br>
+    <input type="submit" value="Sign Up">
+</form>
