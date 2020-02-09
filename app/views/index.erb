@@ -1,8 +1,12 @@
-<h1>Welcome to Fwitter!</h1>
-
-<h2>See what’s happening in the world right now</h2>
-<h3>Join Fwitter today</h3>
-<br>
-<button><a href="/signup">Sign up</a></button>
-<br>
-<button><a href="/login">Login</a></button>
+<%if logged_in?%>
+  <h1>Welcome, <%=current_user.username %></h1>
+  <a href="/tweets/new"> Create Tweet </a>
+  <a href="/logout"> Log Out </a>
+<%else%>
+  <h1>Welcome to Fwitter!</h1>
+  <h2>See what’s happening in the world right now</h2>
+  <h3>Join Fwitter today</h3>
+  <br>
+  <button><a href="/signup">Sign up</a></button>
+  <button><a href="/login">Login</a></button>
+<%end%>
