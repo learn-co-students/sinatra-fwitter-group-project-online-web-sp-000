@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
-
-    get '/login' do
-      erb :'/login'
-    end
+  get '/tweets' do
+    @tweets = Tweet.all
+    erb :'/tweets/index'
+  end
 end
