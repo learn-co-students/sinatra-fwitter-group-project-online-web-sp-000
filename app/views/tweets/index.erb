@@ -1,4 +1,4 @@
-<h1> Welcome, <%= current_user.username %></h1>
+<h1> Welcome, <%= current_user.username.capitalize %></h1>
 <a href="/tweets/new"> Create Tweet </a>
 <a href="/logout"> Log Out </a>
 <h3>All Tweets</h3>
@@ -6,6 +6,6 @@
 <% @tweets.each do |tweet| %>
   <div>
     <h3><a href="/tweets/<%=tweet.id%>"><%= tweet.content %></a></h3>
-    <h5>By: <a href="/users/<%= tweet.user.username.downcase %>"><%=tweet.user.username%></a></h5>
+    <h5>By: <a href="/users/<%= tweet.user.username.downcase %>"><%=tweet.user.username.capitalize%></a></h5>
   </div>
 <% end %>
