@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    @user = User.new(:username => params[:username].downcase, :email => params[:email].downcase, :password => params[:password])
     if @user.save
       session[:user_id] = @user.id
       redirect to '/tweets'
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:username])
+    user = User.find_by(:username => params[:username].downcase)
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to '/tweets'

@@ -1,3 +1,9 @@
+<h1>Create a new tweet</h1>
+<br>
+<a href="/users/<%=current_user.username.downcase%>">Home<a>
+<a href="/tweets">All Tweets<a>
+<br>
+<br>
 <% if logged_in? %>
   <form action='/tweets' method="post">
     <div>
@@ -14,4 +20,3 @@
   <br>
   <h1><a href="/login">Login<a><h1>
 <%end%>
-  

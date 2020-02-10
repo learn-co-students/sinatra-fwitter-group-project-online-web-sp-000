@@ -1,3 +1,9 @@
+<h1>Your tweet</h1>
+<br>
+<a href="/users/<%=current_user.username.downcase%>">Home<a>
+<a href="/tweets">All Tweets<a>
+<br>
+
 <p><%=@tweet.content%></p>
 
 <form method="post" action="/tweets/<%=@tweet.id%>/delete">
