@@ -1,0 +1,12 @@
+<% if logged_in? %>
+
+<p>Welcome <%=@user.username%></p>
+
+
+<% else %>
+<a href="/signup">Sign Up</a>
+<br>
+or
+<br>
+<a href="/login">Log In</a>
+<% end %>
