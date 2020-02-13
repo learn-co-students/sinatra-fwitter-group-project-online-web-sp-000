@@ -1,0 +1,13 @@
+<font color="red">
+  <% if flash.has?(:login_error) %>
+    <%= flash[:login_error] %>
+  <% end %>
+</font>
+
+<h2>Login To Your Account</h2>
+
+<form method="POST" action="/login">
+  <p>Username: <input type="text" name="username"></p>
+  <p>Password: <input type="password" name="password"></p>
+  <button type="submit" id="submit">Submit</button>
+</form>
