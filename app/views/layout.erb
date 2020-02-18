@@ -11,5 +11,12 @@
       <h2>Don't forget to <strong>yield</strong> your views!</h2>
     </div>
     <%=yield%>
+    <br><br><br><br>
+    <% if !!Helper.current_user(session) %>
+      <form class="logout" action="/logout" method="get">
+        <input type="submit" id="logout_button" value="Logout">
+      </form>
+    <%end%>
   </body>
+
 </html>
