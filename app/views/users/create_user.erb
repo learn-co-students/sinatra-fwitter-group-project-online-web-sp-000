@@ -1,0 +1,23 @@
+<% if flash.has?(:message) %>
+  <% flash[:message].each do |message| %>
+    <%=message%><br/>
+  <% end %>
+<% end %>
+<h2>Signup</h2>
+<form action="/signup" method="post" class="form">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="User name" value="" />
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" value="" />
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" />
+    </div>
+    <button type="submit">Sign Up</button>
+</form>
