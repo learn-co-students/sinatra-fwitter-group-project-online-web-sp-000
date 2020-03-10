@@ -2,13 +2,45 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <style>
+    /* Forms */
+    .form div {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: .5em;
+    }
+
+    .form div label {
+        min-width: 100px;
+        align-self: flex-start;
+        margin-top: 5px;
+    }
+
+    input, textarea {
+        border: 1px solid lightgray;
+        padding: 3px;
+    }
+
+    input[type='checkbox'] {
+        margin-top: 5px;
+    }
+
+    textarea {
+        width: 300px;
+        height: 100px;
+    }
+
+    .error {
+      color: red;
+    }
+    </style>
   </head>
   <body>
+  
 
     <div class="container">
       <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+      <%= yield %>
     </div>
 
   </body>
