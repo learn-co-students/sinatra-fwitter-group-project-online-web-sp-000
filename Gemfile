@@ -18,3 +18,6 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner'
 end
+
+gem 'standardrb'
+gem 'htmlbeautifier'
