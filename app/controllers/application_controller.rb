@@ -7,4 +7,16 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  get '/' do
+    erb :index
+  end
+
+  get '/signup' do
+    erb :'users/create'
+  end
+
+  post '/tweets' do
+    params.to_s
+  end
+
 end
