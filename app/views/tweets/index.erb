@@ -3,7 +3,7 @@
 <p>Here's what everyone's talking about</p>
 
 <ul>
-  <% @tweets.each do |tweet| %>
+  <% @tweets.reverse.each do |tweet| %>
     <li><a><span style="font-weight: 700;"><%= tweet.user.username %>: </span><%= tweet.content %></a></li>  
   <% end %>
 </ul>

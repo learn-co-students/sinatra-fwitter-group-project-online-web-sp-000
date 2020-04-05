@@ -1,0 +1,15 @@
+<section
+  style="width: 40vw; margin: 50px auto; padding: 10px; border-radius: 10px; box-shadow: 3px 3px 20px rgba(0,0,0,0.2);"
+  class="animated bounceInLeft"
+>
+  <h3>Edit Tweet</h3>
+
+  <form action="/tweets/<%= @tweet.id %>" method="POST" class="user-form"">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <label for="tweet">Edit your message:</label>
+    <textarea type="text" name="content" id="tweet"><%= @tweet.content %></textarea>
+
+    <button type="submit" id="submit" class="button form-btn">Submit</button>
+  </form>
+
+</section>
