@@ -1,0 +1,15 @@
+<% if current_user == @tweet.user %>
+<%= @error %>
+  <form action='/tweets/<%=@tweet.id%>' method="post">
+    <input type ="hidden" id ="hidden" name ="_method" value ="patch">
+    Content:
+    <input type="text" name="content" id = "content" value ="<%=@tweet.content%>"><br>
+    Edit Your Tweet:
+
+    <input type="submit" name="submit">
+
+  </form>
+
+  <% else %>
+      <h1> You Must Be Logged in to Make Tweets </h1>
+  <% end %>
