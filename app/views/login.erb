@@ -1,0 +1,18 @@
+<section
+  style="width: 40vw; margin: 50px auto; padding: 10px; border-radius: 10px; box-shadow: 3px 3px 20px rgba(0,0,0,0.2);"
+  class="animated bounceInLeft"
+>
+  <h3>Login to your Fwitter Account</h3>
+
+  <form action="/login" method="POST" class="user-form"">
+    <label for="user_name">Username:</label>
+    <input type="text" name="username" id="user_name" /><br />
+
+    <label for="user_password">Password:</label>
+    <input type="password" name="password" id="user_password" /><br />
+
+    <button type="submit" id="submit" class="button form-btn">Submit</button>
+  </form>
+
+  <p style="text-align: center; color: rgb(100, 100, 100);">Don't have an account? <a href="/signup" style="text-decoration: none; color: rgba(29,161,242,1.00)">Sign Up</a> today!</p>
+</section>
