@@ -105,7 +105,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 6.0.0)
-  bcrypt
+  bcrypt (~> 3.1.7)
   capybara
   database_cleaner
   pry
@@ -121,4 +121,4 @@ DEPENDENCIES
   tux
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
