@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do 
 
-    erb :'./layout'
+    erb :'./index'
   end 
 
 end
