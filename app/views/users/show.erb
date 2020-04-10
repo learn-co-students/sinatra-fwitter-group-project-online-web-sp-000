@@ -1,0 +1,9 @@
+<h1><%= @user.username %>'s Tweets:</h1>
+
+<% @user.tweets.each.with_index(1) do |tweet| %>
+	<p><%= "#{index}: #{tweet.content}" %></p>
+<% end %>
+
+<form action="/logout" method="GET">
+	<input type="submit" value="Log Out">
+</form>
