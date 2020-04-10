@@ -1,0 +1,8 @@
+<h1>Welcome, <%= @user.username %></h1>
+<h3>Here are yout tweets:</h3>
+
+<% @users.each do |user| %>
+	<% user.tweets.each.with_index(1) do |tweet, index| %>
+		<p><%= "#{user.username} tweeted: #{index}: #{tweet.content}" %></p>
+	<% end %>
+<% end %>
