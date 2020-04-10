@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
    post '/signup' do 
       #raise params.inspect 
-      if params[:username].empty? || params[:email].empty? || params[:password].empty?
+      if params[:username] == "" || params[:email] == "" || params[:password] == ""
          redirect to '/signup'
       else 
          #binding.pry 
@@ -20,6 +20,20 @@ class UsersController < ApplicationController
          @user.password = params[:password]
          @user.save 
          session[:user_id] = @user.id 
+         redirect to "/tweets"
+      end 
+   end 
+
+   get '/login' do 
+    
+      erb :'./users/login'
+   end 
+
+   post '/login' do
+      #raise params.inspect
+      #binding.pry 
+      login(params[:email])
+      if logged_in?
          redirect to "/tweets"
       end 
    end 
