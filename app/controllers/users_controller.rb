@@ -25,17 +25,27 @@ class UsersController < ApplicationController
    end 
 
    get '/login' do 
-    
+      
+
       erb :'./users/login'
    end 
 
    post '/login' do
-      #raise params.inspect
+      @user = User.find_by(params[:id])
+      if @user 
+         session[:user_id] = @user.id
+         redirect to "/tweets/#{@user.id}"
+      end
+      #binding.pry
+      
+      # redirect to "/tweets/#{@user.id}"
+   end 
+
+   get '/tweets/:id' do 
       #binding.pry 
-      login(params[:email])
-      if logged_in?
-         redirect to "/tweets"
-      end 
+      @user = User.find_by_id(params[:id])
+
+      erb :'./users/show'
    end 
 
 end
