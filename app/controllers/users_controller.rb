@@ -25,9 +25,11 @@ class UsersController < ApplicationController
    end 
 
    get '/login' do 
-      
-
-      erb :'./users/login'
+      if !logged_in?
+         erb :'./users/login'
+      else 
+         redirect to "/tweets"
+      end 
    end 
 
    post '/login' do
@@ -49,5 +51,6 @@ class UsersController < ApplicationController
 
       erb :'./users/show'
    end 
+
 
 end
