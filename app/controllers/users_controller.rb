@@ -41,8 +41,6 @@ class UsersController < ApplicationController
          redirect to "/login"
       end
       #binding.pry
-      
-      # redirect to "/tweets/#{@user.id}"
    end 
 
    get '/tweets/:id' do 
