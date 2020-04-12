@@ -35,6 +35,8 @@ class UsersController < ApplicationController
       if @user 
          session[:user_id] = @user.id
          redirect to "/tweets/#{@user.id}"
+      else  
+         redirect to "/login"
       end
       #binding.pry
       
