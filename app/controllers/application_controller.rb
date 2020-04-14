@@ -35,7 +35,6 @@ class ApplicationController < Sinatra::Base
 	  end
   end
 
-
   helpers do
     def logged_in?
       !!session[:user_id]
@@ -46,4 +45,24 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  # get '/login' do
+  #   binding.pry
+  #   erb :login
+  # end
+  #
+  # post '/login' do
+  #
+  #   user = User.find_by(:username => params[:username])
+  #
+	#   if user && user.authenticate(params[:password])
+	#     session[:user_id] = user.id
+	#     redirect "/tweets/index"
+	#   else
+	#     redirect '/failure'
+	#   end
+  # end
+  #
+  # get '/failure' do
+  #   erb :failure
+  # end
 end
