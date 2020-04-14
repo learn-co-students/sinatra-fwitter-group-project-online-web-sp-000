@@ -1,12 +1,24 @@
 class UsersController < ApplicationController
-  def create
-    User.create(user_params)
+
+  get '/login' do
+    erb :'/users/login'
   end
 
-  private
+  post '/login' do
 
-  def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    user = User.find_by(:username => params[:username])
+
+	  if user && user.authenticate(params[:password])
+	    session[:user_id] = user.id
+	    redirect '/tweets'
+	  else
+	    redirect '/users/login'
+	  end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect "/"
   end
 
 end
