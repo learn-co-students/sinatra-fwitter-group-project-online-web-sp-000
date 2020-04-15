@@ -36,7 +36,6 @@ class UsersController < ApplicationController
 
 	  if user && user.authenticate(params[:password])
 	    session[:user_id] = user.id
-      binding.pry
 	    redirect '/tweets'
 	  else
 	    redirect '/users/login'
@@ -44,8 +43,14 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session.clear
-    redirect "/"
+    if logged_in?
+      session.clear
+      redirect 'users/login'
+    else
+      redirect '/index'
+    end
   end
+
+
 
 end
