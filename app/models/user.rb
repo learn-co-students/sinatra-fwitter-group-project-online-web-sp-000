@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessor :password_digest
+  # attr_accessor :password_digest
 
   has_secure_password
   has_many :tweets
