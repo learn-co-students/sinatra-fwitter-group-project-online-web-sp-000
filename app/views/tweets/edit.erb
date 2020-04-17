@@ -4,9 +4,15 @@
 
 <form action="/tweets/<%= @tweet.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="patch">
-<label>Edit the Artists's Name:</label>
-<input type="text" id="Content" name="content" value ="<%=@tweet.content%>">
+<label>Edit the Tweet:</label>
+<input type="text" id="content" name="tweet[content]" value ="<%=@tweet.content%>">
 <br>
 <br>
-<input type="submit" value="Edit Tweet">
+<input type="submit" value="submit">
+</form>
+
+
+<form method="post" action="/tweets/<%= @tweet.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Tweet">
 </form>

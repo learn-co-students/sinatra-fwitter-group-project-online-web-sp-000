@@ -41,8 +41,8 @@ class TweetsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @tweet = Tweet.find_by(id: params[:id])
       @user = User.find_by(id: @tweet.user_id)
-      if @user.id == session[:user_id]
-        erb :'tweets/edit'
+      if @user.id == session[:user_id] && @tweet.content != ""
+        erb :"tweets/edit"
       end
     else
       redirect 'users/login'
@@ -51,11 +51,14 @@ class TweetsController < ApplicationController
 
   patch '/tweets/:id' do
 
-    @tweet = Tweets.find_by(id: params[:id])
-    @tweet.update(params["content"])
-
-    redirect "tweets/#{@tweet.id}"
-
+    if Helpers.is_logged_in?(session)
+      @tweet = Tweet.find_by(id: params[:id])
+      @user = User.find_by(id: @tweet.user_id)
+      if @user.id == session[:user_id] && @tweet.content != ""
+        @tweet.update(content: params["tweet"]["content"])
+        redirect "tweets/#{@tweet.id}/edit"
+      end
+    end
   end
 
   delete '/tweets/:id' do
@@ -67,7 +70,7 @@ class TweetsController < ApplicationController
         redirect "/tweets"
       end
     else
-      redirect 'users/login'
+      redirect '/login'
     end
 
   end
