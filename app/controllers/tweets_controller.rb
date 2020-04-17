@@ -10,4 +10,7 @@ class TweetsController < ApplicationController
          erb :'./tweets/tweets'
       end 
    end 
+
+   post '/tweets' do 
+   end 
 end
