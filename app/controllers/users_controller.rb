@@ -19,6 +19,7 @@ class UsersController < ApplicationController
          @user.email = params[:email]
          @user.password = params[:password]
          @user.save 
+         #binding.pry
          session[:user_id] = @user.id 
          redirect to "/tweets"
       end 
@@ -26,19 +27,21 @@ class UsersController < ApplicationController
 
    get '/login' do 
       if !logged_in?
-         erb :'./users/login'
+         erb :'users/login'
       else 
          redirect to "/tweets"
       end 
    end 
 
    post '/login' do
-      @user = User.find_by(params[:id])
-      if @user 
+      @user = User.find_by(:username => params[:username])
+      #binding.pry 
+      #raise params.inspect
+      if @user && @user.authenticate(params[:password])
          session[:user_id] = @user.id
-         redirect to "/tweets/#{@user.id}"
+         redirect to "/tweets"
       else  
-         redirect to "/login"
+         redirect to "/signup"
       end
       #binding.pry
    end 
@@ -46,29 +49,15 @@ class UsersController < ApplicationController
    get '/logout' do 
       session.clear  
       redirect to "/login"
-      # lets a user logout if they are already logged in 
-      # and redirects to the login page
-      # if logged_in? 
-      #    session.clear 
-      #    redirect to "/login"
-      # end 
-      # redirects a user to the index page if the user tries 
-      # to access /logout while not logged in
-      # if request.path == "/logout" && !logged_in?
-      #    redirect to "/"
-      # end 
-      # redirects a user to the login route if a user tries to 
-      # access /tweets route if user not logged in
    end 
 
 
+   # get '/tweets/:id' do 
+   #    #binding.pry 
+   #    @user = User.find_by_id(params[:id])
 
-   get '/tweets/:id' do 
-      #binding.pry 
-      @user = User.find_by_id(params[:id])
-
-      erb :'./users/show'
-   end 
+   #    erb :'./users/show'
+   # end 
 
 
 end
