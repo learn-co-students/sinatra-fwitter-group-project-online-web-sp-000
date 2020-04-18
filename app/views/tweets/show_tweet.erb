@@ -1,4 +1,4 @@
 <p><%= @tweet.content %></p>
 
-<input type="submit" value="Edit Tweet">
-<input type="submit" value="Delete Tweet">
+<a href="/tweets/<%=@tweet.id%>/edit"><input type="submit" value="Edit Tweet"></a>
+<a href="/tweets/<%= @tweet.id%>/delete"><input type="submit" value="Delete Tweet"></a>
