@@ -54,18 +54,11 @@ class UsersController < ApplicationController
    get '/users/:slug' do 
       #binding.pry 
       @user = User.find_by_slug(params[:slug])
+      #binding.pry
       @tweets = Tweet.all 
 
       erb :'./users/show'
-   end 
-
-
-   # get '/tweets/:id' do 
-   #    #binding.pry 
-   #    @user = User.find_by_id(params[:id])
-
-   #    erb :'./users/show'
-   # end 
+   end
 
 
 end
