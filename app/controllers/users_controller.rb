@@ -39,18 +39,21 @@ class UsersController < ApplicationController
 
   get '/logout' do
     if logged_in?
-      erb :'/users/logout'
+      # erb :'/users/logout'
+      session.clear
+      redirect '/login'
     else
       redirect '/'
     end
   end
 
-  post '/logout' do
-    session.clear
-    redirect '/login'
-  end
+  # post '/logout' do
+  #   session.clear
+  #   redirect '/login'
+  # end
 
   get '/users/:slug' do
-    @user_tweets = current_user.tweets
+    @user = User.find_by(params[:slug])
+    erb :'/users/show_tweets'
   end
 end
