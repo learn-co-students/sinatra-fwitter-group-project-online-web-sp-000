@@ -1,0 +1,13 @@
+<% redirect to "/login" if !logged_in? %>
+<h1>Edit Tweet Below</h1>
+<br><br> 
+<h3><%= @tweet.user.username %>'s tweet:</h3>
+
+<p> Original Content </p>
+<p><%= @tweet.content %></p>
+<h4>Create New Content Below: </h4>
+<form action="/tweets/<%= @tweet.id %>/edit" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="text" name="content">
+    <input type="submit" id="submit" value="Submit">
+</form>

@@ -1,0 +1,19 @@
+<% redirect to "/login" if !logged_in? %>
+<h1>Tweet Page</h1> 
+<br>
+<h3><%= @tweet.user.username %>'s tweet: </h3> 
+<br> 
+<p><%= @tweet.content %></p>
+
+<form action="/tweets/<%= @tweet.id %>/edit" method= "get">    
+
+    <input type="submit" id="Edit Tweet" value="Edit Tweet">
+    <br><br>
+    
+</form>
+<form action="/tweets/<%= @tweet.id %>/delete" method="get"> 
+
+    <input type="submit" id="Delete Tweet" value="Delete Tweet">
+
+</form>
+

@@ -2,9 +2,9 @@
 
 <br>
 <ul>
-<% @tweets.all do |tweet| %>
+<% @tweets.each do |tweet| %>
     <li>
-    <p>Username: <%= tweet.user.username id=":username" %></p>
+    <p>Username: <%= tweet.user.username %></p>
     <p><%= tweet.content %></p>
     <li>
 <% end %>
