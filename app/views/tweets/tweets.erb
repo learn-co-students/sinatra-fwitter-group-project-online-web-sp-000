@@ -1,6 +1,8 @@
-<form action='/signup' method='POST'>
-<input type="text" name="username">
-<input type="password" name="password">
-<input type="email" name="email">
-<input type="submit" name="submit">
-</form>
+<p> Welcome <%= current_user.username %>
+<h2> Tweets </h2>
+
+<% @tweets.each do |tweet| %>
+  <div>
+    <%= tweet.content %>
+  </div>
+<% end %>
