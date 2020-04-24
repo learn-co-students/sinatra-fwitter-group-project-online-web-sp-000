@@ -115,6 +115,7 @@ describe ApplicationController do
       expect(last_response.location).to include("/login")
     end
 
+
     it 'redirects a user to the index page if the user tries to access /logout while not logged in' do
       get '/logout'
       expect(last_response.location).to include("/")

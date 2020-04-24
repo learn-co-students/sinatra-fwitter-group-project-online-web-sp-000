@@ -1,0 +1,10 @@
+<h2>Welcome, <%= @user.username %>!</h2>
+
+<h3>Showing All Tweets...</h3>
+<ul>
+  <% @all_tweets.each do |tweet| %>
+    <li><%= tweet.content %></li>
+  <% end %>
+</ul>
+
+<h4><a href='/tweets/new'>Create New Tweet</a></h4>
