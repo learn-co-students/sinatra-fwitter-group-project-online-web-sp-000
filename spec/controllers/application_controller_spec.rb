@@ -56,6 +56,7 @@ describe ApplicationController do
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
+  
 
     it 'does not let a logged in user view the signup page' do
       #user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
@@ -65,8 +66,10 @@ describe ApplicationController do
         :password => "rainbows"
       }
       post '/signup', params
+      
       get '/signup'
-      expect(last_response.location).to include('/tweets')
+      
+     expect(last_response.location).to include('/tweets')
     end
   end
 
