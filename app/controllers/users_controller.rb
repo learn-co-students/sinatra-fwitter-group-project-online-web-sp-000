@@ -20,16 +20,20 @@ end
 
 get '/login' do
   if logged_in?
-   redirect '/tweets' 
-  erb:'users/login'
+   redirect '/tweets'
+  else 
+  erb:'/users/login'
   end
 end 
 
 post '/login' do
-  redirect '/login' if params[:username] == "" || params[:password] == ""
+  if params[:username] == "" || params[:password] == ""
+  redirect '/login' 
+else
   login(params[:username], params[:password])
   redirect '/tweets'
-end
+ end
+end 
 
  
 get '/users/:slug' do
