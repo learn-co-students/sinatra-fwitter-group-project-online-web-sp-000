@@ -1,0 +1,9 @@
+<h1>Homepage</h1>
+
+    <% if logged_in? %>
+        <a href="/tweets/new">Create Tweet</a>
+        <a href="/logout">Logout</a>
+    <% else %>
+        <a href="/login">Log In</a>
+        <a href="/signup">Sign Up</a>
+    <% end %>
