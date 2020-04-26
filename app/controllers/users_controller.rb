@@ -66,10 +66,35 @@ get '/users/:slug' do
   erb :'users/show'
 end
 
-post '/users/:slug' do
-  @user = User.find_by_slug(params[:slug])
-  erb :'/users/edit'
+
+
+get '/users/new' do 
+  if logged_in?
+    redirect '/tweets'
+   else 
+   erb:'/users/new'
+   end 
+  end
+
+#    post '/users' do
+#     binding.pry 
+#     @tweet = Tweet.find(params[:id])
+#    erb:'/users/show'
+#    end 
+
+
+
+# CREATE NEW TWEET
+post '/users' do
+  
+  @tweet = Tweet.new(text: params[:tweet])
+  User.find(params[:id]).tweets << @tweet
+  binding.pry
+  redirect "/users/#{params[:id]}"
 end
+
+
+
  
 get '/logout' do
   if logged_in?

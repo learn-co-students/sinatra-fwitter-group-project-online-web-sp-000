@@ -12,7 +12,7 @@ class TweetsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-    erb :'/tweets/new' 
+    erb :'/tweets/create_tweet' 
   end 
 end
 
@@ -29,8 +29,8 @@ end
 #   end
   post '/tweets' do
     redirect '/login' if !logged_in?
-
-    @tweet = current_user.tweets.create(params[:tweet])
+    #binding.pry
+    @tweet = current_user.tweets.create(params)
     if @tweet.save
       redirect "/tweets/#{@tweet.id}"
     else
@@ -44,6 +44,13 @@ end
     erb :'/tweets/show'
   end
 
+#   get '/tweets/new'
+#   if logged_in? 
+#     redirect '/tweets/new'
+#   else
+
+# end 
+
   get '/tweets/:id/edit' do
     redirect '/login' if !logged_in?
     @tweet = Tweet.find(params[:id])
@@ -52,10 +59,18 @@ end
   end
 
   patch '/tweets/:id' do 
+
     redirect '/login' if !logged_in?
+    #binding.pry
+    if params[:content] == "" 
+      redirect "/tweets/#{params[:id]}/edit"
+    end 
+    
     @tweet = Tweet.find(params[:id])
     @tweet.content = params[:content]
 
+    @tweet.save 
+    redirect "/tweets/#{params[:id]}"
   end 
 
   delete '/tweets/:id/delete' do
