@@ -26,20 +26,6 @@ get '/login' do
   end 
 end 
 
-# post '/login' do
-#   redirect '/login' if params[:username] == "" || params[:password] == ""
-#   login(params[:username], params[:password])
-#   redirect '/tweets'
-# end
-# end   
-
-# post '/login' do
-#   redirect '/login' if params[:username] == "" || params[:password] == ""
-#   login(params[:username], params[:password])
-#   redirect '/tweets'
-# end
-
-
 post '/login' do
   user = User.find_by(:username => params[:username])
   if user && user.authenticate(params[:password])
@@ -50,41 +36,11 @@ post '/login' do
   end
 end
 
-# get '/users/:slug' do
-#   @user = User.find_by_slug(params[:slug].to_s)
-#   @tweets = []
-#   Tweet.all.each do |tweet|
-#     @tweets << tweet if tweet.user_id == @user.id
-#   end
-#   erb :'/tweets/tweets'
-#   end
-
-
-
 get '/users/:slug' do
   @user = User.find_by_slug(params[:slug])
   erb :'users/show'
 end
 
-
-
-get '/users/new' do 
-  if logged_in?
-    redirect '/tweets'
-   else 
-   erb:'/users/new'
-   end 
-  end
-
-#    post '/users' do
-#     binding.pry 
-#     @tweet = Tweet.find(params[:id])
-#    erb:'/users/show'
-#    end 
-
-
-
-# CREATE NEW TWEET
 post '/users' do
   
   @tweet = Tweet.new(text: params[:tweet])
@@ -93,9 +49,6 @@ post '/users' do
   redirect "/users/#{params[:id]}"
 end
 
-
-
- 
 get '/logout' do
   if logged_in?
    logout!
