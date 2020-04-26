@@ -23,8 +23,21 @@ get '/login' do
    redirect '/tweets'
   else 
   erb:'/users/login'
-  end
+  end 
 end 
+
+# post '/login' do
+#   redirect '/login' if params[:username] == "" || params[:password] == ""
+#   login(params[:username], params[:password])
+#   redirect '/tweets'
+# end
+# end   
+
+# post '/login' do
+#   redirect '/login' if params[:username] == "" || params[:password] == ""
+#   login(params[:username], params[:password])
+#   redirect '/tweets'
+# end
 
 
 post '/login' do
@@ -66,5 +79,4 @@ get '/logout' do
     redirect to '/'
  end 
 end 
-  
-end 
+end  
