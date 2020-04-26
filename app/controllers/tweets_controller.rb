@@ -1,24 +1,28 @@
 class TweetsController < ApplicationController
-  
+
   get '/tweets' do
     if !logged_in?
-    redirect '/login' 
-    end 
+    redirect '/login'
+    end
     @tweets = Tweet.all
     erb :'/tweets/tweets'
   end
 
-
-post '/tweets' do 
-  redirect '/login' if !logged_in?	    
-    redirect '/tweets/new' 
-    if params[:tweet][:content].empty?	
-    @tweet = Tweet.create(params[:tweet])	    
-    @tweet.user_id = User.find_by(username: current_user).id	    
-    @tweet.save	      
-    redirect "/tweets/#{@tweet.id}"	    
-    end
+  get '/tweets/new' do 
+    erb :new 
   end 
+
+
+post '/tweets' do
+  redirect '/login' if !logged_in?
+    redirect '/tweets/new'
+    if params[:tweet][:content].empty?
+    @tweet = Tweet.create(params[:tweet])
+    @tweet.user_id = User.find_by(username: current_user).id
+    @tweet.save
+    redirect "/tweets/#{@tweet.id}"
+    end
+  end
   post '/tweets' do
     redirect '/login' if !logged_in?
 
@@ -39,7 +43,7 @@ post '/tweets' do
   get '/tweets/:id/edit' do
     redirect '/login' if !logged_in?
     @tweet = Tweet.find(params[:id])
-    redirect '/tweets' if @tweet.user != current_user #I don't see a lot of students checking the tweet's user id. Good job! -@mendelB
+    redirect '/tweets' if @tweet.user != current_user
     erb :'/tweets/edit'
   end
 
@@ -52,7 +56,7 @@ post '/tweets' do
     end
   end
 
-  
+
 
   post '/tweets/:id' do
     @tweet = Tweet.find(params[:id])

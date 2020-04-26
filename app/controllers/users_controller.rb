@@ -37,16 +37,26 @@ post '/login' do
   end
 end
 
+# get '/users/:slug' do
+#   @user = User.find_by_slug(params[:slug].to_s)
+#   @tweets = []
+#   Tweet.all.each do |tweet|
+#     @tweets << tweet if tweet.user_id == @user.id
+#   end
+#   erb :'/tweets/tweets'
+#   end
+
+
 
 get '/users/:slug' do
   @user = User.find_by_slug(params[:slug])
   erb :'users/show'
 end
 
-# post '/users/:slug' do
-#   @user = User.find_by_slug(params[:slug])
-#   erb :'/users/show'
-# end
+post '/users/:slug' do
+  @user = User.find_by_slug(params[:slug])
+  erb :'/users/edit'
+end
  
 get '/logout' do
   if logged_in?
