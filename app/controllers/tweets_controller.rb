@@ -30,14 +30,19 @@ post '/tweets' do
     end
   end
 
-# Shows an individual tweet
   get '/tweets/:id' do
     redirect '/login' if !logged_in?
     @tweet = Tweet.find(params[:id])
     erb :'/tweets/show'
   end
 
-  #Deletes a tweet.
+  get '/tweets/:id/edit' do
+    redirect '/login' if !logged_in?
+    @tweet = Tweet.find(params[:id])
+    redirect '/tweets' if @tweet.user != current_user #I don't see a lot of students checking the tweet's user id. Good job! -@mendelB
+    erb :'/tweets/edit'
+  end
+
   delete '/tweets/:id/delete' do
     tweet = current_user.tweets.find_by(id: params[:id])
     if tweet && tweet.destroy
@@ -47,12 +52,7 @@ post '/tweets' do
     end
   end
 
-  get '/tweets/:id/edit' do
-    redirect '/login' if !logged_in?
-    @tweet = Tweet.find(params[:id])
-    redirect '/tweets' if @tweet.user != current_user #I don't see a lot of students checking the tweet's user id. Good job! -@mendelB
-    erb :'/tweets/edit'
-  end
+  
 
   post '/tweets/:id' do
     @tweet = Tweet.find(params[:id])

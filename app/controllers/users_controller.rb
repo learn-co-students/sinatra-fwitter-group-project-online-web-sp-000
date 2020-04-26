@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   get '/signup' do 
-    #binding.pry
-    if logged_in?
+   if logged_in?
       redirect '/tweets' 
      else
       erb:'/users/create'
@@ -18,60 +17,44 @@ post '/signup' do
   end
 end
 
+
 get '/login' do
-  if logged_in?
+ if logged_in?
    redirect '/tweets'
   else 
   erb:'/users/login'
   end
 end 
 
+
 post '/login' do
-  if params[:username] == "" || params[:password] == ""
-  redirect '/login' 
-else
-  login(params[:username], params[:password])
-  redirect '/tweets'
- end
-end 
-
- 
-get '/users/:slug' do
-  @user = User.find_by_slug(params[:slug].to_s)
-  @tweets = []
-  Tweet.all.each do |tweet|
-  @tweets << tweet if tweet.user_id == @user.id
+  user = User.find_by(:username => params[:username])
+  if user && user.authenticate(params[:password])
+    session[:id] = user.id
+    redirect to "/tweets"
+  else
+    redirect to '/signup'
   end
-  erb:'/tweets/show'
 end
 
-post '/users/:slug' do
+
+get '/users/:slug' do
   @user = User.find_by_slug(params[:slug])
-  erb :'/users/show'
+  erb :'users/show'
 end
+
+# post '/users/:slug' do
+#   @user = User.find_by_slug(params[:slug])
+#   erb :'/users/show'
+# end
  
 get '/logout' do
-  
   if logged_in?
-    session.clear
-  # logout!
+   logout!
   redirect '/login'
   else   
     redirect to '/'
  end 
-  # erb:'/logout'
 end 
-  # delete '/login' do
-  #   session[:id] = nil
-  #   redirect "/"
-  # end
-
-
-
-
-
-
-
-
-
+  
 end 
