@@ -1,4 +1,4 @@
-.link-container {
+.link_container {
     padding: 2%;
     background-color: black;
     color: white;
@@ -10,7 +10,7 @@
     box-shadow: -1px 1px #444, -2px 2px #333, -3px 3px #222, -2px 4px 5px #111; 
 }
 
-.button-link {
+.button_link {
     background-color: blue;
     padding: 5px 10px;
     border-radius: 5px;
@@ -18,6 +18,6 @@
     box-shadow: -1px 1px 1px #fff; 
 }
 
-.button-link:active {
+.button_link:active {
     box-shadow: inset 1px -1px #fff;
 }

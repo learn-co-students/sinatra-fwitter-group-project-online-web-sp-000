@@ -1,0 +1,26 @@
+.form-container {
+    padding: 2%;
+    background-color: black;
+    color: white;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: -1px 1px #444, -2px 2px #333, -3px 3px #222, -2px 4px 5px #111;
+}    
+
+.input-group {
+    margin-top: 15px;
+}
+
+input[type="submit"] {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: -1px 1px #ddd, -2px 2px 2px #fff;
+}
+
+input[type="submit"]:active {
+    box-shadow: inset 1px -1px #000;
+}

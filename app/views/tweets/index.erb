@@ -1,0 +1,11 @@
+<h1>List of all tweets</h1>
+<%if !@tweets.empty?%>
+    <%@tweets.each do |tweet|%>
+        <div class="tweet">
+            <h3><%=tweet.user.username%></h3>
+            <p>tweet.content</p>
+        </div>
+    <%end%>
+<%else%>
+    <h2>No Tweets have been submitted yet.</h2>
+<%end%>
