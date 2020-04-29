@@ -1,0 +1,23 @@
+.link-container {
+    padding: 2%;
+    background-color: black;
+    color: white;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: -1px 1px #444, -2px 2px #333, -3px 3px #222, -2px 4px 5px #111; 
+}
+
+.button-link {
+    background-color: blue;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: -1px 1px 1px #fff; 
+}
+
+.button-link:active {
+    box-shadow: inset 1px -1px #fff;
+}
