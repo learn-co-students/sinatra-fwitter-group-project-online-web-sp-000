@@ -1,9 +1,11 @@
 <h1>List of all tweets</h1>
+<h2>Welcome, <span id="username"><%=@user.username%></span></h2>
+<p><a href="/logout">Logout</a></p>
 <%if !@tweets.empty?%>
     <%@tweets.each do |tweet|%>
         <div class="tweet">
             <h3><%=tweet.user.username%></h3>
-            <p>tweet.content</p>
+            <p><%=tweet.content%></p>
         </div>
     <%end%>
 <%else%>

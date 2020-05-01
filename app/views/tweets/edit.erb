@@ -1,0 +1,14 @@
+<div class="form-container">
+    <h1>Edit Tweet:</h1>
+    <p><%=@tweet.content%></p>
+    <p><%=@message%></p>
+    <form action="/tweets/<%=@tweet.id%>/edit" method="post">
+    <input type="hidden" name="_method" id="hidden" value="patch">
+    <div class="input-group">
+        <input type="text" name="content" id="content">
+    </div>
+    <div class="input-group">
+        <input type="submit" value="submit">
+    </div>
+    </form>
+</div>
