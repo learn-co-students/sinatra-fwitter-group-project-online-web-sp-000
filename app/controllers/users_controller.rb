@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
   get '/signup' do 
-    
+    erb :'/create_user'
   end
   
   post '/signup' do 
     user = User.new(:username => params[:username], :password => params[:password])
     if user.save 
-      redirect "/login"
+      redirect "/tweets"
     else 
-      redirect "/failure"
+      redirect "/signup"
     end
   end
   
