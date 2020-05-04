@@ -1,11 +1,13 @@
 <h2>Sign up for Fwitter</h2>
 
+<%= @error %>
+
 <form action="/signup" method="post">
-  <label for="user[name]">Username: </label>
-  <input type="text" id="username" name="user[username]"><br>
-  <label for="user[email]">Email: </label>
-  <input type="text" id="user_email" name="user[email]"><br>
+  <label for="username">Username: </label>
+  <input type="text" id="username" name="username"><br>
+  <label for="email">Email: </label>
+  <input type="text" name="email"><br>
   <label for="user[password]">Password: </label>
-  <input type="text" id="user_password" name="user[password]"><br><br>
+  <input type="text" name="password"><br><br>
   <input type="submit" value="Sign Up">
 </form>

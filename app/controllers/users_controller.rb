@@ -9,13 +9,14 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.new(params[:user])
+    @user = User.new(params)
 
     if @user.save
       session[:user_id] = @user.id
       redirect "/tweets"
     else
-      redirect "/error"
+      @error = "You must fill out a username, email, and password to sign up."
+      redirect "/signup"
     end
   end
 
