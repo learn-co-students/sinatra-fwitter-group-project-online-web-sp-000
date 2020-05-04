@@ -1,0 +1,5 @@
+<%= @tweet.content %> <br><br>
+
+<% if @tweet.user.id == current_user.id %>
+  <p>You can Edit or Delete this tweet, because it is yours.</p>
+<% end %>
