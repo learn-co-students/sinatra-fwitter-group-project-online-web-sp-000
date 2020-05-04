@@ -1,6 +1,7 @@
 <h2>Sign up for Fwitter</h2>
 
-<%= @error %>
+<%= session[:error_message] %><br><br>
+<% session.delete(:error_message) %>
 
 <form action="/signup" method="post">
   <label for="username">Username: </label>

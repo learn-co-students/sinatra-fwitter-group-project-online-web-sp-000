@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/tweets"
     else
-      @error = "You must fill out a username, email, and password to sign up."
+      session[:error_message] = "Error: You must fill out a username, email, and password to sign up."
       redirect "/signup"
     end
   end
