@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :'users/signup'
+    if is_logged_in?(session)
+      redirect "/tweets"
+    else
+      erb :'users/signup'
+    end
   end
 
   get '/login' do
@@ -13,11 +17,29 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      binding.pry
       redirect "/tweets"
     else
       redirect "/error"
     end
+  end
+
+  get '/logout' do
+    binding.pry
+    session.clear
+    binding.pry
+    redirect "/login"
+  end
+
+  helpers do
+
+    def is_logged_in?(session)
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+
   end
 
 end

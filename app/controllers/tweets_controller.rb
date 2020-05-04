@@ -16,12 +16,10 @@ class TweetsController < ApplicationController
   end
 
   post '/tweets' do
-    binding.pry
     @tweet = Tweet.new(content: params[:content])
-    binding.pry
     @tweet.user = current_user
-    binding.pry
     @tweet.save
+    
     redirect '/tweets'
   end
 
