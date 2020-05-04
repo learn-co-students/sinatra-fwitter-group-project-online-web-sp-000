@@ -1,0 +1,14 @@
+<h2>Sign up for Fwitter</h2>
+
+<%= session[:error_message] %><br><br>
+<% session.delete(:error_message) %>
+
+<form action="/signup" method="post">
+  <label for="username">Username: </label>
+  <input type="text" id="username" name="username"><br>
+  <label for="email">Email: </label>
+  <input type="text" name="email"><br>
+  <label for="user[password]">Password: </label>
+  <input type="text" name="password"><br><br>
+  <input type="submit" value="Sign Up">
+</form>
