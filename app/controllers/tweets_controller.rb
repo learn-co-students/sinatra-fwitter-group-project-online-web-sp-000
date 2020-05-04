@@ -66,6 +66,13 @@ class TweetsController < ApplicationController
     redirect "/tweets/#{@tweet.id}"
   end
 
+  delete '/tweets/:id' do
+    @tweet = Tweet.find(params[:id])
+    @tweet.destroy if @tweet.user.id == current_user.id
+
+    redirect "/tweets"
+  end
+
   helpers do
 
     def is_logged_in?(session)
