@@ -1,7 +1,6 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
-    binding.pry
     if is_logged_in?(session)
       @all_tweets = Tweet.all
       @all_users = User.all
@@ -18,6 +17,12 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     binding.pry
+    @tweet = Tweet.new(content: params[:content])
+    binding.pry
+    @tweet.user = current_user
+    binding.pry
+    @tweet.save
+    redirect '/tweets'
   end
 
   helpers do

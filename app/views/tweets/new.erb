@@ -1,13 +1,10 @@
 <% if is_logged_in?(session) %>
 <%= @error %>
+  <h2>Create A New Tweet: </h2>
   <form action='/tweets' method="post">
     Content:
-    <input type="text" name="content"><br>
-    Create Your Tweet:
-
-    <input type="submit" name="submit" id="submit">
-
-    <input type="submit" name="submit">
+    <input type="text" name="content"><br><br>
+    <input type="submit" id="submit" value="Create Your Tweet">
 
   </form>
 
