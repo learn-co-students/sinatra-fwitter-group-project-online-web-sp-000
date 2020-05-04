@@ -24,9 +24,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    binding.pry
     session.clear
-    binding.pry
     redirect "/login"
   end
 
