@@ -1,4 +1,7 @@
 <h2>Fwitter feed</h2>
+
+<h3>Welcome, <%=current_user.username%></h3>
+
 <ul>
   <% @all_tweets.each do |tweet| %>
     <li><%= tweet.user.username %>: "<%= tweet.content %>"</li>
