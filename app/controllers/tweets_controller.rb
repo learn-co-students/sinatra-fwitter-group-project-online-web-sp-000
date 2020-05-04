@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
+    binding.pry
     if is_logged_in?(session)
       @all_tweets = Tweet.all
       @all_users = User.all
