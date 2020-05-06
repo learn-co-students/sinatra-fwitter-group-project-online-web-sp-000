@@ -1,8 +1,14 @@
-<h2>Tweet</h2>
-<p><%= @tweet.content %></p>
+<h2>Tweets by <%= @user.username %></h2>
+<ul>
+    <% @user.tweets.all.each do |tweet| %>
+        <li>
+            <%= @tweet.content %>
+        </li>
+    <% end %>
+</ul>
 
-<form method="POST" action="/tweets/<%=@tweet.id%>">
+<form method="POST" action="/tweets/<%=@tweet.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
     <br>
-    <input type="submit" value="delete">
+    <input type="submit" value="Delete Tweet">
 </form>
