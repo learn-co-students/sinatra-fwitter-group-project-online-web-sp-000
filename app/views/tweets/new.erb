@@ -1,11 +1,14 @@
+<% if flash.has?(:empty_tweet) %>
+  <%= flash[:empty_tweet] %>
+<% end %>
+
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
   <form action='/tweets' method="post">
-    Content:
-    <input type="text" name="content"><br>
-    Create Your Tweet:
+    <label>Create Your Tweet </label><br>
 
-    <input type="submit" name="submit" id="submit">
+    <input type="text" name="content" id = "content"><br><br>
+
 
     <input type="submit" name="submit">
 

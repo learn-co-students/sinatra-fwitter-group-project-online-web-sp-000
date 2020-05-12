@@ -1,0 +1,16 @@
+<% if flash.has?(:new_user_error) %>
+  <%= flash[:new_user_error] %>
+<% end %>
+
+<h1>Sign Up for an Accout</h1>
+<p>Please enter your information below to create a user account</p>
+<form method = "POST" action = "/signup">
+    <label><strong>Username: </strong></label>
+    <input type = "text" name = "username" id = "username"><br><br>
+    <label><strong>Email: </strong></label>
+    <input type = "text" name = "email" id = "email"><br><br>
+    <label><strong>Password: </strong></label>
+    <input type = "text" name = "password" id = "password"><br><br>
+
+    <input type = "submit" value = "Create Account">
+</form>
