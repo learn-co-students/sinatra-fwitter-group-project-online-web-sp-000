@@ -1,0 +1,18 @@
+<h2>Welcome, <%= current_user.username %></h2>
+
+<h3>Actions:</h3>
+<nav>
+	<button type="button" onclick="location.href='/logout'">Log Out</button>
+</nav>
+
+<h3>Home</h3>
+<ul>
+	<% @tweets.each do |tweet| %>
+		<li onclick="location.href='/tweets/<%= tweet.id %>'">
+			<a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a>
+			<br>
+			<%= tweet.content %>
+		</li>
+		<br>
+	<% end %>
+</ul>
