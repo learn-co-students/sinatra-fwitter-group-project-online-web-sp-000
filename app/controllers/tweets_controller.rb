@@ -50,7 +50,11 @@ class TweetsController < ApplicationController
 			redirect '/login'
 		else
 			@tweet = Tweet.find(params[:id])
-			erb :'tweets/edit_tweet' if @tweet.user_id == session[:user_id]
+			if @tweet.user_id == session[:user_id]
+				erb :'tweets/edit_tweet'
+			else
+				redirect "/tweets/#{params[:id]}"
+			end
 		end
 	end
 
@@ -71,6 +75,7 @@ class TweetsController < ApplicationController
 
 		if logged_in? && @tweet.user_id == session[:user_id]
 			@tweet.destroy
+			redirect '/tweets'
 		else
 			redirect '/login'
 		end
