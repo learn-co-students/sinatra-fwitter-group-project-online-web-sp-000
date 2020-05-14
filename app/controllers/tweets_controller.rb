@@ -23,7 +23,6 @@ class TweetsController < ApplicationController
       if params[:content].empty?
         redirect "/tweets/new"
       else
-        binding.pry
         tweet = Tweet.new(:content => params[:content])
         current_user.tweets << tweet
         current_user.save

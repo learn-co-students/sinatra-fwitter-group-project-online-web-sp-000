@@ -10,13 +10,11 @@ class UsersController < ApplicationController
 
     post '/signup' do
         if params[:username].empty? || params[:email].empty? || params[:password].empty?
-            # binding.pry
             redirect "/signup"
         else
             user = User.new(params)
             user.save
             session[:id] = user.id
-            # binding.pry
             redirect "/tweets"
         end
     end
@@ -30,11 +28,9 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-        # binding.pry
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:id] = user.id
-            # binding.pry
             redirect "/tweets"
         else
             redirect "/signup"
