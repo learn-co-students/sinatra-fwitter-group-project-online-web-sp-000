@@ -51,12 +51,31 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.find_by(username: params["username"])
-    if @user && user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect 'tweets/tweets'
+    @user = User.find_by(username: params[:username])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect '/tweets'
     else
       flash[:error] = "Login error. Please try again or sign up for a Fwitter account."
+      redirect '/login'
+    end
+  end
+
+  get '/tweets' do
+    if !Helpers.logged_in?(session)
+      redirect '/login'
+    end
+    @tweets = Tweet.all
+    @user = Helpers.current_user(session)
+    erb :'/tweets/tweets'
+  end
+
+  # clear session hash and redirect to /login
+  get '/logout' do
+    if !Helpers.logged_in?(session)
+      erb :'/users/login'
+    else
+      session.clear
       redirect '/login'
     end
   end
