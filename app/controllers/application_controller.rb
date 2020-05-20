@@ -70,11 +70,29 @@ class ApplicationController < Sinatra::Base
     erb :'/tweets/tweets'
   end
 
-  # shows all a single users tweets
-  get '/tweets/:id' do
-    @user = User.find_by(params[:id])
-    # binding.pry
+  # shows all tweets from a single user
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
+  end
+
+  get '/tweets/new' do
+    if !Helpers.logged_in?(session)
+      flash[:message] = "You Must Be Logged in to Make Tweets"
+      redirect '/login'
+    end
+      erb :'tweets/new'
+  end
+
+  # The tweet should be created and saved to the database
+  post '/tweets' do
+    if !params[:content].empty?
+      Tweet.create(content: params[:content], user_id: session[:user_id])
+      redirect '/tweets/tweets'
+    else
+      flash[:error] = "Please enter a tweet"
+      redirect '/tweets/new'
+    end
   end
 
   # clear session hash and redirect to /login
