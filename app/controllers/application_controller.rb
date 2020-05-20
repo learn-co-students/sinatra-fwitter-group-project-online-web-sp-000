@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
     if params.none? {|key, value| value == ""}
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
-      redirect 'tweets/tweets'
+      redirect '/tweets'
     else
       flash[:error] = "Please complete all the information to create your account"
       redirect '/signup'
@@ -88,10 +88,20 @@ class ApplicationController < Sinatra::Base
   post '/tweets' do
     if !params[:content].empty?
       Tweet.create(content: params[:content], user_id: session[:user_id])
-      redirect '/tweets/tweets'
+      redirect '/tweets'
     else
       flash[:error] = "Please enter a tweet"
       redirect '/tweets/new'
+    end
+  end
+
+  get '/tweets/:id' do
+    if !Helpers.logged_in?(session)
+      flash[:message] = "You Must Be Logged in to View Tweets"
+      redirect '/login'
+    else
+      @tweet = Tweet.find_by(params[:id])
+      erb :'/tweets/show_tweet'
     end
   end
 
