@@ -70,14 +70,19 @@ class ApplicationController < Sinatra::Base
     erb :'/tweets/tweets'
   end
 
+  # shows all a single users tweets
+  get '/tweets/:id' do
+    @user = User.find_by(params[:id])
+    # binding.pry
+    erb :'/users/show'
+  end
+
   # clear session hash and redirect to /login
+  # redirects a user to the index page if the user tries to access /logout while not logged in
   get '/logout' do
-    if !Helpers.logged_in?(session)
-      erb :'/users/login'
-    else
-      session.clear
-      redirect '/login'
-    end
+    session.clear
+    flash[:message] = "See ya later, Alligator!"
+    redirect '/login'
   end
 
 end
