@@ -1,0 +1,12 @@
+<h1>Fwitter</h1>
+
+<h2><%="Welcome, #{@user.username}, check out today's tweets:"%></h2>
+<br>
+<%i = 1%>
+
+<%@tweets.each do |t|%>
+
+<p><%="#{i}. tweet:"%></p>
+<p><%=t.content%></p>
+<%i += 1%>
+<%end%>
