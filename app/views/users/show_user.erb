@@ -1,0 +1,9 @@
+<%="Hello, #{@user.username}, Check Out Your Tweets Below:"%>
+<br>
+<%@user.tweets.each do |t|%>
+<%i = 0%>
+<p><%="#{i}. tweet:"%></p>
+<p><%=t.content%></p>
+<br>
+<%i += 1%>
+<%end%>
