@@ -8,7 +8,6 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    # added next two lines. not sure if they're necessary.
     enable :sessions
     use Rack::Flash
     set :session_secret, "password_security"
@@ -102,6 +101,42 @@ class ApplicationController < Sinatra::Base
     else
       @tweet = Tweet.find_by(params[:id])
       erb :'/tweets/show_tweet'
+    end
+  end
+
+  get '/tweets/:id/edit' do
+    if !Helpers.logged_in?(session)
+      flash[:message] = "You Must Be Logged in to Edit Tweets"
+      redirect '/login'
+    else
+      @tweet = Tweet.find_by_id(params[:id])
+      erb :'/tweets/edit_tweet'
+    end
+  end
+
+  # lets a user edit their own tweet if they are logged in
+  # does not let a user edit a text with blank content
+  post '/tweets/:id' do
+    @tweet = Tweet.find_by(params[:user_id])
+    if !params[:content].empty?
+      @tweet.update(content: params[:content])
+      redirect "tweets/#{@tweet.id}"
+    else
+      flash[:message] = "Please fill in the text field to Tweet"
+      redirect "tweets/#{@tweet.id}/edit"
+    end
+  end
+
+  # lets a user delete their own tweet if they are logged in
+  # does not let a user delete a tweet they did not create
+  post '/tweets/:id/delete' do
+    @tweet = Tweet.find_by(params[:user_id])
+    if !Helpers.logged_in?(session)
+      flash[:message] = "Log in to your account to delete Tweets"
+      redirect '/login'
+    else
+      @tweet.delete
+      redirect '/tweets'
     end
   end
 
