@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
     end
   
     get '/tweets/new' do  
-      erb :'tweets/new_tweet' if logged_in?
+      return erb :'tweets/new_tweet' if logged_in?
       redirect to '/login'
     end
   
@@ -50,7 +50,7 @@ class TweetsController < ApplicationController
         redirect to "/tweets/#{params[:id]}/edit"
       end
       @tweet = Tweet.find_by_id(params[:id])
-      if @tweet&.user == current_user
+      if @tweet&.user != current_user
         redirect to '/tweets'
       end
       if @tweet.update(content: params[:content])
