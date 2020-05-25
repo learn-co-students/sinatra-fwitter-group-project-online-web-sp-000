@@ -1,0 +1,7 @@
+<h2> Here are your tweets, <%= @user.username %></h2>
+<a href="/tweets/new">New Tweet</a>
+<% @user.tweets.each do |tweet| %>
+  <div>
+    <%= tweet.content %>
+  </div>
+<% end %>
