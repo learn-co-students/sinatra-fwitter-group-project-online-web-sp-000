@@ -4,12 +4,21 @@
     <title>Fwitter</title>
   </head>
   <body>
-
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
 
+      <h1>Fwitter!</h1>
+        <% if logged_in? %>
+        <p>Welcome, <%= current_user.username %>!</p>
+        <table>
+            <tr><a href="/tweets/new"> New Tweet </a></tr>
+            <tr><a href="/tweets"> All Tweets </a></tr>
+            <tr><a href="/users/<%current_user.slug%>"> All Tweets </a></tr>
+            <tr><a href="/logout"> Log Out </a><br></tr>
+        </table>
+        <% end %>
+
+        <%= yield %>
+
+    </div>
   </body>
 </html>

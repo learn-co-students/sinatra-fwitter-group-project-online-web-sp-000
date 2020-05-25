@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
     end
   end
 
-  post '/tweets/' do
+  post '/tweets' do
     #check to see if the user is logged in or not
     if logged_in?
       #if the user is logged in then check to see if the content is empty

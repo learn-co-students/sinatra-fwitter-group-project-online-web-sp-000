@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
-  end
 
   get '/signup' do
     if !logged_in?
       #if the user is not logged in then send to new user page
-      erb :'users/new', locals: {message: "Please sign up before you sign in"}
+      erb :'users/signup', locals: {message: "Please sign up before you sign in"}
     else
       redirect '/tweets'
     end
@@ -20,9 +16,12 @@ class UsersController < ApplicationController
       redirect '/signup'
     else
       #if the signup info is not empty then create a new user
-      user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-      session[:user_id] = user.id
-      redirect '/tweets'
+      user = User.create(params)
+      #user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+      #if user && user.authenticate(params[:password])
+        #session[:user_id] = user.id
+        erb :"/tweets/index"
+  	  #end
     end
   end
 
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect to '/tweets'
+      redirect '/tweets'
     end
   end
 
@@ -40,10 +39,10 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       #if the user is authenticated then set the session id correctly
       session[:user_id] = user.id
-      redirect to "/tweets"
+      redirect "/tweets"
     else
       #if the user data is not authenticated then send back to the signup page
-      redirect to '/signup'
+      redirect '/login'
     end
   end
 
@@ -57,6 +56,12 @@ class UsersController < ApplicationController
       #if the user is not currently logged in then send them back to login or signup page
       redirect to '/'
     end
+  end
+
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 
 end
