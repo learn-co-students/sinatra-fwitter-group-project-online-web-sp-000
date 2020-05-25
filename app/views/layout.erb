@@ -2,14 +2,78 @@
 <html>
   <head>
     <title>Fwitter</title>
+		<style>
+			ul {
+		    list-style-type: none;
+				padding-left: 0;
+			}
+
+			body, html {
+				margin: 0;
+				padding: 0;
+				display: block;
+				text-align: center;
+				background-color: #1da1f2;
+			}
+
+			.container {
+				text-align: center;
+				height: 100%;
+				width: 33vw;
+				margin: auto;
+				border: 1px solid black;
+				background-color: #ffffff;
+				padding-bottom: 10px;
+				padding-top: 10px;
+			}
+
+			.tweets {
+				border-top: double black;
+				border-bottom: inset;
+			  padding-top: 10px;
+				padding-bottom: 10%;
+			}
+
+			.content {
+				max-width: 30vw;
+			}
+
+			.tweets:hover {
+				cursor: pointer;
+				background-color: #f5f8fa;
+			}
+
+			.username {
+				text-decoration: none;
+				color: black;
+			}
+
+			.username:hover {
+				text-decoration: underline;
+			}
+		</style>
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+		<header>
+			<h1>Welcome to Fwitter!</h1>
 
+		</header>
+
+    <div class="container">
+			<main>
+				<% if logged_in? %>
+				<nav>
+					<button type="button" onclick="location.href='/tweets'">Homepage</button>
+					<button type="button" onclick="location.href='/users/<%= current_user.slug %>'">Profile</button>
+					<button type="button" onclick="location.href='/tweets/new'">New Tweet</button>
+					<button type="button" onclick="location.href='/logout'">Log Out</button>
+				</nav>
+				<br>
+				<% end %>
+				<%= yield %>
+			</main>
+      <footer></footer>
+    </div>
   </body>
 </html>
