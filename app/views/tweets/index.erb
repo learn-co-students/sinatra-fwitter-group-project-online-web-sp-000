@@ -1,0 +1,7 @@
+<p>Welcome, </p>
+
+<% Tweet.all.each do |tweet| %>
+  <div class="tweets">
+    <h2><%= tweet.content %></h2>
+  </div><br>
+<% end %>
