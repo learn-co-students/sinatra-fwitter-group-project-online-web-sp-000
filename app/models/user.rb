@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
+  attr_accessor :password_digest
+
   has_secure_password
   has_many :tweets
 
-  validates :username, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
+  #validates :username, presence: true
+  #validates :email, presence: true
+  #validates :password, presence: true
 
   def slug
     username.downcase.gsub(" ","-")
