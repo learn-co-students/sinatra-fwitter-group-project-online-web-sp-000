@@ -5,11 +5,38 @@
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+    <header>
+      <div class="container">
+        <h1>Welcome to Fwitter!</h1>
+        <a href="/">Home</a>
+        &nbsp;&nbsp;&nbsp;
+        ||
+        &nbsp;&nbsp;&nbsp;
+        <a href="/tweets/new">Create Tweet</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="/tweets">View All Tweets</a>
+        &nbsp;&nbsp;&nbsp;
+        ||
+        &nbsp;&nbsp;&nbsp;
+        <% if logged_in? %>
+          <a href="/users/<%= current_user.slug %>">View Your Tweets</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="/logout">Log Out</a>
+        <% else %>
+          <a href="/signup">Sign Up</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="/login">Log In</a>
+        <% end %>
+      </div>
+      <hr>
+      </header>
 
+      <main>
+        <% if logged_in? %>
+          <h2>Welcome, <%= current_user.username %></h2>
+          <p>------------------------------------------------------------------------------------</p>
+        <% end %>
+        <%= yield %>
+      </main>
   </body>
 </html>
