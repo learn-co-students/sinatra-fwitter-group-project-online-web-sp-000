@@ -1,8 +1,15 @@
+<h1>Single Tweet</h1>
+
+<h2><%= @tweet.user.username %></h2>
 <p><%= @tweet.content %></p>
+<br>
 
-<form method="post" action="/tweets/<%=@tweet.id%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Tweet">
+<form method="get" action="/tweets/<%= @tweet.id %>/edit">
+	<input type="submit" value="Edit Tweet">
 </form>
+<br>
 
-<a href="/tweets/<%=@tweet.id%>/edit">Edit Tweet </a>
+<form method="post" action="/tweets/<%= @tweet.id %>/delete">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete Tweet">
+</form>

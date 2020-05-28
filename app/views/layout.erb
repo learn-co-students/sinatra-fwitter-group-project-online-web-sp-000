@@ -6,22 +6,21 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-      <div class="nav">
-      <% if logged_in? %>
-        <a href="/users/<%= current_user.id%>">Account:</a>
-        <a href="/tweets/new"> Create Tweet </a>
-        <a href="/tweets">Tweets:</a>
-        <a href="/logout">Sign Out:</a>
-      <% end %>
-    </div>
 
     <div class="container">
       <h1>Fwitter</h1>
+        <% if logged_in? %>
+          <p>Welcome, <%=current_user.username %>!</p>
+          <table>
+            <tr><a href="/tweets/new"> New Tweet </a> </tr>
+            <tr><a href="/tweets"> All Tweets </a></tr>
+            <tr><a href="/users/<%= current_user.slug %>"> Your Tweets </a></tr>
+            <tr><a href="/logout"> Log Out </a><br></tr>
+          </table>
+        <%end %>
       <%= yield %>
 
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </body>
 </html>
