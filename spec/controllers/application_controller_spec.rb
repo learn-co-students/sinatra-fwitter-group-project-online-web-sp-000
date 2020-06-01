@@ -14,6 +14,7 @@ describe ApplicationController do
 
     it 'loads the signup page' do
       get '/signup'
+      # binding.pry
       expect(last_response.status).to eq(200)
     end
 
@@ -24,6 +25,7 @@ describe ApplicationController do
         :password => "rainbows"
       }
       post '/signup', params
+      # binding.pry
       expect(last_response.location).to include("/tweets")
     end
 
@@ -34,6 +36,7 @@ describe ApplicationController do
         :password => "rainbows"
       }
       post '/signup', params
+      # binding.pry
       expect(last_response.location).to include('/signup')
     end
 
@@ -85,6 +88,7 @@ describe ApplicationController do
       post '/login', params
       expect(last_response.status).to eq(302)
       follow_redirect!
+      # binding.pry
       expect(last_response.status).to eq(200)
       expect(last_response.body).to include("Welcome,")
     end
@@ -98,6 +102,7 @@ describe ApplicationController do
       }
       post '/login', params
       get '/login'
+      # binding.pry
       expect(last_response.location).to include("/tweets")
     end
   end
@@ -118,7 +123,7 @@ describe ApplicationController do
     it 'redirects a user to the index page if the user tries to access /logout while not logged in' do
       get '/logout'
       expect(last_response.location).to include("/")
-
+       
     end
 
     it 'redirects a user to the login route if a user tries to access /tweets route if user not logged in' do
@@ -308,6 +313,7 @@ describe ApplicationController do
         fill_in(:password, :with => "kittens")
         click_button 'submit'
         visit '/tweets/1/edit'
+        # binding.pry
         expect(page.status_code).to eq(200)
         expect(page.body).to include(tweet.content)
       end
@@ -369,7 +375,9 @@ describe ApplicationController do
 
     context "logged out" do
       it 'does not load -- requests user to login' do
+        # visit '/logout'
         get '/tweets/1/edit'
+        # binding.pry
         expect(last_response.location).to include("/login")
       end
     end
@@ -385,6 +393,7 @@ describe ApplicationController do
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
+        # binding.pry
         visit 'tweets/1'
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)

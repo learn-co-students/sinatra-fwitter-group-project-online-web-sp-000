@@ -1,0 +1,5 @@
+User.create(:username => "user", :email => "user", :password => "pw")
+User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
+Tweet.create(:content => "tweeting!", :user_id => 2)
+User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
+Tweet.create(:content => "look at this tweet", :user_id => 3)
