@@ -393,6 +393,7 @@ describe ApplicationController do
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
+        # binding.pry
         visit 'tweets/1'
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)

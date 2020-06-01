@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   validates :email, :username, :password, presence: true
 
   def slug
-  	self.username
+  	self.username.gsub(' ', '-')
   end
 
-  def find_by_slug(slug)
-  	User.find_by(name: slug)
+  def self.find_by_slug(slug)
+  	slug = slug.gsub('-', ' ')
+  	self.find_by(username: slug)
   end
 end
