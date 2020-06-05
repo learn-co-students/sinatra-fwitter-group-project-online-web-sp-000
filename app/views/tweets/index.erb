@@ -1,0 +1,16 @@
+<h1>Chirp</h1>
+<h2>Welcome, <%=@user.username%>!<h2>
+
+    <ul>
+        <%@tweets.each do |t|%>
+            <li><%=User.find_by_id(t.user_id).username%></li>
+                <ul>
+                <li><a href="/tweets/<%=t.id%>"><%=t.content%></a></li>
+                </ul><br><br>
+        <%end%>
+    <ul>
+<form action="/tweets/new" method="get">
+<input type="submit" value="New Tweet"></form><br><br>
+<form action="/logout" method="post">
+<input type="submit" value="logout">
+</form>

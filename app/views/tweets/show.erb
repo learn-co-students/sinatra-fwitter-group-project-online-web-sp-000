@@ -1,0 +1,17 @@
+<h1>A Chirp</h1>
+<h2>Welcome, <%=@user.username%>!<h2>
+
+    <h3>Chirp by <%=@user_page.username%></h3>
+        <ul>
+            <li><%=@tweet.content%></li>
+        <ul>
+
+    <form action="/delete/<%=@tweet.id%>" method="post">
+    <input type="submit" value="Delete Tweet"></form><br><br>
+
+    <form action="/tweets/<%=@tweet.id%>/edit" method="get">
+    <input type="submit" value="Edit Tweet" id="Edit Tweet"></form><br><br>
+
+<form action="/logout" method="post">
+<input type="submit" value="logout">
+</form>
