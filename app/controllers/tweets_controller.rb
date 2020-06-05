@@ -1,6 +1,5 @@
 class TweetsController < ApplicationController
     get "/tweets" do
-
         if User.is_logged_in?(session)
             @tweets = Tweet.all
             @user = User.find_by_id(session[:user_id])
@@ -41,11 +40,8 @@ class TweetsController < ApplicationController
  
             if @user.id == @user_page.id
                 erb :"/tweets/edit"
-            
             else
-                session.clear
-                redirect "/login"
-                
+                redirect "/tweets" 
             end
         else
             redirect "/login"
@@ -73,8 +69,8 @@ class TweetsController < ApplicationController
             @tweet.destroy
             redirect "/tweets"
         else
-            session.clear
-            redirect "/login"
+            
+            redirect "/tweets"
         end
     end
 
@@ -83,10 +79,10 @@ class TweetsController < ApplicationController
         @tweet = Tweet.find(params[:id])
         user_page = User.find_by_id(@tweet.user_id)
 
-        if user.id == user_page.id
-            binding.pry
+        if user == user_page
+            
             if params[:content] == ""
-                redirect "/tweets/#{tweet.id}/edit"
+                redirect "/tweets/#{@tweet.id}/edit"
             else
              @tweet.update(:content => params[:content])
 
