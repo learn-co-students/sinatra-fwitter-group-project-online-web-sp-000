@@ -25,11 +25,14 @@ class UsersController < ApplicationController
     get "/users/:slug" do
         @user = User.find_by_id(session[:user_id])
         @user_page = User.find_by_slug(params[:slug])
-        @tweets = Tweet.find{|t| t.user_id == @user_page.id}
+        @tweets = Tweet.all.collect do |t| 
+            if t.user_id == @user_page.id.to_i
+                t
+            end
+        end
         if !@tweets
             @tweets << "There are no tweets by this user"
         end
-        binding.pry
         erb :"/users/show"
 
     end

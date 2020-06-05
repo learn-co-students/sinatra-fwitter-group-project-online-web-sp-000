@@ -4,7 +4,7 @@
     <h3>Chirps by <%=@user_page.username%></h3>
         <ul>
             <%@tweets.each do |t|%>
-                <li><%=t%></li>
+                <li><a href="/tweets/<%=t.id%>"><%=t.content%></a></li>
             <%end%>
         <ul>
 
