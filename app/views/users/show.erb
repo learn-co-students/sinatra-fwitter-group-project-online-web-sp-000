@@ -1,0 +1,13 @@
+<h1>Your Chirps</h1>
+<h2>Welcome, <%=@user.username%>!<h2>
+
+    <h3>Chirps by <%=@user_page.username%></h3>
+        <ul>
+            <%@tweets.each do |t|%>
+                <li><%=t%></li>
+            <%end%>
+        <ul>
+
+<form action="/logout" method="post">
+<input type="submit" value="logout">
+</form>

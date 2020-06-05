@@ -4,13 +4,18 @@ module Helpers
             @user = User.find(session[:user_id])
         end
 
-        def logged_in?(session)
+        def is_logged_in?(session)
             !!session[:user_id]
+        end
+
+        def find_by_slug(slug)
+            @slug = slug
+            self.all.find{|user| user.slug == slug}
         end
     end
     module InstanceMethods
         def slug
-          self.name.downcase.gsub(" ", "-")
+          self.username.downcase.gsub(" ", "-")
         end
     end
 end
