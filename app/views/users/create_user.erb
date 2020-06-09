@@ -1,21 +1,17 @@
-<% if !Helpers.is_logged_in?(session) %>
+<h1>Sign Up Below:</h1>
 
-    <h1>Sign Up Below:</h1>
+<form method="POST" action="/signup">
+<h3><label for="email">Email:</label></h3>
+<!-- add in a regexp matcher here eventually --> 
+    <input type="text" name="email" id="email"> 
 
-    <form method="POST" action="/signup">
-    <h3><label for="email">Email:</label></h3>
-    <!-- add in a regexp matcher here --> 
-    <input type="text" name="user[email]" id="email"> 
+<h3><label for="username">Username:</label></h3>
+    <input type="text" name="username" id="username">
 
-    <h3><label for="username">Username:</label></h3>
-    <input type="text" name="user[username]" id="username">
+<h3><label for="password">Password:</label></h3>
+    <input type="password" name="password" id="password"> 
 
-    <h3><label for="password">Password:</label></h3>
-    <input type="password" name="user[password]" id="password"> 
+<input type="submit" value="Sign Up">
+</form> 
 
-    <input type="submit" value="Sign Up">
-    </form> 
 
-<% else %>
-    <% redirect '/tweets' %> 
-<% end %>
