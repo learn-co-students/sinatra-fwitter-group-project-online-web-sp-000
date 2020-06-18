@@ -59,7 +59,8 @@ class ApplicationController < Sinatra::Base
       redirect to '/login'
     else
       redirect to '/'
-
+    end
+  end
 
   get '/logout' do
     if logged_in?
