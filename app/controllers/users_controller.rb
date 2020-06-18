@@ -2,7 +2,7 @@ require 'pry'
 class UsersController < ApplicationController
 
     get '/signup' do
-        if Helpers.is_logged_in?(session)
+        if logged_in?
           redirect to '/tweets'
         end
         erb :'/users/create_user'
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end 
 
     get '/login' do 
-        if Helpers.is_logged_in?(session)
+        if logged_in?
             redirect to '/tweets'
         end 
         erb :'/users/login'
