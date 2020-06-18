@@ -1,8 +1,16 @@
-
+<<<<<<< HEAD
 <p> Welcome, <%= current_user.username %>
-
 <% @tweets.each do |tweet| %>
   <div>
     <%= tweet.content %>
   </div>
 <% end %>
+=======
+<p> Welcome, <%= current_user.username %> </p>
+<ul> <% @tweets.each do |tweet| %>
+  <div>
+    <li><%= tweet.content %></li>
+  </div>
+<% end %>
+</ul>
+>>>>>>> 6265492469202805c30fcd2243607474289ef005
