@@ -6,25 +6,17 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
   end
-
   get '/' do
     erb :index
   end
-
-
-  get '/' do
-    erb :index
-  end
-
   get '/signup' do
     if logged_in?
       redirect to '/tweets'
     end
     erb :'users/create_user'
   end
-
-
   post '/signup' do
+    #binding.pry
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -34,7 +26,6 @@ class ApplicationController < Sinatra::Base
     redirect to '/signup'
     end
   end
-
   get '/login' do
     if !logged_in?
       erb :'users/login'
@@ -42,7 +33,6 @@ class ApplicationController < Sinatra::Base
       redirect to '/tweets'
     end
   end
-
   post '/login' do
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
@@ -52,25 +42,14 @@ class ApplicationController < Sinatra::Base
       redirect to '/signup'
     end
   end
-
   get '/logout' do
-    if logged_in?
-      session.destroy
-      redirect to '/login'
-    else
-      redirect to '/'
-    end
-  end
-
-  get '/logout' do
-    if logged_in?
+  if logged_in?
     session.destroy
     redirect to '/login'
-    else
+  else
     redirect to '/'
-
-    end
   end
+end
   helpers do
     def logged_in?
       !!current_user
