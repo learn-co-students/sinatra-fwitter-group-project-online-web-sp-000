@@ -22,10 +22,8 @@ class ApplicationController < Sinatra::Base
     end
     erb :'users/create_user'
   end
-<<<<<<< HEAD
-=======
 
->>>>>>> 6265492469202805c30fcd2243607474289ef005
+
   post '/signup' do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -36,10 +34,7 @@ class ApplicationController < Sinatra::Base
     redirect to '/signup'
     end
   end
-<<<<<<< HEAD
-=======
 
->>>>>>> 6265492469202805c30fcd2243607474289ef005
   get '/login' do
     if !logged_in?
       erb :'users/login'
@@ -47,10 +42,7 @@ class ApplicationController < Sinatra::Base
       redirect to '/tweets'
     end
   end
-<<<<<<< HEAD
-=======
 
->>>>>>> 6265492469202805c30fcd2243607474289ef005
   post '/login' do
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
@@ -60,14 +52,14 @@ class ApplicationController < Sinatra::Base
       redirect to '/signup'
     end
   end
-<<<<<<< HEAD
+
   get '/logout' do
     if logged_in?
       session.destroy
       redirect to '/login'
     else
       redirect to '/'
-=======
+
 
   get '/logout' do
     if logged_in?
@@ -75,7 +67,7 @@ class ApplicationController < Sinatra::Base
     redirect to '/login'
     else
     redirect to '/'
->>>>>>> 6265492469202805c30fcd2243607474289ef005
+
     end
   end
   helpers do
