@@ -1,5 +1,4 @@
 require './config/environment'
-
 class ApplicationController < Sinatra::Base
   configure do
     enable :sessions
@@ -20,6 +19,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
+    #binding.pry
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -30,39 +30,30 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/users/login' do
-    if logged_in?
-      session[:user_id] = @user.id
-      redirect to '/tweets'
+  get '/login' do
+    if !logged_in?
+      erb :'users/login'
     else
-    erb :'users/login'
+      redirect to '/tweets'
     end
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
-    if logged_in?
-      # session[:user_id] = @user.id
-      redirect to '/tweets'
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect to "/tweets"
     else
-      redirect to '/users/login'
+      redirect to '/signup'
+    end
   end
-end
 
   get '/logout' do
-    if logged_in?
-    session.clear
-    redirect to '/users/login'
+  if logged_in?
+    session.destroy
+    redirect to '/login'
   else
-  redirect to '/users/login'
-  end
-end
-
-  post '/logout' do
-    if logged_in?
-      redirect to '/logout'
-    else
-      redirect to '/users/login'
+    redirect to '/'
   end
 end
 
@@ -74,5 +65,4 @@ end
       User.find_by(id: session[:user_id])
     end
   end
-
 end
