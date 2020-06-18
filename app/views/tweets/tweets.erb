@@ -1,1 +1,4 @@
-<h1> Welcome, </h1>
+<% if Helpers.logged_in?(session) %>
+<%= @error %>
+
+<h1>Welcome,</h1>
