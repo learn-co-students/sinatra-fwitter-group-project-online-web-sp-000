@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     end 
 
     post '/signup' do 
+        params.each do |label, input|
+            if input.empty?
+                redirect to "/signup"
+            end 
+        end 
         @user = User.new(username: params[:username], email: params[:email], password: params[:password])
         @user.save
         session[:user_id] = @user.id
