@@ -6,17 +6,16 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
   end
-<<<<<<< HEAD
-  get '/' do
-    erb :index
-  end
-=======
 
   get '/' do
     erb :index
   end
 
->>>>>>> 6265492469202805c30fcd2243607474289ef005
+
+  get '/' do
+    erb :index
+  end
+
   get '/signup' do
     if logged_in?
       redirect to '/tweets'
