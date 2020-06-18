@@ -2,6 +2,7 @@ require './config/environment'
 require 'pry'
 
 class ApplicationController < Sinatra::Base
+  enable :sessions
 
   configure do
     set :public_folder, 'public'
