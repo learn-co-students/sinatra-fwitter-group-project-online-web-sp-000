@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
-
-
-end
+    
+    def slug 
+    end 
+  end
