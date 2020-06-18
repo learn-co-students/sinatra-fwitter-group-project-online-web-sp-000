@@ -1,5 +1,7 @@
-# require 'pry'
+require 'pry'
 class TweetsController < ApplicationController
+
+    
 
 
 end
