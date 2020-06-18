@@ -19,7 +19,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    #binding.pry
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -49,14 +48,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
-  if logged_in?
+    if logged_in?
     session.destroy
     redirect to '/login'
-  else
+    else
     redirect to '/'
+    end
   end
-end
-
   helpers do
     def logged_in?
       !!current_user
