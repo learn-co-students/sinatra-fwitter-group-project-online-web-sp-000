@@ -15,4 +15,3 @@ class User < ActiveRecord::Base
 
 end
 
-#slug = @user.slug

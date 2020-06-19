@@ -48,6 +48,16 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  # get '/new' do 
+  #   if logged_in? 
+  #     erb :'tweets/new'
+  #   else 
+  #     redirect '/'
+  #   end 
+  # end 
+
+ 
+
   get '/logout' do
   if logged_in?
     session.destroy
