@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   helpers do
     def current_user() User.find_by(id: session[:user_id]) end
     def logged_in?() !!current_user end
-    def redirect_if(direct, check) (redirect direct; return) if check end
+    def redirect_if(direct, check) redirect direct if check end
     def login_redirect() redirect_if('/login', !logged_in?) end
   end
 
@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do
     user = User.find_by(username: params[:username])
-    (session[:user_id] = user.id; redirect '/tweets'; return) if user && user.authenticate(params[:password])
+    (session[:user_id] = user.id; redirect '/tweets') if user && user.authenticate(params[:password])
     redirect '/signup'
   end
 
