@@ -8,10 +8,20 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :homepage
+    erb :index
   end
 
+  get '/signup' do
+    # display the user signup form
+    erb :'users/create_user'
+  end
 
+  post '/signup' do
+    # create the user, save it to database
+    # log the user in
+    # add the user_id to the sessions hash
+    
+  end
 
 
 end
