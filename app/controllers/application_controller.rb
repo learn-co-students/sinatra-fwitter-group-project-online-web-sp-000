@@ -17,6 +17,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
+    # create the user, save it to database
+    # log the user in
+    # add the user_id to the sessions hash
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
@@ -24,16 +27,12 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id
       redirect to '/tweets'
     end
-    # create the user, save it to database
-    # log the user in
-    # add the user_id to the sessions hash
-
   end
 
   get '/tweets' do
-    @tweets = Tweet.all
     # tweets index page
     # if a user is not logged in, redirect to '/login'
+    @tweets = Tweet.all
   end
 
 
