@@ -17,10 +17,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
+    @user = User.new(params)
     # create the user, save it to database
     # log the user in
     # add the user_id to the sessions hash
-    
+
   end
 
 
