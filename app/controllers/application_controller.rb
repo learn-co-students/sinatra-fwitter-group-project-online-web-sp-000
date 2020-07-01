@@ -11,29 +11,14 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/signup' do
-    # display the user signup form
-    erb :'users/create_user'
-  end
-
-  post '/signup' do
-    # create the user, save it to database
-    # log the user in
-    # add the user_id to the sessions hash
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      redirect to '/signup'
-    else
-      user = User.create(username: params[username], email: params[:email], password: params[:password])
-      session[:user_id] = user.id
-      redirect to '/tweets'
+## helper methods to use across the controllers  
+  helpers do
+    def logged_in?
+    !!current_user
+    end
+  
+    def current_user
+      current_user ||= User.find_by(id:session[:user_id]) if session[:user_id]
     end
   end
-
-  get '/tweets' do
-    # tweets index page
-    # if a user is not logged in, redirect to '/login'
-    @tweets = Tweet.all
-  end
-
-
 end
