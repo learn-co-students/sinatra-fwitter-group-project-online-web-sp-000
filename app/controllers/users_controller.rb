@@ -2,13 +2,19 @@ class UsersController < ApplicationController
 
     get '/signup' do
         # display the user signup form
-        erb :'users/create_user'
+        if logged_in?
+            redirect to '/tweets'
+        else
+            erb :'users/create_user'
+        end
       end
     
       post '/signup' do
         # create the user, save it to database
         # log the user in
         # add the user_id to the sessions hash
+        # directs user to twitter index
+        # does not let a logged in user view the signup page
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
           redirect to '/signup'
         else
@@ -19,6 +25,9 @@ class UsersController < ApplicationController
       end    
 
     get '/login' do
+        # loads the login page
+        # loads the tweets index after login
+        # does not let user view login page if already logged in
         if logged_in?
             redirect to '/tweets'
         else
