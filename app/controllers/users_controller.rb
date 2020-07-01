@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         else
             erb :'users/create_user'
         end
-      end
+    end
     
       post '/signup' do
         # create the user, save it to database
