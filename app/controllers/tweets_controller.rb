@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
   post '/tweets' do
     # process the form submission to create a new tweet
     @tweet = Tweet.new(content: params[:content])
-    if @tweet.save
+    if @tweet.save && !@tweet.empty?
       redirect to '/tweets'
     else
       puts "Post creation failure, please submit tweet again"
