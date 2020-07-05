@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
   post '/tweets' do
     # process the form submission to create a new tweet
     if params[:content] == ""
-      puts "Post creation failure, please submit tweet again"
+      puts "ERROR: Post creation failure, please DO NOT submit blank tweet!"
       redirect to '/tweets/new'
     else
       @tweet = Tweet.create(content: params[:content])
@@ -34,6 +34,22 @@ class TweetsController < ApplicationController
   end
 
 # UPDATE
+  get '/tweets/:id/edit' do
+    redirect_if_not_logged_in
+    find_tweet
+    if authorized_to_edit?(@tweet)
+      erb :'tweets/edit_tweet'
+    else
+      puts "ERROR: NOT authorized to edit this tweet!"
+      redirect '/tweets/#{@tweet.id}'
+    end
+  end
+
+  patch '/tweets/:id' do
+    find_tweet
+    @tweet.update(content: params[:content])
+    redirect '/tweets/#{@tweet.id}'
+  end
 
 
 
