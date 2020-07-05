@@ -17,8 +17,7 @@ class TweetsController < ApplicationController
       redirect to '/tweets/new'
     else
       @tweet = Tweet.create(content: params[:content])
-      @tweet.user_id = current_user.id
-      @tweet.save
+      @tweet.save if authorized_user(@tweet)
       redirect to '/tweets'
     end
   end
@@ -37,7 +36,7 @@ class TweetsController < ApplicationController
   get '/tweets/:id/edit' do
     redirect_if_not_logged_in
     find_tweet
-    if authorized_to_edit?(@tweet)
+    if authorized_user(@tweet)
       erb :'tweets/edit_tweet'
     else
       puts "ERROR: NOT authorized to edit this tweet!"
@@ -46,9 +45,13 @@ class TweetsController < ApplicationController
   end
 
   patch '/tweets/:id' do
-    find_tweet
-    @tweet.update(content: params[:content])
-    redirect '/tweets/#{@tweet.id}'
+    if params[:content] == ""
+      puts "ERROR: Edit creation failure, please DO NOT submit blank tweet!"
+    else
+      find_tweet
+      @tweet.update(content: params[:content])
+      redirect "/tweets/#{@tweet.id}" ## interesting, it doesnt like ''
+    end
   end
 
 
