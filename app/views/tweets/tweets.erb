@@ -1,0 +1,18 @@
+<h1>Welcome, <%=@user.username%></h1>
+
+<a href="/tweets/new">Create New Tweet</a>
+<a href="/users/<%=@user.slug%>">View Your Tweets</a>
+<a href="/logout">Logout</a>
+
+<h3>All Tweets</h3>
+
+<% @tweets.each do |tweet|%>
+
+  <h3><%=tweet.content%></h3>
+
+<% end %>
+
+
+
+
+<h3><a href='/signup'>Sign Up</a></h3>
