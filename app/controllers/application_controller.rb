@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-## helper methods to use across the controllers  
+# helper methods to use across the controllers  
   helpers do
     def logged_in?
     !!current_user
@@ -22,5 +22,12 @@ class ApplicationController < Sinatra::Base
     def current_user
       current_user ||= User.find_by(id:session[:user_id]) if session[:user_id]
     end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/login'
+      end
+    end
+
   end
 end
