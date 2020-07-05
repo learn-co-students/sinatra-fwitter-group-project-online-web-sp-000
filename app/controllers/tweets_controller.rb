@@ -13,10 +13,10 @@ class TweetsController < ApplicationController
   post '/tweets' do
     # process the form submission to create a new tweet
     if params[:content] == ""
+      puts "Post creation failure, please submit tweet again"
+    else
       @tweet = Tweet.create(content: params[:content])
       redirect to '/tweets'
-    else
-      puts "Post creation failure, please submit tweet again"
     end
   end
 
