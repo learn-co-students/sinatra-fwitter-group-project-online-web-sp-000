@@ -5,9 +5,9 @@ require 'rack/test'
 require 'capybara/rspec'
 require 'capybara/dsl'
 
-if ActiveRecord::Base.connection.migration_context.needs_migration?
-  raise 'Migrations are pending. Run `rake db:migrate RACK_ENV=test` to resolve the issue.'
-end
+# if ActiveRecord::Base.connection.migration_context.needs_migration?
+#   raise 'Migrations are pending. Run `rake db:migrate RACK_ENV=test` to resolve the issue.'
+# end
 
 ActiveRecord::Base.logger = nil
 
@@ -19,11 +19,11 @@ RSpec.configure do |config|
   DatabaseCleaner.strategy = :truncation
 
   config.before do
-    DatabaseCleaner.clean
+   DatabaseCleaner.clean
   end
 
   config.after do
-    DatabaseCleaner.clean
+   DatabaseCleaner.clean
   end
 
   config.order = 'default'

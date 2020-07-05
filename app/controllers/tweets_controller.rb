@@ -14,14 +14,16 @@ class TweetsController < ApplicationController
     # process the form submission to create a new tweet
     if params[:content] == ""
       puts "Post creation failure, please submit tweet again"
+      redirect to '/tweets/new'
     else
       @tweet = Tweet.create(content: params[:content])
+      @tweet.user_id = current_user.id
+      @tweet.save
       redirect to '/tweets'
     end
   end
 
-
-
+# READ
   get '/tweets' do
     # tweets index page
     # display all tweets for logged in user and other users
@@ -30,6 +32,11 @@ class TweetsController < ApplicationController
       @tweets = Tweet.all
       erb :'tweets/tweets'
   end
+
+# UPDATE
+
+
+
 
   get '/tweets/:id' do
     # displays the information for a single tweet
