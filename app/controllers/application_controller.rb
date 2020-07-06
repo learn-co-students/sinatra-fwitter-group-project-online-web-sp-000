@@ -33,5 +33,8 @@ class ApplicationController < Sinatra::Base
       tweet.user_id = current_user.id
     end
 
+    def find_tweet
+      @tweet = Tweet.find(params[:id])
+    end
   end
 end

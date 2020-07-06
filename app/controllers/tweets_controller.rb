@@ -16,7 +16,7 @@ class TweetsController < ApplicationController
       puts "ERROR: Post creation failure, please DO NOT submit blank tweet!"
       redirect to '/tweets/new'
     else
-      @tweet = Tweet.create(content: params[:content])
+      @tweet = Tweet.build(content: params[:content]) # .create method saves automatically
       @tweet.save if authorized_user(@tweet)
       redirect to '/tweets'
     end
@@ -31,32 +31,7 @@ class TweetsController < ApplicationController
       @tweets = Tweet.all
       erb :'tweets/tweets'
   end
-
-# UPDATE
-  get '/tweets/:id/edit' do
-    redirect_if_not_logged_in
-    find_tweet
-    if authorized_user(@tweet)
-      erb :'tweets/edit_tweet'
-    else
-      puts "ERROR: NOT authorized to edit this tweet!"
-      redirect '/tweets/#{@tweet.id}'
-    end
-  end
-
-  patch '/tweets/:id' do
-    if params[:content] == ""
-      puts "ERROR: Edit creation failure, please DO NOT submit blank tweet!"
-    else
-      find_tweet
-      @tweet.update(content: params[:content])
-      redirect "/tweets/#{@tweet.id}" ## interesting, it doesnt like ''
-    end
-  end
-
-
-
-
+  
   get '/tweets/:id' do
     # displays the information for a single tweet
       redirect_if_not_logged_in
@@ -64,8 +39,41 @@ class TweetsController < ApplicationController
       erb :'tweets/show_tweet'
   end
 
+# UPDATE
+  get '/tweets/:id/edit' do
+    redirect_if_not_logged_in
+    find_tweet
+    # if authorized_user(@tweet)
+      erb :'tweets/edit_tweet'
+    # else
+    #   puts "ERROR: NOT authorized to edit this tweet!"
+    #   redirect '/tweets/#{@tweet.id}'
+    # end
+    # ----- might not needed --------
+  end
 
-  def find_tweet
-    @tweet = Tweet.find(params[:id])
+  patch '/tweets/:id' do
+    ## ASK AYANA: Do we need to check "logged_in" again?
+    if params[:content] == ""
+      puts "ERROR: Edit creation failure, please DO NOT submit blank tweet!"
+      redirect "/tweets/#{@tweet.id}/edit"
+    else
+      find_tweet
+      @tweet.update(content: params[:content])
+      redirect "/tweets/#{@tweet.id}" # anytime when I interpolate, use double ""
+    end
+  end
+
+  # DELETE
+  delete '/tweets/:id' do
+    redirect_if_not_logged_in
+    find_tweet
+    if authorized_user(@tweet)
+      @tweet.destroy
+      redirect '/tweets'
+    else
+      puts "ERROR: NOT authorized to edit this tweet!"
+      redirect "/tweets/#{@tweet.id}" # if this doesn't work, redirect to '/tweets'
+    end
   end
 end
