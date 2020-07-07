@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
 # helper methods to use across the controllers  
   helpers do
     def logged_in?
-    !!current_user
+      !!current_user
     end
   
     def current_user
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def authorized_user(tweet)
-      tweet.user_id = current_user.id
+      tweet.user_id == current_user.id
     end
 
     def find_tweet

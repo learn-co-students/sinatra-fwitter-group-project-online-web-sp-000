@@ -12,13 +12,18 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     # process the form submission to create a new tweet
-    if params[:content] == ""
-      puts "ERROR: Post creation failure, please DO NOT submit blank tweet!"
-      redirect to '/tweets/new'
+    if logged_in?
+      if params[:content] == ""
+        puts "ERROR: Post creation failure, please DO NOT submit blank tweet!"
+        redirect to '/tweets/new'
+      else
+        @tweet = Tweet.new(content: params[:content]) # .create method saves automatically
+        @tweet.user_id = current_user.id # need to assign the user_id of a newly created tweet to the current_user.id
+        @tweet.save
+        redirect to '/tweets'
+      end
     else
-      @tweet = Tweet.new(content: params[:content]) # .create method saves automatically
-      @tweet.save if authorized_user(@tweet)
-      redirect to '/tweets'
+      redirect '/login'
     end
   end
 
