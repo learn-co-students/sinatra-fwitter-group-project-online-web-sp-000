@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    def authorized_user(tweet)
+    def authorized_user?(tweet)
       tweet.user_id == current_user.id
     end
 

@@ -48,7 +48,7 @@ class TweetsController < ApplicationController
   get '/tweets/:id/edit' do
     redirect_if_not_logged_in
     find_tweet
-    if authorized_user(@tweet)
+    if authorized_user?(@tweet)
       erb :'tweets/edit_tweet'
     else
       puts "ERROR: NOT authorized to edit this tweet!"
@@ -73,7 +73,7 @@ class TweetsController < ApplicationController
   delete '/tweets/:id/delete' do
     redirect_if_not_logged_in
     find_tweet
-    if authorized_user(@tweet)
+    if authorized_user?(@tweet)
       @tweet.destroy
       redirect '/tweets'
     else
