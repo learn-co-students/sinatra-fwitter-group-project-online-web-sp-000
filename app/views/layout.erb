@@ -6,9 +6,16 @@
   <body>
 
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+      <a button type="button" href="/tweets">View All Tweets</a>
+<a button type="button" href="/tweets/new">Create a New Tweet</a>
+    <% if logged_in? %>
+    <a button type="button" href="/logout">Logout</a>
+    <% else %>
+      <a button type="button" href="/login">Login</a>
+      <a button type="button" href="/signup">Signup</a>
+    <% end %>
+  </nav>
+      <%= yield %>
     </div>
 
   </body>
