@@ -1,0 +1,10 @@
+<!-- LIST OF ALL USER TWEETS PAGE: DONE-->
+
+<h1> Welcome, <%= @user.username %> </h1>
+<br>
+<h3>Your tweets:</h3>
+<% @user.tweets.each do |tweet| %>
+    <br>
+    <h4>Tweet: <%= tweet.content %></h4>
+    <p><a href="/tweets/<%= tweet.id %>">Show Details</a></p>
+<% end %>
