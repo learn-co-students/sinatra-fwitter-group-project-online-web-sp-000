@@ -16,7 +16,7 @@ class TweetsController < ApplicationController
       puts "ERROR: Post creation failure, please DO NOT submit blank tweet!"
       redirect to '/tweets/new'
     else
-      @tweet = Tweet.build(content: params[:content]) # .create method saves automatically
+      @tweet = Tweet.new(content: params[:content]) # .create method saves automatically
       @tweet.save if authorized_user(@tweet)
       redirect to '/tweets'
     end
@@ -43,29 +43,29 @@ class TweetsController < ApplicationController
   get '/tweets/:id/edit' do
     redirect_if_not_logged_in
     find_tweet
-    # if authorized_user(@tweet)
+    if authorized_user(@tweet)
       erb :'tweets/edit_tweet'
-    # else
-    #   puts "ERROR: NOT authorized to edit this tweet!"
-    #   redirect '/tweets/#{@tweet.id}'
-    # end
+    else
+      puts "ERROR: NOT authorized to edit this tweet!"
+      redirect '/tweets'
+    end
     # ----- might not needed --------
   end
 
   patch '/tweets/:id' do
-    ## ASK AYANA: Do we need to check "logged_in" again?
+    ## do not need to check logged_in again if you already check in env file, it serves as a gate to block those
+    find_tweet # need to call this method to match the @tweet first
     if params[:content] == ""
       puts "ERROR: Edit creation failure, please DO NOT submit blank tweet!"
       redirect "/tweets/#{@tweet.id}/edit"
     else
-      find_tweet
       @tweet.update(content: params[:content])
       redirect "/tweets/#{@tweet.id}" # anytime when I interpolate, use double ""
     end
   end
 
   # DELETE
-  delete '/tweets/:id' do
+  delete '/tweets/:id/delete' do
     redirect_if_not_logged_in
     find_tweet
     if authorized_user(@tweet)
