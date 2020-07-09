@@ -1,0 +1,11 @@
+<h1 style="color:blue;">Welcome to Fwitter</h1>
+<hr>
+
+<% if !logged_in? %>
+<div>
+    <p><a href="/signup">Sign Up</a></p>
+    <p><a href="/login"> Sign In </a></p>
+<div/>
+<% else %>
+<p>Welcome, <%= current_user.username %></p>
+<% end %>
