@@ -1,0 +1,11 @@
+<h2>Welcome, <%=@user.username.capitalize%></h2>
+<p><a href="/users/<%=@user.slug%>"> Your Page</a></p> 
+<p><a href="/tweets/new"> Create Tweet</a></p> 
+<p><a href="/logout">Log Out</a></p>
+
+<%@tweets.each do |tweet|%>
+    <p>Tweet:<%=tweet.content%></p>
+    <p>Name:<%=tweet.user.username%></p>
+    <%end%>
+
+

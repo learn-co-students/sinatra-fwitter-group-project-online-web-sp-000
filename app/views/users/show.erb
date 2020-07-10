@@ -1,0 +1,7 @@
+<h2><%=@users.username.capitalize%> Page</h2>
+<p><a href="/tweets/new"> Create Tweet</a></p> 
+<p><a href="/logout">Log Out</a></p>
+
+<%@users.tweets.each do |user|%>
+<p>Tweet:<%=user.content%></p>
+<%end%>
