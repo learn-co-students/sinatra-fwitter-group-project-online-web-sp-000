@@ -1,0 +1,15 @@
+<h2>Welcome, <%=User.find(session[:id]).username%></h2>
+
+<p>
+  <a href="tweets/new">Create a tweet<a/>
+</p>
+<p>
+  <a href="/logout">Logout</a>
+</p>
+<p>
+  <a href="/users/<%=@user.slug%>">Your Page</a>
+</p>
+<h3>Public Tweets</h3>
+<%Tweet.all.each do |tweet|%>
+  <p><%=tweet.content%></p>
+<%end%>
