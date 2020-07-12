@@ -1,14 +1,22 @@
 class UsersController < ApplicationController
 
-    get '/signup' do
-        erb :'/users/create_user'
-    end
+  get "/logout" do
+    if logged_in?
+      #erb :logout
+      session.clear
+      redirect "/login"      
+		else
+			redirect "/"
+		end  
+  end
+  
+  #post "/logout" do
+	#	session.clear
+	#	redirect "/login"
+  #end
 
-    post '/signup' do
-        @user = User.new
-        @user.username = params[:username]
-        @user.email = params[:email]
-        @user.password = params[:password]
-        redirect '/tweets/tweets'
-    end
+    get '/users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        erb :'/users/show' 
+      end 
 end

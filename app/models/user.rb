@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :tweets
 
-  def slug 
-    self.username.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
-  end 
+  def slug
+    slugify = self.username.downcase 
+    slugify.gsub(" ", "-")
+  end   
 
   def self.find_by_slug(slug)
-    self.all.find{|user| user.slug == slug}
-  end
-
+    unslug = slug.gsub("-", " ")
+    self.all.find { |user| user.username.downcase == unslug }
+  end  
 end
