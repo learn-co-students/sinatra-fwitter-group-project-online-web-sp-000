@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         set :public_folder, 'public'
         set :views, 'app/views'
         enable :sessions
-        set :session_secret, "password_security"
+        set :session_secret, "secret"
     end
 
     get '/login' do
@@ -28,6 +28,20 @@ class UsersController < ApplicationController
         else
             flash[:message] = "Incorrect login. Please try again."
             redirect to '/login'
+        end
+    end
+
+    get '/users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        erb:'/users/show'
+    end
+
+    get '/logout' do
+        if Helpers.is_logged_in?(session)
+            session.clear
+            redirect to '/login'
+        else
+            redirect to '/'
         end
     end
 end

@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html>
-<body>
+
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+<% if flash.has?(:wrong) %>
+<%= flash[:wrong] %>
+<% end %>
+
 <h1>"Welcome, <%= @user.username %>"</h1>
     <% @tweets.each do |tweet| %>
         <ul>
@@ -8,12 +13,8 @@
         </ul>
     <% end %>
 
+    <a href="/tweets/new"><button>Create a new Tweet</button></a>
+    <a href="/logout"><button>Log Out</button></a>
 
 
 
-</body>
-
-
-
-
-</html>
