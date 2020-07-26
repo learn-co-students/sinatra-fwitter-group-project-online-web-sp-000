@@ -27,6 +27,7 @@ class TweetsController < ApplicationController
       if !Helpers.is_logged_in?(session)
          redirect to '/login'
       end
+   
       erb:'/tweets/new'
    end
 
@@ -46,27 +47,33 @@ class TweetsController < ApplicationController
          redirect to '/login'
       end
       @tweet = Tweet.find(params[:id])
+      
       erb:'/tweets/show_tweet'
    end
 
-   get 'tweets/:id/edit' do
+   get '/tweets/:id/edit' do
+      
       if !Helpers.is_logged_in?(session)
          redirect to '/login'
       end
-      @tweet = Tweet.find_by(params[:id])
+      @tweet = Tweet.find(params[:id])
+ 
       if Helpers.current_user(session).id != @tweet.user_id
          flash[:message] = "You can only edit your tweets."
          redirect to '/tweets'
       end
+      
       erb:'/tweets/edit_tweet'
    end
 
    patch '/tweets/:id' do
       tweet = Tweet.find(params[:id])
+      
       if params["content"].empty?
          flash[:empty] = "Please add content"
-         redirect to '/tweets/#{params[:id}/edit'
+         redirect to "/tweets/#{params[:id]}/edit"
       end
+      
       tweet.update(:content => params["content"])
       tweet.save
       redirect to "/tweets/#{tweet.id}"
