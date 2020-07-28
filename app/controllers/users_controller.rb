@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        if session[:user_id]
+        # binding.pry
+        if Helpers.logged_in?(session)
             redirect to '/tweets'
         else
             erb :'users/login'
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect to "/users/#{user.slug}"
+            redirect to "/tweets"
         else
             redirect to '/login'
         end
@@ -46,17 +47,11 @@ class UsersController < ApplicationController
 
     get '/logout' do
         if Helpers.logged_in?(session)
-            binding.pry
-            erb :'users/logout'
+            session.clear
+            redirect to '/login'
         else
-            binding.pry
-            erb :'/'
+            redirect to '/'
         end
-    end
-
-    post '/logout' do
-        session.clear
-        redirect to '/login'
     end
 
 end
