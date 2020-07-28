@@ -9,23 +9,19 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
-  get "/" do
-   #  binding.pry
-     if logged_in?
-       redirect "/users/#{current_user.id}"
-     else
+  get '/' do
      erb :index
    end
+
+#same helper methods in my sinatra project
+   helpers do
+     def logged_in?
+       !!current_user
+     end
+
+     def current_user
+       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+     end
+
+   end
  end
-
-  helpers do
-
-    def logged_in?
-      !!current_user
-    end
-
-    def current_user
-      @current_user = User.find_by(session[:id]) if session[:id]
-    end
-  end
-end
