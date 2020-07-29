@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-    enable :sessions
-    set :session_secret, 'supersecret'
-
     get '/signup' do
         if Helpers.logged_in?(session)
             redirect to '/tweets'
@@ -12,7 +9,6 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        # binding.pry
         if Helpers.logged_in?(session)
             redirect to '/tweets'
         else
