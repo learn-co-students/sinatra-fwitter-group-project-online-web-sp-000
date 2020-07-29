@@ -1,1 +1,10 @@
-<h1>Hello</h1>
+
+
+<% if logged_in %>
+
+<h1>Welcome <%= current_user.username %></h1>
+
+<% else %>
+    <a href='/signup'>Sign Up</a>
+    <a href='/login'>Login =</a>
+<% end %>

@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   get '/tweets' do
     if logged_in
       @tweets = Tweet.all
-      erb :'/tweets/index'
+      erb :'/tweets/tweets'
     else
       redirect '/login'
     end
@@ -21,15 +21,6 @@ class TweetsController < ApplicationController
 
   end
 
-  # get '/signup' do
-  #   @user = User.create(user[:username], user[:email], user[:password])
-  #   @session = session[:name] = @user.name
-  #     if session[:name] == ( user[:username] && user[:password] )
-  #       redirect '/login'
-  #     else "Incorrect username or password!"
-  #     end
-  #   erb :'/tweets/index'
-  # end
-
+ 
 
 end
