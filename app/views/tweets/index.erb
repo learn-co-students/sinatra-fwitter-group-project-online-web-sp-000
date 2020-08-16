@@ -1,0 +1,9 @@
+<h2>All Tweets</h2>
+
+<h3>Welcome, <%= current_user.username %></h3>
+<% @tweets.each do |tweet| %>
+    <a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a><br>
+<% end %>
+<br>
+<a class="button" href="/tweets">Tweets</a>
+<a class="button" href="/">Home</a>
