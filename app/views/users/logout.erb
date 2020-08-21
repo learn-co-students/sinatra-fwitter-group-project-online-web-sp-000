@@ -1,4 +1,7 @@
-<form action="/logout" method="post">
+<%Tweets.all.each do |tweet|%>
+  <%=tweet.name%>
+<%end%>
+<form action="/logout" method="POST">
   Logout?
   <input type="submit" name="logout" >
 </form>
