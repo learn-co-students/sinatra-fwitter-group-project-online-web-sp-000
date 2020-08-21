@@ -1,0 +1,4 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% @tweets.map do |tweet| %>
+<%= tweet.content %>
+<% end %>
