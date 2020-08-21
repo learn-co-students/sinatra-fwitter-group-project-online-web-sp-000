@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
 
 
-  get '/login' do
+  get '/sessions/login' do
     if !logged_in
       erb :'users/login'
     else

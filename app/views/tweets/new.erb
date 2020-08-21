@@ -1,16 +1,13 @@
-<% if logged_in(session) %>
+<h2> Add to your tweets </h2>
 
-  <form action='/tweets' method="post">
-    Content:
-    <input type="text" name="content"><br>
-    Create Your Tweet:
-
-    <input type="submit" name="submit" id="submit">
-
-    <input type="submit" name="submit">
+  <form action="/tweets" method="POST">
+    
+    <h3>Create Your Tweet:</h3>
+    <h4> <input type="text" name="content"> </h4>
+    
+    
+    <input class="btn" type="submit"  value="submit">
 
   </form>
 
-  <% else %>
-      <h1> You Must Be Logged in to Make Tweets </h1>
-  <% end %>
+  
