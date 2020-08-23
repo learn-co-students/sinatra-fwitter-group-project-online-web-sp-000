@@ -8,12 +8,6 @@ CHECKLIST
 -Blank tweets are not saved
 
 
-
-Home Page
-    controller action to load the home page
-    create a view that will link to both a login page and signup page. 
-    homepage should respond to a GET request to /.
-
 Tweets Index Page
     create a controller action that will load the tweets index page.
     create a view that will display all tweets for the logged in user and other users
@@ -47,29 +41,6 @@ Delete Tweet
     submitted via a POST request to tweets/:id/delete.
 
 
-Sign Up
-    two controller actions,
-     one to display the user signup and 
-     one to process the form submission. T
-     he controller action that processes the form submission should create the user and save it to the database.
-
-
-    The form to sign up should be loaded via a GET request to /signup and submitted via a POST request to /signup.
-    The signup action should also log the user in and add the user_id to the sessions hash.
-    Make sure you add the Signup link to the home page.
-
-
-Log In
-    two controller actions to process logging in: 
-    one to display the form to log in and 
-    one to add the user_id to the sessions hash.
-
-
-    The form to login should be loaded via a GET request to /login and submitted via a POST request to /login.
-
-Log Out
-    controller action to process a GET request to /logout to log out. 
-    The controller action should clear the session hash, and redirect the user to /login.
 
 Protecting The Views
     You'll need to make sure that no one can create, read, edit or delete any tweets unless they're logged in.
