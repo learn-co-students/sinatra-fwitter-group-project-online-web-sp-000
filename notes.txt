@@ -1,0 +1,79 @@
+CHECKLIST
+-user can create an account
+-New accounts must have a username, email and password
+-users can log in an log out
+-users can create new tweets only if logged in
+-users can edit/delete only their own tweets
+-users can view others's tweets
+-Blank tweets are not saved
+
+
+
+Home Page
+    controller action to load the home page
+    create a view that will link to both a login page and signup page. 
+    homepage should respond to a GET request to /.
+
+Tweets Index Page
+    create a controller action that will load the tweets index page.
+    create a view that will display all tweets for the logged in user and other users
+    tweets index page should respond to a GET request to /tweets. 
+    If a user is not logged in, it will redirect to /login.
+
+
+Create Tweet
+    two controller actions, 
+    load the create tweet form, 
+    process the form submission. 
+    tweet should be created and saved to the database. 
+    The form should be loaded via a GET request to /tweets/new and submitted via a POST to /tweets.
+
+Show Tweet
+    controller action that displays the information for a single tweet. 
+    respond to a GET request to /tweets/:id.
+
+Edit Tweet
+    two controller actions to edit a tweet: 
+    load the form to edit,
+    update the tweet entry in the database. 
+    loaded via a GET request to /tweets/:id/edit. 
+    submitted via a POST request to /tweets/:id.
+    create an edit link on the tweet show page.
+
+Delete Tweet
+    one controller action to delete a tweet. 
+    form to delete a tweet should be found on the tweet show page.
+    delete form just a submit button.
+    submitted via a POST request to tweets/:id/delete.
+
+
+Sign Up
+    two controller actions,
+     one to display the user signup and 
+     one to process the form submission. T
+     he controller action that processes the form submission should create the user and save it to the database.
+
+
+    The form to sign up should be loaded via a GET request to /signup and submitted via a POST request to /signup.
+    The signup action should also log the user in and add the user_id to the sessions hash.
+    Make sure you add the Signup link to the home page.
+
+
+Log In
+    two controller actions to process logging in: 
+    one to display the form to log in and 
+    one to add the user_id to the sessions hash.
+
+
+    The form to login should be loaded via a GET request to /login and submitted via a POST request to /login.
+
+Log Out
+    controller action to process a GET request to /logout to log out. 
+    The controller action should clear the session hash, and redirect the user to /login.
+
+Protecting The Views
+    You'll need to make sure that no one can create, read, edit or delete any tweets unless they're logged in.
+
+    You'll want to create two helper methods current_user and logged_in?. You'll want to use these helper methods to block content if a user is not logged in.
+
+    It's especially important that a user should not be able to edit or delete the tweets created by a different user. A user can only modify their own tweets.
