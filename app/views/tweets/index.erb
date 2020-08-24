@@ -1,0 +1,9 @@
+<% if !request.referrer.nil? %>
+    <% if ["login", "signup"].include? request.referrer.split("/").last %>
+        <h3>Welcome, <%= current_user.username %>!</h3>
+    <% end %>
+<% end %>
+
+<% Tweet.all.each do |tweet| %>
+    <p><%= tweet.content %></p>
+<% end %>

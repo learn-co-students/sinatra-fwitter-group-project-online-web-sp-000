@@ -1,0 +1,50 @@
+CHECKLIST
+-user can create an account
+-New accounts must have a username, email and password
+-users can log in an log out
+-users can create new tweets only if logged in
+-users can edit/delete only their own tweets
+-users can view others's tweets
+-Blank tweets are not saved
+
+
+Tweets Index Page
+    create a controller action that will load the tweets index page.
+    create a view that will display all tweets for the logged in user and other users
+    tweets index page should respond to a GET request to /tweets. 
+    If a user is not logged in, it will redirect to /login.
+
+
+Create Tweet
+    two controller actions, 
+    load the create tweet form, 
+    process the form submission. 
+    tweet should be created and saved to the database. 
+    The form should be loaded via a GET request to /tweets/new and submitted via a POST to /tweets.
+
+Show Tweet
+    controller action that displays the information for a single tweet. 
+    respond to a GET request to /tweets/:id.
+
+Edit Tweet
+    two controller actions to edit a tweet: 
+    load the form to edit,
+    update the tweet entry in the database. 
+    loaded via a GET request to /tweets/:id/edit. 
+    submitted via a POST request to /tweets/:id.
+    create an edit link on the tweet show page.
+
+Delete Tweet
+    one controller action to delete a tweet. 
+    form to delete a tweet should be found on the tweet show page.
+    delete form just a submit button.
+    submitted via a POST request to tweets/:id/delete.
+
+
+
+Protecting The Views
+    You'll need to make sure that no one can create, read, edit or delete any tweets unless they're logged in.
+
+    You'll want to create two helper methods current_user and logged_in?. You'll want to use these helper methods to block content if a user is not logged in.
+
+    It's especially important that a user should not be able to edit or delete the tweets created by a different user. A user can only modify their own tweets.
