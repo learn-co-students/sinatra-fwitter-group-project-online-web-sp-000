@@ -1,0 +1,13 @@
+<h3> "Welcome,"</h3>
+<h3> <%= @user.username %> </h3>
+
+<% Tweet.all.each do |t| %>
+   <a href="users/<%= t.user.slug %>"> <%= t.user.username %> </a>
+   <p> <%= t.content %> </p>
+
+<% end %>
+
+<form action="/logout" method="post">
+  Logout?
+  <input type="submit" name="logout" >
+</form>
