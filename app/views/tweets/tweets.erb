@@ -1,10 +1,15 @@
 
 <h1>Welcome,  <%= current_user.username %> </h1>
-<% @tweets.each do |tweet| %>
-<%= tweet.content %>
-<% end %>
+    <h2>Check out all the Tweets!</h2>
+    <% @tweets.each do |tweet| %>
+   
+    <ul>
+        <li> <a href="/tweets/#{@tweet.id}/edit"> <%= tweet.content %>  </li>
+    </ul>
+    <% end %>
+    <br />
 
-<form method="GET" action="/logout">
+<h3> <a href="/tweets/new">Create a Tweet</a> </h3>
+<h3> <a href="/logout">Logout</a> </h3>
 
-<input type="submit" name="Logout" value='Logout' >
-</form>
+<h3> <a href="/tweets">Home</a> </h3>
