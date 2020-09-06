@@ -44,7 +44,6 @@ class UsersController < ApplicationController
     end
 
     post '/logout' do
-        binding.pry 
         session.clear
         redirect to '/login'
     end 
