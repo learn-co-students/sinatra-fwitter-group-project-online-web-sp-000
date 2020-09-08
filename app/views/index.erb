@@ -1,0 +1,8 @@
+<h2>What's Tweeting?</h2>
+
+<% if logged_in? %>
+  <p>Welcome, <%=@user.username %> </p>
+<% else %>
+  <a href="/signup">Sign Up </a>
+  <a href="/login">Sign In </a>
+<% end %>
