@@ -11,6 +11,9 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
+gem 'rubysl-securerandom', '~> 2.0'
+gem 'sysrandom'
+gem 'rack-flash3'
 
 group :test do
   gem 'rspec'
