@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-
+    #read all tweets 
     get '/tweets' do
         if logged_in?
             @tweets = Tweet.all
@@ -9,7 +9,8 @@ class TweetsController < ApplicationController
             redirect '/login'
         end
     end
-
+    
+    #only show new tweet form for login user, or login page
     get '/tweets/new' do
         if logged_in? 
             erb :'tweets/new'
@@ -17,7 +18,8 @@ class TweetsController < ApplicationController
             redirect '/login'
         end
     end
-
+    
+    #only create tweet for current user
     post '/tweets' do
         tweet = current_user.tweets.build(params)
         if tweet.save 
@@ -27,7 +29,8 @@ class TweetsController < ApplicationController
         end
 
     end
-
+    
+    #read specific tweet for log in user
     get '/tweets/:id' do
         if logged_in?
             @tweet = Tweet.find(params[:id])
@@ -36,7 +39,8 @@ class TweetsController < ApplicationController
             redirect '/login'
         end
     end
-
+    
+    #show edit form for specific tweet, only if the tweet is created by current user and user is logged in.
     get '/tweets/:id/edit' do
         @tweet = Tweet.find_by(params[:id])
         if logged_in? && current_user == @tweet.user
