@@ -86,6 +86,7 @@ describe ApplicationController do
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_response.status).to eq(200)
+      # binding.pry
       expect(last_response.body).to include("Welcome,")
     end
 
