@@ -1,18 +1,17 @@
 class UsersController < ApplicationController
 
     get '/signup' do
-        if !Helpers.is_logged_in?(session)
-            erb :'users/create_user'
-        else
+        #binding.pry
+        if logged_in?
             redirect to '/tweets'
+        else
+            erb :'users/create_user'
         end
     end
 
     post '/signup' do
-        # if user is not logged in, cannot view page
         if params[:email].empty? || params[:username].empty? || params[:password].empty?
             redirect to '/signup'
-        
         else
             @user = User.create(email: params[:email], username: params[:username], password: params[:password])
             session[:user_id] = @user.id
@@ -22,33 +21,37 @@ class UsersController < ApplicationController
 
     get '/login' do
         #binding.pry
-        if Helpers.is_logged_in?(session)
-            redirect to '/tweets'
+        if logged_in?
+            redirect '/tweets'
         else 
-            erb :'users/login'
+            erb :'/users/login'
         end
     end
 
     post '/login' do
-        
-        @user = User.find_by(:username => params[:username])
+        @user = User.find_by(username: params[:username])
         
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect '/tweets'
+            redirect to '/tweets'
+        else
+            redirect to '/login'
         end
-        redirect to '/login'
     end
 
     get '/logout' do
-        erb :'users/logout'
-    end
-
-    post '/logout' do
-        if Helpers.is_logged_in?(session)
+        if logged_in?
             session.clear
-            redirect '/login'      
+            redirect '/login'
+        else
+            redirect '/'
         end
     end
+
+    #post '/logout' do
+    #    binding.pry
+    #    session.clear
+    #    redirect '/login'      
+   # end
 
 end

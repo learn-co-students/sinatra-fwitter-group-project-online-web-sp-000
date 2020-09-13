@@ -1,13 +1,25 @@
 class TweetsController < ApplicationController
 
     get '/tweets' do
-        #binding.pry
-        if !!Helpers.is_logged_in?(session)
-            redirect '/login'
-        else
-            @user = User.find_by(session[:HTTP_USER_AGENT])
+        if logged_in?
             @tweets = Tweet.all
-            erb :"tweets/tweets"
+            erb :'tweets/tweets'
+        else
+            redirect '/login'
         end
+    end
+
+    delete 'tweets/delete' do
+        @tweet = Tweet.find_by_id(params[:id])
+       # if logged_in? && @tweet.user_id = session[:user_id]
+       #     @tweet.destroy
+            #redirect '/tweets'
+        #else
+            #redirect '/login
+       # end
+    end
+
+    post 'tweets/delete' do 
+        
     end
 end
