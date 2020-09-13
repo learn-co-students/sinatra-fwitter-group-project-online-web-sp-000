@@ -1,3 +1,5 @@
+Extra create_tweet.erb code:
+
 <% if Helpers.is_logged_in?(session) %>
 <%= @error %>
   <form action='/tweets' method="post">
