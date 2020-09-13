@@ -2,9 +2,12 @@ class TweetsController < ApplicationController
 
     get '/tweets' do
         #binding.pry
-        @tweets = Tweet.all
-        erb :"tweets/tweets"
-        #if user is logged in-> direct to tweets/tweets
-        #if not logged in -> direct to login page users/login
+        if !!Helpers.is_logged_in?(session)
+            redirect '/login'
+        else
+            @user = User.find_by(session[:HTTP_USER_AGENT])
+            @tweets = Tweet.all
+            erb :"tweets/tweets"
+        end
     end
 end
