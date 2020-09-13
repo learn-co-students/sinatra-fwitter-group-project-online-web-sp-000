@@ -23,17 +23,4 @@ class ApplicationController < Sinatra::Base
        User.find_by(id: session[:user_id])
     end
   end
-
-  #def slug
-   # stripped_name = self.name.downcase.split(/[.+ ]/)
-    
-    #slug_name = stripped_name.join("-")
-
-    #slug_name
-  #end
-
-  #def find_by_slug(slug)
-  #  self.all.find{|song| song.slug == slug}
-  #end
-  
 end
