@@ -1,6 +1,8 @@
+<h3>Welcome,</h3>
+
 <% @tweets.each do |t| %>
-    <% user = @users.detect{|i| i.id == t.user_id} %>
-    <h3><%= user.username %></h3>
-    <p><%= t.tweet %></p>
+    
+    <h3><%= t.user.username %></h3>
+    <p><%= t.content %></p>
     <br>
 <% end %>
