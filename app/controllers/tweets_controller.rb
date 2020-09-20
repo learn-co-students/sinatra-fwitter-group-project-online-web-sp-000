@@ -6,5 +6,10 @@ class TweetsController < ApplicationController
         erb :'/tweets/all'
     end
 
+    get '/tweets/:id' do 
+        @tweet = Tweet.find[:id]
+        erb :'/tweets/show_tweet'
+    end
+
 
 end
