@@ -1,0 +1,9 @@
+<form action='/tweets/<%=@tweet.id%>' method="post">
+    Content:
+    <input type="text" name="content" placeholder="<%=@tweet.content%>"><br>
+    Create Your Tweet:
+
+    <input type="hidden" name="_method" value="patch">
+    <input type="submit" name="submit">
+
+  </form>
