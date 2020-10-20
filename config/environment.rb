@@ -5,4 +5,5 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 
 ActiveRecord::Base.establish_connection(ENV['SINATRA_ENV'].to_sym)
 
+require_relative '../app/models/concerns/slugify.rb'
 require_all 'app'
