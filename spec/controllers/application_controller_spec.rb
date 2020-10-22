@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe ApplicationController do
 
@@ -57,8 +58,7 @@ describe ApplicationController do
       expect(last_response.location).to include('/signup')
     end
 
-    it 'does not let a logged in user view the signup page' do
-      #user = User.create(:username => "skittles123", :email => "skittles@aol.com", :password => "rainbows")
+    it 'creates a new user and logs them in on valid submission and does not let a logged in user view the signup page' do
       params = {
         :username => "skittles123",
         :email => "skittles@aol.com",
@@ -91,7 +91,6 @@ describe ApplicationController do
 
     it 'does not let user view login page if already logged in' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-
       params = {
         :username => "becky567",
         :password => "kittens"
@@ -103,7 +102,7 @@ describe ApplicationController do
   end
 
   describe "logout" do
-    it "lets a user logout if they are already logged in and redirects to the login page" do
+    it "lets a user logout if they are already logged in" do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
       params = {
@@ -115,21 +114,18 @@ describe ApplicationController do
       expect(last_response.location).to include("/login")
     end
 
-    it 'redirects a user to the index page if the user tries to access /logout while not logged in' do
+    it 'does not let a user logout if not logged in' do
       get '/logout'
       expect(last_response.location).to include("/")
-
     end
 
-    it 'redirects a user to the login route if a user tries to access /tweets route if user not logged in' do
+    it 'does not load /tweets if user not logged in' do
       get '/tweets'
       expect(last_response.location).to include("/login")
-      expect(last_response.status).to eq(302)
     end
 
-    it 'loads /tweets if user is logged in' do
+    it 'does load /tweets if user is logged in' do
       user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-
 
       visit '/login'
 
@@ -137,7 +133,6 @@ describe ApplicationController do
       fill_in(:password, :with => "kittens")
       click_button 'submit'
       expect(page.current_path).to eq('/tweets')
-      expect(page.body).to include("Welcome")
     end
   end
 
@@ -197,6 +192,7 @@ describe ApplicationController do
       end
 
       it 'lets user create a tweet if they are logged in' do
+
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
 
         visit '/login'
@@ -211,6 +207,7 @@ describe ApplicationController do
 
         user = User.find_by(:username => "becky567")
         tweet = Tweet.find_by(:content => "tweet!!!")
+
         expect(tweet).to be_instance_of(Tweet)
         expect(tweet.user_id).to eq(user.id)
         expect(page.status_code).to eq(200)
@@ -324,10 +321,7 @@ describe ApplicationController do
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
-        visit "tweets/#{tweet2.id}"
-        click_on "Edit Tweet"
-        expect(page.status_code).to eq(200)
-        expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
+        visit "/tweets/#{tweet2.id}/edit"
         expect(page.current_path).to include('/tweets')
       end
 
@@ -368,7 +362,7 @@ describe ApplicationController do
     end
 
     context "logged out" do
-      it 'does not load -- requests user to login' do
+      it 'does not load -- instead redirects to login' do
         get '/tweets/1/edit'
         expect(last_response.location).to include("/login")
       end
