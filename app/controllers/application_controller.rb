@@ -6,6 +6,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     enable :sessions
+    set :session_secret, "fwitter_secret"
     set :views, 'app/views'
   end
 
@@ -30,8 +31,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets' do
-    # binding.pry
       if session[:user_id]
+        @user = User.find(session[:user_id])
         @tweets = Tweet.all
         erb :"/tweets/tweets"
       else
@@ -56,7 +57,6 @@ class ApplicationController < Sinatra::Base
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      # binding.pry
       redirect '/tweets'
     else
       redirect "/login"
@@ -68,9 +68,9 @@ class ApplicationController < Sinatra::Base
     redirect '/login'
   end
 
-  get '/users/#{user.slug}' do
-    @user = User.find_by_slug(params[:user.slug])
-    erb :"/tweets/show_tweet"
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :"/users/show"
   end
 
 
