@@ -1,8 +1,9 @@
-<h1>Welcome, !</h1>
-<ul>
-	<% @tweets.all.each do |t|%>
-	<li><%= t.content %></li>
-	<% end %>
-</ul>
+<h1>Welcome, <%= @user.username %></h1>
 
-<a href="/logout">Log Out</a>
+	<ul>
+		<% @tweets.all.each do |t|%>
+		<li><%= t.content %></li>
+		<% end %>
+	</ul>
+
+	<a href="/logout">Log Out</a>
