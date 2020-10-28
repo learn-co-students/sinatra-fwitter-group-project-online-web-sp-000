@@ -20,7 +20,6 @@ class TweetsController < ApplicationController
             @tweet.save
         redirect "tweets/#{@tweet.id}"
             else
-                # flash[:message] = "You cannot create a blank tweet."
                 redirect '/tweets/new'
             end
         end
