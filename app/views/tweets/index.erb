@@ -1,0 +1,8 @@
+<h1>Welcome,</h1>
+<ul>
+  <% @tweets.each_with_index do |tweet, index| %>
+    <li><%= index + 1%>. <a href="/tweets/<%= tweet.id %>"> <%= tweet.content %></a></li>
+  <% end %>
+</ul>
+
+<h3>Create New Tweet<a href="tweets/new">Here</a></h3>
