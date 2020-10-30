@@ -1,0 +1,3 @@
+<% @tweets.each do |tweet| %>
+  <li> <a href="/tweets/<%= tweet.id %>"> <%= tweet.content %> </a></li>
+<% end %>
