@@ -9,8 +9,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  enable :sessions
-
   get '/' do
     "Welcome to Fwitter"
   end

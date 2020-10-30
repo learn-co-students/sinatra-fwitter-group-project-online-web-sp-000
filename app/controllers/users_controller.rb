@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  get '/signup' do #display the user signup
+  get '/signup' do
     if !logged_in?
       erb :'users/signup'
     else
-      redirect '/tweets'
+      redirect to '/tweets'
     end
   end
 
@@ -16,12 +16,12 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    # 'loads the tweets index after login'
+    
   end
 
   post '/login' do
-    # 'does not let user view login page if already logged in'
-  end
+  
+  end 
 
   get '/logout' do
     # "lets a user logout if they are already logged in and redirects to the login page"
