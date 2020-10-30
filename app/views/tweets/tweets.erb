@@ -1,0 +1,8 @@
+<h1>Welcome, <%= @user.username %>!</h1>
+
+<a href="/tweets/new">New Tweet</a>
+
+<% @tweets.each do |tweet| %>
+  <h3><%= tweet.user.username %>:</h3>
+  <p><%= tweet.content %></p>
+<% end %>

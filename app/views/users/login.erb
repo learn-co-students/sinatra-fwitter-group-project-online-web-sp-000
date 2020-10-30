@@ -1,0 +1,13 @@
+<h1>Log In Page</h1>
+
+<% if @error_message %>
+  <p><%= @error_message %></p>
+<% end %>
+
+<form method="POST" action="/login">
+  <p><input type="text" name="username" placeholder="username"></p>
+  <p><input type="email" name="email" placeholder="email"></p>
+  <p><input type="password" name="password" placeholder="password"></p>
+
+  <input type="submit" id="submit">
+</form>
