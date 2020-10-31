@@ -1,0 +1,7 @@
+<h1>Tweet Show Page</h1>
+
+<%= @tweet.user.username %> tweeted: 
+"<%= @tweet.content %>"
+<br />
+<a href="<%=@tweet.id%>/edit">Edit</a> <br />
+<a href="<%=@tweet.id%>/delete">Delete</a>
