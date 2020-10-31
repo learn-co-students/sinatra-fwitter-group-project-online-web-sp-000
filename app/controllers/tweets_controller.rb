@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
 
   get '/tweets' do
+    authenticate
     @tweets = Tweet.all 
     if logged_in?
       @user = current_user
