@@ -11,38 +11,66 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     "Welcome to Fwitter"
-    # erb :index
+    erb :index
   end
 
-  # get '/signup' do
-  #   if !logged_in?
-  #     redirect '/tweets'
-  #   else
-  #     erb :'users/create_user'
-  #   end
-  # end
+  get '/signup' do
+    if !logged_in?
+      redirect '/tweets'
+    else
+      erb :'users/create_user'
+    end
+  end
 
-  # helpers do
+  post '/signup' do
+    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    if @user.save
+      session[:user_id] = @user.id
+      redirect '/tweets'
+    else
+      redirect '/signup'
+    end
+  end
 
-  #   def logged_in?
-  #     !!current_user
-  #   end
+  get '/login' do
+    if logged_in?
+      redirect '/tweets'
+    else
+      erb :'users/login'
+    end
+  end
+  
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+    if @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/tweets'
+    else
+      redirect '/login'
+    end
+  end
+
+  helpers do
+
+    def logged_in?
+      !!current_user
+    end
     
-  #   def current_user
-  #     User.find_by(id: session[:user_id])
-  #   end
+    def current_user
+      User.find_by(id: session[:user_id])
+    end
 
-  #   def authenticate
-  #     redirect '/login' if !logged_in?
-  #   end
+    def authenticate
+      redirect '/login' if !logged_in?
+    end
 
-  #   def authorize(tweet)
-  #     authenticate
-  #     if tweet.user != current_user
-  #       redirect '/tweets'
-  #     end
-  #   end
-  # end
+    def authorize(tweet)
+      authenticate
+      if tweet.user != current_user
+        redirect '/tweets'
+      end
+    end
+  end
 
   
 
