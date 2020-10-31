@@ -11,14 +11,39 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     "Welcome to Fwitter"
+    # erb :index
   end
 
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
+  # get '/signup' do
+  #   if !logged_in?
+  #     redirect '/tweets'
+  #   else
+  #     erb :'users/create_user'
+  #   end
+  # end
 
-  def logged_in?
-    !!current_user
-  end
+  # helpers do
+
+  #   def logged_in?
+  #     !!current_user
+  #   end
+    
+  #   def current_user
+  #     User.find_by(id: session[:user_id])
+  #   end
+
+  #   def authenticate
+  #     redirect '/login' if !logged_in?
+  #   end
+
+  #   def authorize(tweet)
+  #     authenticate
+  #     if tweet.user != current_user
+  #       redirect '/tweets'
+  #     end
+  #   end
+  # end
+
+  
 
 end
