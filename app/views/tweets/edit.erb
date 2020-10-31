@@ -1,0 +1,5 @@
+<form action="/tweets/<%= @tweet.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  Edit Tweet: <input type="text" name="new_tweet" value="<%= @tweet.content %>"> 
+  <input type="submit"> 
+</form>
