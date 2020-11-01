@@ -50,6 +50,23 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect '/login'
+    else
+      redirect '/login'
+    end
+  end
+
+  post '/logout' do
+    if logged_in?
+      redirect '/logout'
+    else
+      redirect '/login'
+    end
+  end
+
   helpers do
 
     def logged_in?

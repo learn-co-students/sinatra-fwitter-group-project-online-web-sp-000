@@ -3,12 +3,12 @@ class TweetsController < ApplicationController
   get '/tweets' do
     authenticate
     @tweets = Tweet.all 
-    erb '/tweets/tweets'
+    erb :'tweets/tweets'
   end
 
-  # get '/tweets/new' do  
-  
-  # end
+  get '/tweets/new' do  
+    
+  end
 
   # post '/tweets' do
       
