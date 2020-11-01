@@ -1,0 +1,9 @@
+<% @tweets.each do |tweet| %>
+  <a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+<% end %>
+
+<form action="/tweets" method="post">
+  <button type="submit" value="submit">Logout</button>
+</form>
+
+<a ref="/tweets/new">Create New Tweet:</a>
