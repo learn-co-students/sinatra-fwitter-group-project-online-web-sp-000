@@ -1,11 +1,9 @@
-Welcome,
+
+<p> Welcome, <%= current_user.username %>
+<h2> Tweets </h2>
 
 <% @tweets.each do |tweet| %>
-  <a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+<div>
+  <%= tweet.content %>
+</div>
 <% end %>
-
-<form action="/tweets" method="post">
-  <button type="submit" value="submit">Logout</button>
-</form>
-
-<a ref="/tweets/new">Create New Tweet:</a>
