@@ -1,1 +1,7 @@
 <a href="/signup">Sign Up</a> 
+
+<ul>
+<% @tweets.each do |tweet| %>
+<li><%= tweet.content %><li>
+<% end %>
+<ul>

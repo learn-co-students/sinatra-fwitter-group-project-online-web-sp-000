@@ -2,7 +2,9 @@ require "pry"
 
 class UsersController < ApplicationController
   get "/signup" do
-    erb :'/users/signup'
+    if logged_in? == false
+      erb :'/users/signup'
+    end
   end
 
   post "/signup" do
@@ -17,11 +19,16 @@ class UsersController < ApplicationController
     end
   end
 
+  get "/users/:slug" do
+    @user = User.find_by_slug(params[:slug])
+    erb :'/users/show'
+  end
+
   get "/login" do
     if logged_in? == false
       erb :'/users/login'
     else
-      redirect "/tweets"
+      erb :'/tweets/index'
     end
   end
 
