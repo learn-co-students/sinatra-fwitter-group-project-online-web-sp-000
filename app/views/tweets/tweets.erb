@@ -1,0 +1,11 @@
+<a href="/signup">Sign Up</a> 
+
+<h1>Welcome,<h1>
+
+<h2>Tweets<h2>
+
+<ul>
+<% @tweets.each do |tweet| %>
+<li><%= tweet.content %><li>
+<% end %>
+<ul>
