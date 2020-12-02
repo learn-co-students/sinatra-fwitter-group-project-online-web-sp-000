@@ -5,16 +5,16 @@ class UsersController < ApplicationController
     use Rack::Flash
 
     get '/login' do
-        if Helper.is_logged_in?(session)
-            redirect '/tweets'
+        if logged_in?
+            redirect to '/tweets'
         end
 
         erb :'/users/login'
     end
 
     post '/login' do
-        user = User.find_by(username: params[:username]) # , password_digest: params[:password_digest])
-        if user
+        user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             redirect '/tweets'
          else
@@ -23,9 +23,11 @@ class UsersController < ApplicationController
     end
 
     get '/signup' do
-        if Helper.is_logged_in?(session)
+        
+        if logged_in?
             redirect to '/tweets'
         else
+            # binding.pry
             erb :'/users/create_user'
         end
     end
@@ -38,8 +40,8 @@ class UsersController < ApplicationController
             end
           end
 
-        user = User.new(username: params[:username], email: params[:email], password_digest: params[:password_digest])
-        user.save
+        user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        user.save!
         session[:user_id] = user.id
         redirect to "/tweets"
     end
@@ -50,12 +52,12 @@ class UsersController < ApplicationController
     end
 
     get '/logout' do
-        erb :"/users/logout"
-    end
-
-    post '/logout' do
-        session.clear
-        redirect '/login'
-    end
+        if logged_in?
+          session.destroy
+          redirect to '/login'
+        else
+          redirect to '/'
+        end
+      end
 
 end
