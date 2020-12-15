@@ -13,7 +13,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: hsl(234, 39%, 85%);
+    background-color: hsl(236, 9%, 61%);
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -28,6 +28,11 @@
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
     width: 85%;
+  }
+
+  nav a {
+    margin: 5px;
+
   }
 
   h1 {
@@ -61,6 +66,10 @@
   input.button {
     margin-top: 18px;
     margin-bottom: 16px;
+  }
+
+  .home-button, .logout-button {
+    margin: 5px;
   }
 
   footer.branding {

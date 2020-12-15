@@ -1,11 +1,29 @@
+<small> <% if flash.has?(:error) %>
+  <%= flash[:error] %>
+<% end %>
+</small>
+
+<small> <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+</small>
+
 <h1> Tweets </h1>
 <p> Welcome, <%= current_user.username %>
 
 <% @tweets.each do |tweet| %>
   <div>
     <%= tweet.content %>
-    <a href="/tweets/<%= tweet.id %>">View Tweet</a>
+    <small>Posted by</small> [<%= tweet.user.username %>]
+    <a href="/tweets/<%= tweet.id %>"><small>View Tweet</small></a>
   </div><br>
-<% end %><br><br>
+<% end %><br>
 
 <p><a href="/tweets/new">Create a new tweet!</a></p>
+
+
+
+<br>
+
+<a class="home-button" href="/">Home</a>
+<a class="logout-button" href="/">Logout</a>
