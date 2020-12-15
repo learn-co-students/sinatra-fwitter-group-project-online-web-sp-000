@@ -2,14 +2,18 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <link rel="stylesheet" type="text/css" href="style.css">  
   </head>
   <body>
-
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
-
+    <ul>
+      <li><a href="/">Fwitter</a></li>
+      <%if logged_in?%>
+        <li><a href="/logout">Logout</a></li>
+      <%else%>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+      <%end%>
+    </ul>
+    <%= yield %>
   </body>
 </html>
