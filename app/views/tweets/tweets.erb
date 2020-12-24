@@ -1,0 +1,17 @@
+<%if logged_in?%>
+
+     <h2>Welcome, <%= current_user.username %></h2>
+      <%@tweets.each do |tweet| %>
+        <h3>Tweets:  <%=tweet.content%></h3>
+      <%end%>
+  <%else%>
+     <%'/login'%>
+  <%end%>
+<br>
+
+<p><strong>To Create a New Tweet
+    <a href="/tweets/new">Click Here</a></strong></P>
+<br>
+</br>
+
+  <a href="/logout">Log Out</a>
