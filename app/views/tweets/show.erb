@@ -1,0 +1,15 @@
+<% if Helpers.is_logged_in?(session) %>
+
+<%= @tweet.content %>
+
+<form method="post" action="/tweets/<%= @tweet.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Tweet">
+</form>
+
+<a href="/tweets/<%= @tweet.id%>/edit">Edit Tweet</a>
+
+  <% else %>
+    <a href="/tweets/<%= @tweet.id%>">Edit Tweet</a>
+      <h1> You Must Be Logged in to Make Tweets </h1>
+  <% end %>
