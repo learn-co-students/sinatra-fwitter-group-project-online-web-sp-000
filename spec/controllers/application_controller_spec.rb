@@ -9,7 +9,7 @@ describe ApplicationController do
       expect(last_response.body).to include("Welcome to Fwitter")
     end
   end
-
+ 
   describe "Signup Page" do
 
     it 'loads the signup page' do
