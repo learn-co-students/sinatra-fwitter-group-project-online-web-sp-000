@@ -14,21 +14,23 @@ class UsersController < ApplicationController
       else
          user = User.create(email: params[:email], username: params[:username], password: params[:password])
          session[:user_id] = user.id
+         
          redirect "/tweets"
       end
    end
 
    get '/login' do
-      if logged_in?
-         redirect "/tweets"
-      else
+      
+      if !logged_in?
          erb :'users/login'
+      else
+         redirect "/tweets"
       end
    end
 
    post '/login' do
       user = User.find_by(username: params[:username])
-      
+
       if user && user.authenticate(params[:password])
          session[:user_id] = user.id
          redirect "/tweets"
@@ -44,6 +46,11 @@ class UsersController < ApplicationController
       else
          redirect "/"
       end
+   end
+
+   get "/users/:id" do
+
+      erb :'/users/show'
    end
 
 end
