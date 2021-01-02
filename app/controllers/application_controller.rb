@@ -16,14 +16,13 @@ class ApplicationController < Sinatra::Base
   end
   #Home Page to /index; currently routing to layout.erb
 
-
   helpers do
-    def current_user(session)
-      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    def logged_in?
+      !!current_user
     end
 
-    def is_logged_in?(session)
-      !!current_user
+    def current_user
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
   end
 
