@@ -5,15 +5,38 @@ class UsersController < ApplicationController
     end
 
     get '/signup' do
-        erb :'users/create_user'
+        if !!session[:id]
+            redirect to '/tweets'
+        else
+            erb :'users/create_user'
+        end
+    end
+
+    get '/login' do
+        if !!session[:id]
+            redirect to '/tweets'
+        else
+            erb :'users/login'
+        end
     end
 
     post '/signup' do
         user = User.new(email: params[:email], username: params[:username], password: params[:password])
-        if user && user.save && user.authenticate(params[:password])
+        if user.email != '' && user.username != '' && user.save
+            session[:id] = user.id
             redirect to '/tweets'
         else
             redirect to '/signup'
+        end
+    end
+
+    post '/login' do
+        user = User.find_by(email: params[:email])
+        if user && user.authenticate(params[:password])
+            session[:id] = user.id
+            redirect to '/tweets'
+        else
+            redirect to '/login'
         end
     end
 end
