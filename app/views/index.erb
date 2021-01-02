@@ -1,4 +1,29 @@
-<h1>Welcome to Fwitter</h1>
+<!doctype html>
+<html>
+  <head>
+    <title>Fwitter</title>
+    <style>
+      div.welcome {
+        text-align: center;
+        }
+      button.welcome_button {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      button.welcome_button:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
 
-<a class="button" href="/create_user">Log In</a>
-<a class="button" href="/landmarks">Sign Up</a>
+    <div class="welcome">
+    <h2>Welcome to Fwitter</h2>
+
+    <a class="button" href="/login"><button class="welcome_button">Login</button></a>
+    <a class="button" href="/signup"><button class="welcome_button">Signup</button></a>
+    </div>
+
+  </body>
+</html>
