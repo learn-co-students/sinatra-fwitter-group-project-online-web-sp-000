@@ -4,8 +4,6 @@ class ApplicationController < Sinatra::Base
 
 #require 'securerandom'; puts SecureRandom.hex(64)
 
-  extend Helpers::ClassMethods
-
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -18,16 +16,15 @@ class ApplicationController < Sinatra::Base
   end
   #Home Page to /index; currently routing to layout.erb
 
-  # helpers do
-  #
-  #   def logged_in?
-  #     !!current_user
-  #   end
-  # 
-  #   def current_user
-  #     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  #   end
-  #
-  # end
+
+  helpers do
+    def current_user(session)
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    end
+
+    def is_logged_in?(session)
+      !!current_user
+    end
+  end
 
 end
