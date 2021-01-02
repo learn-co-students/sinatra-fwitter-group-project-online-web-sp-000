@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
 
+  get '/users/:slug' do
+    @user = User.find_by(params[:slug])
+    erb :'users/show'
+  end
+
+  #define slug method
+
   get '/signup' do
     if !logged_in?
       erb :'user/signup'
