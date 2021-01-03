@@ -20,17 +20,17 @@
 
     <h4>My Tweet</h4>
       <p><%= @tweet.content %></p>
-      <!-- tweet not showing up -->
 
     <form action="/tweets/<%= @tweet.id %>" method="post">
       <input id="hidden" type="hidden" name="_method" value="DELETE">
       <p><input class="fwitter_btns" type="submit" value="Delete Tweet"></p>
     </form>
 
-    <form action="/tweets/<%= @tweet.id %>" method="post">
-      <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    <form action="/tweets/<%= @tweet.id %>/edit" method="get">
       <p><input class="fwitter_btns" type="submit" value="Edit Tweet"></p>
     </form>
+
 
     <hr class="solid">
 

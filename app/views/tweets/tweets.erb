@@ -22,13 +22,24 @@
   <body>
 
     <div class="welcome">
-      <p><em> Welcome, <%= current_user.username %>!</em></p>
+      <h4><em> Welcome, <%= current_user.username %>!</em></h4>
     </div>
     <br>
-    <h4> Tweets </h4>
+
+    <h4> Here are your tweets, <%= current_user.username %>.</h4>
+    <ul>
+    <% current_user.tweets.each do |tweet| %>
+      <div>
+        <li><%= tweet.content %></li>
+      </div>
+    <% end %>
+    </ul>
+
+    <hr class="solid">
+
+    <h4> All Tweets </h4>
     <ul>
       <% @tweets.each do |tweet| %>
-      <!-- tweets not showing up -->
         <li><%= tweet.content %></li>
         <% end %>
     </ul>
