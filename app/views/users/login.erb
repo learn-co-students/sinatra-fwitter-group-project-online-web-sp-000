@@ -3,14 +3,11 @@
   <head>
     <title>Fwitter</title>
     <style>
-      div.login {
-        text-align: center;
-        }
-      input.submit {
+      input.submit_button {
         border-radius: 4x;
         transition-duration: 0.4s;
       }
-      input.submit:hover {
+      input.submit_button:hover {
         background-color: #1DA1F2;
         color: white;
       }
@@ -18,14 +15,13 @@
   </head>
   <body>
 
-    <div class="login">
       <h4>Login to Fwitter</h4>
       <form method="post" action="/login">
-        <label>Username:</label>
-        <input type="text" name="username" placeholder="Username">
-        <label>Password:</label>
-        <input type="text" name="password" placeholder="Password">
-        <input class="submit" type="submit" value="submit">
+        <p><label>Username:</label>
+        <input type="text" name="username" placeholder="Username"></p>
+        <p><label>Password:</label>
+        <input type="text" name="password" placeholder="Password"></p>
+        <input class="submit_button" type="submit" value="submit">
       </form>
 
   </body>

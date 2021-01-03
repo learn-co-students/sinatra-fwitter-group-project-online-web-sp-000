@@ -1,11 +1,37 @@
-<h2>Tweets</h2>
-<ul>
-  <li><%= @tweet.content %></li>
-<ul>
+<!doctype html>
+<html>
+  <head>
+    <title>Tweets</title>
+    <style>
+      hr.solid {
+        border-top: 1px solid #bbb;
+      }
+      .fwitter_btns {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      .fwitter_btns:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
 
-<form action="/tweets/<%= @tweet.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Tweet">
-</form>
+    <h4>My Tweet</h4>
+      <p><%= @tweet.content %></p>
 
-<a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+    <hr class="solid">
+
+    <form action="/tweets/<%= @tweet.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input class="fwitter_btns" type="submit" value="Delete Tweet">
+    </form>
+
+    <div>
+      <p><a class="button" href="/tweets/<%= @tweet.id %>/edit"><button class="fwitter_btns">Edit Tweet</button></a></p>
+      <p><a class="button" href="/logout"><button class="fwitter_btns">Logout</button></a></p>
+    </div>
+
+  </body>
+</html>

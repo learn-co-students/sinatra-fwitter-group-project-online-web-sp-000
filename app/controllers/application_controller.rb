@@ -2,19 +2,17 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
-#require 'securerandom'; puts SecureRandom.hex(64)
-
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "fwitter_secret"
+    #require 'securerandom'; puts SecureRandom.hex(64)
   end
 
   get '/' do
     erb :index
   end
-  #Home Page to /index; currently routing to layout.erb
 
   helpers do
     def logged_in?

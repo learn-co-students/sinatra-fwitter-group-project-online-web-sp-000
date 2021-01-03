@@ -1,5 +1,25 @@
-<h2>Add a tweet</h2>
-<form action="/tweets" method="POST">
-  <p>Status: <input type="text" name="content"></p>
-  <input class="btn btn-primary" type="submit" value="submit">
-</form>
+<!doctype html>
+<html>
+  <head>
+    <title>Tweets</title>
+    <style>
+      input.btn-primary {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      input.btn-primary:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h4>Add a tweet</h4>
+    <form action="/tweets" method="POST">
+      <p>Status: <input type="text" name="content"></p>
+      <input class="btn-primary" type="submit" value="submit">
+    </form>
+
+</body>
+</html>
