@@ -9,11 +9,11 @@
       hr.solid {
         border-top: 1px solid #bbb;
       }
-      button.fwitter_buttons {
+      button.fwitter_btns {
         border-radius: 4x;
         transition-duration: 0.4s;
       }
-      button.fwitter_buttons:hover {
+      button.fwitter_btns:hover {
         background-color: #1DA1F2;
         color: white;
       }
@@ -26,17 +26,17 @@
     </div>
     <br>
     <h4> Tweets </h4>
-
     <ul>
       <% @tweets.each do |tweet| %>
+      <!-- tweets not showing up -->
         <li><%= tweet.content %></li>
         <% end %>
     </ul>
 
     <hr class="solid">
     <div>
-      <p><a class="button" href="/tweets/new"><button class="fwitter_buttons">New Tweet</button></a></p>
-      <p><a class="button" href="/logout"><button class="fwitter_buttons">Logout</button></a></p>
+      <p><a class="button" href="/tweets/new"><button class="fwitter_btns">New Tweet</button></a></p>
+      <p><a class="button" href="/logout"><button class="fwitter_btns">Logout</button></a></p>
     </div>
 
   </body>
