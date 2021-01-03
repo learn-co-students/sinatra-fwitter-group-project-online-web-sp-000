@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fwitter</title>
+    <style>
+      input.submit_button {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      input.submit_button:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+      <h4>Login to Fwitter</h4>
+      <form method="post" action="/login">
+        <p><label>Username:</label>
+        <input type="text" name="username" placeholder="Username"></p>
+        <p><label>Password:</label>
+        <input type="text" name="password" placeholder="Password"></p>
+        <input class="submit_button" type="submit" value="submit">
+      </form>
+
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tweets</title>
+    <style>
+      div.welcome {
+        text-align: center;
+      }
+      hr.solid {
+        border-top: 1px solid #bbb;
+      }
+      button.fwitter_btns {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      button.fwitter_btns:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="welcome">
+      <h4><em> Welcome, <%= current_user.username %>!</em></h4>
+    </div>
+    <br>
+
+    <h4> Here are your tweets, <%= current_user.username %>.</h4>
+    <ul>
+    <% current_user.tweets.each do |tweet| %>
+      <div>
+        <li><%= tweet.content %></li>
+      </div>
+    <% end %>
+    </ul>
+
+    <hr class="solid">
+
+    <h4> All Tweets </h4>
+    <ul>
+      <% @tweets.each do |tweet| %>
+        <li><%= tweet.content %></li>
+        <% end %>
+    </ul>
+
+    <hr class="solid">
+    <div>
+      <p><a class="button" href="/tweets/new"><button class="fwitter_btns">New Tweet</button></a></p>
+      <p><a class="button" href="/logout"><button class="fwitter_btns">Logout</button></a></p>
+    </div>
+
+  </body>
+</html>

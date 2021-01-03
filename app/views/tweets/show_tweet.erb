@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tweets</title>
+    <style>
+      hr.solid {
+        border-top: 1px solid #bbb;
+      }
+      .fwitter_btns {
+        border-radius: 4x;
+        transition-duration: 0.4s;
+      }
+      .fwitter_btns:hover {
+        background-color: #1DA1F2;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h4>My Tweet</h4>
+      <p><%= @tweet.content %></p>
+
+    <form action="/tweets/<%= @tweet.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <p><input class="fwitter_btns" type="submit" value="Delete Tweet"></p>
+    </form>
+
+
+    <form action="/tweets/<%= @tweet.id %>/edit" method="get">
+      <p><input class="fwitter_btns" type="submit" value="Edit Tweet"></p>
+    </form>
+
+
+    <hr class="solid">
+
+    <p><a class="button" href="/tweets"><button class="fwitter_btns">Home</button></a></p>
+    <p><a class="button" href="/logout"><button class="fwitter_btns">Logout</button></a></p>
+
+  </body>
+</html>
