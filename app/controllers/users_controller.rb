@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     end
 
     get '/signup' do
-        if !!session[:id]
+        if Helper.logged_in?(session)
             redirect to '/tweets'
         else
             erb :'users/create_user'
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        if !!session[:id]
+        if Helper.logged_in?(session)
             redirect to '/tweets'
         else
             erb :'users/login'
@@ -41,6 +41,11 @@ class UsersController < ApplicationController
     end
 
     get '/logout' do
-        user = User
+        if Helper.logged_in?(session)
+            session.clear
+            redirect to '/login'
+        else
+            redirect to '/'
+        end
     end
 end
