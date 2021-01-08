@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     has_many :tweets
 
     def slug
-        if self.username.gsub!(/[^0-9A-Za-z]/, '')
+        if self.username.gsub!(/[^0-9A-Za-z ]/, '')
             self.username.split(" ").join("-").downcase
         else
             self.username.split(" ").join("-").downcase
