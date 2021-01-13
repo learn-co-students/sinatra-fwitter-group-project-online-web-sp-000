@@ -9,7 +9,11 @@ class Helpers
     end
 
     def self.current_user(session)
-        User.find(session[:user_id])
+        if session[:user_id]
+            User.find(session[:user_id])
+        else
+            nil
+        end
     end
 
 end

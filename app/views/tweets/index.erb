@@ -1,0 +1,7 @@
+<% if Helpers.is_logged_in?(@session) %>
+    <h1>Welcome back, <%= user.name %><h1>
+<% else %>
+    <h2>
+        Please <a href= "/signup">sign up</a> or <a href= "/login">log in</a> to view tweets
+    </h2>
+<% end %>
