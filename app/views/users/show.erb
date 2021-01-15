@@ -1,0 +1,7 @@
+<h1>Welcome, <%= current_user.username %></h1>
+
+<% current_user.tweets.each do |t| %>
+<ul>
+    <li><%= t.content %></li>
+</ul>
+<% end %>
