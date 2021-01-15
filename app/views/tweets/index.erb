@@ -1,0 +1,9 @@
+<h1>Welcome, <%= current_user.username %></h1>
+Display all tweets for logged in user and other users
+
+<% Tweet.all.each do |t| %>
+<ul>
+    <li><%= t.content %></li>
+    <li><%= t.user %></li>
+</ul>
+<% end %>
