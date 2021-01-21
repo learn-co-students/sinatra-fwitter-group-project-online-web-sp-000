@@ -1,0 +1,6 @@
+<p><%= @tweet %><br>
+<sub><%= @user.name %></sub></p>
+
+<% if logged_in? && @tweet.user_id == current_user %>
+<p><a href="/tweets/#{@tweet.id}/edit">Edit Tweet</a> -- <a href="/tweets/#{@tweet.id}/delete">Delete Tweet</a></p>
+<% end %>
