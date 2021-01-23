@@ -1,0 +1,15 @@
+<h3>Welcome, <%= current_user.username %>!</h3>
+
+<p><a href="/tweets/new">Create new tweet</a></p>
+
+<h3>Timeline</h3>
+
+<% Tweet.order(created_at: :desc).each do |tweet| %>
+    <p>
+        <b>@<%= tweet.user.username %></b> · 
+            <a href="/tweets/<%= tweet.id %>" class="date-time"><%= tweet.created_at.strftime('%-d %B %Y at %H:%M:%S (%Z)') %></a>
+            <%= " · <a href=\"/tweets/#{tweet.id}/edit\">Edit tweet</a>" if tweet.user_id == current_user.id %>    
+        <br>
+        <%= tweet.content %>
+    </p>
+<% end %>
