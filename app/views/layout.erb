@@ -2,13 +2,15 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
   <body>
 
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+      <h1>Fwitter</h1>
+      <%= yield %>
+      <%= '<p><a href="/tweets">Timeline</a> · <a href="/logout">Log out</a></p>' if is_logged_in? %>
     </div>
 
   </body>
