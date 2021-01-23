@@ -10,7 +10,9 @@
     <div class="container">
       <h1>Fwitter</h1>
       <%= yield %>
-      <%= '<p><a href="/tweets">Timeline</a> · <a href="/logout">Log out</a></p>' if is_logged_in? %>
+      <% if is_logged_in? %>
+        <p><%= '<a href="/tweets">Timeline</a> · ' if request.path_info != '/tweets' %><a href="/logout">Log out</a></p>
+      <% end %>
     </div>
 
   </body>
