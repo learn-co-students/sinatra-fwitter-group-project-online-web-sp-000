@@ -2,7 +2,7 @@
 <br>
 <form action="/signup" method="POST">
   <input type="email" name="email" placeholder="Email" required>
-  <input type="text" name="username" placeholder="Username:" required>
+  <input type="text" name="username" placeholder="Username:" onkeyup="this.value = this.value.replace(/[^a-zA-Z0-9\_]/, '')" required>
   <input type="password" name="password" placeholder="Password:" required>
   <input type="submit" value="Sign up" class="btn btn-success"><br><br>
 </form>

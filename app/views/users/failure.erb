@@ -1,2 +1,7 @@
 <h3>Oops!</h3>
+<% case @failure %>
+<% when 'signup' %>
+<p>Username already exists - <a href="/signup">try again</a>, pleeeease!</p>
+<% when 'login' %>
 <p>Incorrect username and/or password - <a href="/login">try again</a>, unless you're a hacker!</p>
+<% end %>

@@ -48,4 +48,14 @@ class TweetsController < ApplicationController
       Tweet.destroy(params[:id])
       redirect '/tweets'
     end
+
+    get '/users/:username' do
+      @user = User.find_by(username: params[:username])
+      if @user && is_logged_in?
+        erb :'/tweets/user'
+      else
+        redirect '/tweets' 
+      end
+
+    end
 end

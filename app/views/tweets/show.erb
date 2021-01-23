@@ -1,6 +1,6 @@
 <h3>Take a close look at this tweet!</h3>
 <p>
-    <b>@<%= @tweet.user.username %></b> · 
+    <b><a href="/users/<%= @tweet.user.username %>" class="username">@<%= @tweet.user.username %></a></b> · 
         <span class="date-time"><%= @tweet.created_at.strftime('%-d %B %Y at %H:%M:%S (%Z)') %></span>
         <%= " · <a href=\"/tweets/#{@tweet.id}/edit\">Edit tweet</a>" if @tweet.user_id == current_user.id %>    
     <br>

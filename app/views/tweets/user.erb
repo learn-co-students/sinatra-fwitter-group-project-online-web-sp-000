@@ -1,0 +1,9 @@
+<h3>@<%= @user.username %>'s tweets</h3>
+<% Tweet.where(user_id: @user.id).order(created_at: :desc).each do |tweet| %>
+    <p>
+        <a href="/tweets/<%= tweet.id %>" class="date-time"><%= tweet.created_at.strftime('%-d %B %Y at %H:%M:%S (%Z)') %></a>
+        <%= " · <a href=\"/tweets/#{tweet.id}/edit\">Edit tweet</a>" if tweet.user_id == current_user.id %>    
+        <br>
+        <%= tweet.content %>
+    </p>
+<% end %>
