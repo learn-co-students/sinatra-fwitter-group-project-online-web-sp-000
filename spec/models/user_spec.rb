@@ -11,7 +11,7 @@ describe 'User' do
     slug = @user.slug
     expect(User.find_by_slug(slug).username).to eq("test 123")
   end
-
+ 
   it 'has a secure password' do
 
     expect(@user.authenticate("dog")).to eq(false)

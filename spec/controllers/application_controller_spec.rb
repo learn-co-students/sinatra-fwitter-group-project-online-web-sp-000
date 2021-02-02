@@ -10,7 +10,7 @@ describe ApplicationController do
     end
   end
 
-  describe "Signup Page" do
+  describe "Signup Page" do 
 
     it 'loads the signup page' do
       get '/signup'
