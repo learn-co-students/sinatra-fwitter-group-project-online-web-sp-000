@@ -1,0 +1,11 @@
+Here are your tweets: <%= @user.username%> <br>
+<% @user.tweets.each do |tweet| %>
+  <p><%= tweet.content %> </p>
+<% end%>
+
+<% if logged_in? %>
+<form action="/logout" method="post">
+  Logout?
+  <input type="submit" name="logout" >
+</form>
+<%end%>
