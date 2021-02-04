@@ -40,8 +40,8 @@ class UsersController < ApplicationController
 	
 	get "/logout" do 
 	  if logged_in?
-	    session.clear 
-	    redirect "/login"
+	    session.destroy
+	    redirect to "/login"
 	  else 
 	    redirect "/"
 	  end
@@ -52,6 +52,4 @@ class UsersController < ApplicationController
 	  erb :"/users/show"
 	end
 	
-
-
 end
