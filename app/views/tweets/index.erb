@@ -1,0 +1,6 @@
+<h1>Fwitter Feed</h1>
+<h2>Welcome, <%= current_user.username %></h2>
+<% Tweet.all.each do |tweet| %>
+    <p> <%= tweet.user.username %>: </p>
+    <p> <%= tweet.content %> <p>
+<% end %>
