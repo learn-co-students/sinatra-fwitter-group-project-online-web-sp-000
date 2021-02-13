@@ -43,3 +43,7 @@ jspm_packages
 /log/*
 !/log/.keep
 /tmp
+
+
+#Added by Nicholas Merolle
+.env

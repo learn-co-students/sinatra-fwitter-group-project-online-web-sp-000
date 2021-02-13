@@ -1,0 +1,14 @@
+<h1>Tweets Index Page</h1>
+
+    <h4>Welcome, <%= @user.username %></h4>
+
+<% @users.each do |user| %>
+    <% user.tweets.each do |tweet| %>
+        <p>Tweet by @<%= user.username%></p>
+        <%= tweet.id %>. <%=tweet.content%><button>
+    <% end %>
+<% end %>
+
+<br><br>
+<a href="/tweets/new">Create Tweet</a><br>
+<a href="/logout">Log Out</a>
