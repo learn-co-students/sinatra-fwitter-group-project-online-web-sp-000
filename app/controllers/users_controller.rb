@@ -13,8 +13,6 @@ class UsersController < ApplicationController
         #binding.pry
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
             redirect '/signup'
-        #elsif User.find_by(username: params[:username]) != nil 
-           # redirect '/tweets'
         else 
             user = User.create(username: params[:username], email: params[:email], password: params[:password])
             user.authenticate(params[:password])
@@ -41,9 +39,14 @@ class UsersController < ApplicationController
         end 
     end 
 
-    get "/logout" do
+    get '/logout' do
         session.clear
         redirect '/login'
     end
+
+    get '/users/:slug' do 
+        @user = User.find_by_slug(params[:slug])
+        erb :'/show'
+    end 
 
 end
