@@ -1,16 +1,13 @@
-<% if Helpers.is_logged_in?(session) %>
-<%= @error %>
+<% if flash.has?(:message) %>
+    <h3><%= flash[:message] %></h3><br><br>
+<% end %>
   <form action='/tweets' method="post">
     Content:
-    <input type="text" name="content"><br>
+    <input type="text" name="content"><br><br>
     Create Your Tweet:
 
     <input type="submit" name="submit" id="submit">
 
-    <input type="submit" name="submit">
-
   </form>
 
-  <% else %>
-      <h1> You Must Be Logged in to Make Tweets </h1>
-  <% end %>
+ 

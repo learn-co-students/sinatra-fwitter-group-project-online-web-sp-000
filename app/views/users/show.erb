@@ -1,0 +1,7 @@
+<h1><%=@user.username.capitalize%>'s Tweets</h1>
+
+<%@tweets.each do |tweet|%>
+    <%if tweet.user_id == @user.id%>
+        <li><%=tweet.content%></li>
+    <%end%>
+<%end%>
