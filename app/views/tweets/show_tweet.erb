@@ -1,0 +1,17 @@
+<h2><%=@tweet.content%></h2>
+
+<h3>Author: <%=User.find_by_id(@tweet.user_id).username.capitalize%></h3>
+
+<form action="/tweets/<%=@tweet.id%>/edit" method="GET">
+    <input type="submit" name="submit" value="Edit Tweet">
+</form><br>
+
+<form action="/tweets/<%=@tweet.id%>/delete" method="POST">
+    <input name="_method" type="hidden" value="delete"> 
+    <input type="submit" name="submit" value="Delete Tweet">
+</form>
+
+<p><a class="button" href="/tweets"> Home </a></p>
+
+
+

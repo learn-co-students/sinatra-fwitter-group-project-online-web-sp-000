@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+    <h3><%= flash[:message] %></h3>
+<% end %>
+
+<h1>Welcome, <%=@user.username.capitalize%>!</h1>
+
+<%@tweets.each do |tweet|%>
+      <li><a href="/tweets/<%=tweet.id%>"><%=tweet.content%></a>---<%=User.find_by_id(tweet.user_id).username.capitalize%></li>
+<%end%><br>
+
+<form action="/tweets/new" method="GET">
+  <input type="Submit" name="submit" value="Create New Tweet">
+</form><br>
+
+<form action="/logout" method="GET">
+  <input type="submit" name="submit" value="Log Out">
+</form>
