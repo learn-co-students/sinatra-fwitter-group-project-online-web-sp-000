@@ -1,0 +1,18 @@
+<h1><%= @tweet.user.username %></h1>
+<p><%= @tweet.content %></p>
+
+<form action='/tweets/<%= @tweet.id %>' method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="content">Content:</label>
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+  <input type="text" id="content" name="content" placeholder="<%= @tweet.content %>" required>
+
+  <input type="submit" id="submit" value="Edit Tweet">
+</form>
+
+
+<form method="post" action="/tweets/<%= @tweet.id %>">
+  <input type="hidden" name="_method" value="DELETE">
+
+  <input type="submit" value="Delete Tweet">
+</form>
