@@ -1,12 +1,14 @@
-<h1>Tweets</h1>
+<h1>Welcome, Here are the Tweets</h1>
 <ul>
   <% @tweets.each do |t| %>
     <li>
       <div>
-        <h4><%= t.user.name %></h4>
+        <a href="/tweets/<%= t.id %>">
+          <h4><%= t.user.username %></h4>
+        </a>
         <p><%= t.content %></p>
       </div>
-      <a href="/tweets/<%= t.id %>"><%= t.user.name %></a>
+
     </li>
   <% end %>
 
