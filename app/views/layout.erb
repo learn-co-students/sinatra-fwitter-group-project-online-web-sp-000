@@ -6,10 +6,13 @@
   <body>
 
     <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+    <% if logged_in?%>
+    <h1>Welcome, <%= User.find(current_user[:user_id]) %></h1>
+  <% else%>
+    <h1>Welcome to Fwitter!</h1>
+  <% end %>
+  <%= yield %>
+      </div>
 
   </body>
 </html>

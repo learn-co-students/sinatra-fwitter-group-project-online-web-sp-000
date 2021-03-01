@@ -1,27 +1,54 @@
 class UsersController < ApplicationController
 
-    get '/user/:slug' do  #slugs user for show page 
-        @user = User.find_by_slug(params[:slug])
-        erb :'users/show'
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
+  end
+
+get '/signup' do
+    if !session[:user_id]
+      erb :'users/create_user'
+    else
+      redirect to '/tweets'
     end
+  end
 
-    get '/signup' do  #displays user signup page 
-
+  post '/signup' do
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect to '/signup'
+    else
+      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/tweets'
     end
+  end   
 
-    post '/signup' do  # processes user signup and submits -- signup should log in user and add user_id to sessions hash
-
+  get '/login' do
+    if !session[:user_id]
+      erb :'users/login'
+    else
+      redirect to '/tweets'
     end
+  end 
 
-    get '/login' do  #form to login 
-
+  post '/login' do
+    @user = User.find_by(:username => params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to "/tweets"
+    else
+      redirect to '/signup'
     end
+  end 
 
-    post '/login' do #processes and submits user login 
-
+  get '/logout' do
+    if session[:user_id]
+      session.delete
+      redirect to '/login'
+    else
+      redirect to '/'
     end
-
-    get '/logout' do  #clears sesion hash,logs out and redirects to login
-
-
 end
+end
+

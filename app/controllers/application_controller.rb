@@ -6,19 +6,21 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "password_security"
+    set :session_secret, "secret_session"
   end
 
   get '/' do #read - home page for fwitter
-
+      erb :'/index'
   end
 
-  def logged_in?  #helper method to keep non users from using fwitter
+  helpers do
 
-  end
-
-  def current_user  #makes sure user is current user
-
-  end
-
+    def logged_in?
+      !!current_user
+    end
+  
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end
+  end 
 end
