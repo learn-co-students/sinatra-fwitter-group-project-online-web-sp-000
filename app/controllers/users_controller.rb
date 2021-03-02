@@ -44,11 +44,10 @@ get '/signup' do
 
   get '/logout' do
     if session[:user_id]
-      session.delete
+      session.destroy
       redirect to '/login'
     else
       redirect to '/'
     end
-end
-end
+end 
 
