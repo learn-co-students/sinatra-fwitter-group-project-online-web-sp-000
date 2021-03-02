@@ -1,7 +1,20 @@
-<h1>Welcome to Fwitter!</h1>
-<p>Please login or signup below:</p>
+<h2>Welcome to Fwitter!</h2>
 
-<a href="/signup">Sign Up</a>
-<a href="/login"> Log In</a>
 
-#beautify with images and hover mech 
+<nav>
+  <% if logged_in? %>
+    <p>Hello, <%=current_user.username %></p>
+    <a href="/tweets/new"> Create Tweet </a>
+    
+    <br>
+    <a href="/logout"> Log Out </a>
+
+
+  <% else %>
+  <p>Please Login or Sign Up below:</p>
+    <a href="/signup">Sign Up</a>
+    <br>
+    <a href="/login"> Login In </a>
+  <%end %>
+
+</nav>

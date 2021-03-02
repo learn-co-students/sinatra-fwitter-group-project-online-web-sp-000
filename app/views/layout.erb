@@ -6,11 +6,9 @@
   <body>
 
     <div class="container">
-    <% if logged_in?%>
-    <h1>Welcome, <%= User.find(current_user[:user_id]) %></h1>
-  <% else%>
-    <h1>Welcome to Fwitter!</h1>
-  <% end %>
+    
+   
+
   <%= yield %>
       </div>
 
