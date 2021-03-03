@@ -11,4 +11,15 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/signup' do
+    user = User.create(params[:user])
+    erb :'users/create_user'
+    # redirect '/tweets'
+    # erb :'tweets/tweets'
+  end
+
+  post '/tweets' do
+    erb :'tweets/tweets'
+  end
+
 end
