@@ -15,11 +15,23 @@ class ApplicationController < Sinatra::Base
     user = User.create(params[:user])
     erb :'users/create_user'
     # redirect '/tweets'
-    # erb :'tweets/tweets'
-  end
-
-  post '/tweets' do
     erb :'tweets/tweets'
   end
+
+  get '/tweets' do
+    Hello World
+  end
+
+  # post '/tweets' do
+  #   @user = User.find_by(:username => params[:username])
+  #
+  #     if @user
+  #       session[:user_id] = @user.id
+  #       erb :'tweets/tweets'
+  #       redirect to '/'
+  #     else
+  #       erb :error
+  #     end
+  #   end
 
 end
