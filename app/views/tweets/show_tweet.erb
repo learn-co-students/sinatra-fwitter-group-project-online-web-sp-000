@@ -1,0 +1,13 @@
+<h1>Tweet Show Page</h1>
+
+<h2>Tweet: <%= @tweet.content %></h2>
+<h2>Tweet posted by: <%= @tweet.user.username %></h2>
+
+<%= "Welcome, User Name: #{@user.username} User ID: #{session[:user_id].to_s}"%> <br><br>
+
+<form method="post" action="/tweets/<%= @tweet.id %>/delete">
+  <input type="hidden" name="_method" value="delete"/>
+  <input type="submit" value="Delete Tweet"/>
+</form>
+
+<a href="">Edit Tweet</a>
