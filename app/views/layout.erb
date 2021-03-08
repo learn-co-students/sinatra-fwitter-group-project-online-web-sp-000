@@ -2,14 +2,52 @@
 <html>
   <head>
     <title>Fwitter</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+      }
+
+      .button {
+        background-color: #1b465e;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        padding: 15px 30px;
+        border: none;
+        display: inline-block;
+        font-size: 14px;
+
+      }
+
+      .topnav {
+        background-color: #1b465e;
+        overflow: hidden;
+      }
+
+      .topnav a {
+        float: right;
+        color: #fff;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      .topnav a:hover {
+        background-color: #4cabe0;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
 
-    <div class="container">
-      <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
-    </div>
+  <div class='topnav'>
+    <a href='/logout'>Log Out</a>
+    <a href='/tweets'>All Tweets</a>
+    <a href='/signup'>Sign up</a>
+    <a href='/login'>Log In</a>
+  </div>
 
+    <%= yield %>
   </body>
 </html>
