@@ -3,7 +3,8 @@
 
 <nav>
   <% if logged_in? %>
-  <%= current_user.username %>
+  <p> Welcome,
+  <%= current_user.username %></p>
   <a href="/tweets/new">Create Tweet</a>
 
   <a href="/logout"> Log Out </a>
