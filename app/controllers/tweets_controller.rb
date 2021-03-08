@@ -9,31 +9,52 @@ class TweetsController < ApplicationController
     end
   end
 
-  post '/tweets' do
-      if logged_in?
-        if params[:content] == ""
-          redirect to "/tweets/new"
-        else
-          @user = User.find_by_id(session[:user_id])
-          @tweet = current_user.tweets.build(content: params[:content])
-          if @tweet.save
-            redirect to "/tweets/#{@tweet.id}"
-          else
-            redirect to "/tweets/new"
-          end
-        end
-      else
-        redirect to '/login'
-      end
-    end
+  # post '/tweets' do
+  #     if logged_in?
+  #       if params[:content] == ""
+  #         redirect to "/tweets/new"
+  #       else
+  #         @user = User.find_by_id(session[:user_id])
+  #         @tweet = current_user.tweets.build(content: params[:content])
+  #         if @tweet.save
+  #           redirect to "/tweets/#{@tweet.id}"
+  #         else
+  #           redirect to "/tweets/new"
+  #         end
+  #       end
+  #     else
+  #       redirect to '/login'
+  #     end
+  #   end
 
-  get "/tweets/new" do
-      if session[:user_id]
-          erb :"tweets/new"
-      else
-          redirect "/login"
-      end
+  # get "/tweets/new" do
+  #     if logged_in?
+  #       erb :"tweets/new"
+  #     else
+  #         redirect "/login"
+  #     end
+  # end
+
+  post '/tweets' do
+    if params[:content] == ""
+      redirect '/tweets/new'
+    else
+      @tweet = Tweet.new(:content => params[:content])
+      @user = User.find(session[:user_id])
+      @user.tweets.push(@tweet)
+      @user.save
+      redirect '/tweets'
+    end
   end
+
+  get '/tweets/new' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :'tweets/new'
+  else
+    redirect '/login'
+  end
+end
 
 
   get '/tweets/:id' do
