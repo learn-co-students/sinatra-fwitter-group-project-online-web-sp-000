@@ -9,8 +9,13 @@ gem 'sqlite3'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
+gem 'pry-nav'
+gem 'byebug'
 gem 'bcrypt'
 gem "tux"
+gem 'sinatra-redirect-with-flash'
+gem 'rack-flash3'
+gem 'tty-tree'
 
 group :test do
   gem 'rspec'
@@ -18,3 +23,5 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner'
 end
+
+gem "sinatra-flash", "~> 0.3.0"
