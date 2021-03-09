@@ -1,0 +1,26 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-md-2 col-md-offset-2">	
+	<h2>Welcome, <%= @user.username %>!</h2>
+  </div>
+
+  	<%if @tweets.empty? %>
+       <h4>There are no tweets posted</h4>
+     <h4><a href="/tweets/new">Click here to enter a tweet</a></h4>
+
+    <% else %>
+       	
+	<% @tweets.all.each do |tweet| %>
+		<h4>Author: <%= tweet.user.username %></h4>
+		<h4>Title: <%= tweet.title %></h4>
+		<h4>Content: <%= tweet.content %></h4><br>
+	<%end%>
+
+  <h4><a href="/tweets/new">Click here to enter a tweet</a></h4>
+
+  <h4><a href="/logout">Click here to logout</a></h4>
+
+	<%end%>
+
+  </div>
+</div>

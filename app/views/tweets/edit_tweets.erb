@@ -1,0 +1,38 @@
+<% if is_logged_in?(session) %>
+    <div class="container">
+
+	         <div class="row">
+		       <div class="col-md-2 col-md-offset-1"></div>
+	           <h3><b>Tweeting! <%= @user.username %></b></h3>
+	         </div>
+
+			  <form action="/tweets/<%=@tweet.id%>" method="post">
+			    <input type="hidden" id="hidden" name="_method" value="patch">         
+			           <h3>Edit Tweet</h3>
+
+				  	<div class="row">
+				      <div class="col-md-2 col-md-offset-1"></div>
+						<label for="title"><h4>Title:</h4></label>
+				  		<input type="text" name="title" id="title" value="<%= @tweet.title %>"><br>
+				  	</div>
+
+				  	<div class="row">
+				      <div class="col-md-2 col-md-offset-1"></div>
+					    <label for="user[content]"><h4>Content:</h4></label>
+				        <input type="text" name="content" id="content" value="<%= @tweet.content %>">
+				    </div> 
+
+				  	<div class="row">
+				      <div class="col-md-2 col-md-offset-1"></div>
+					  <input type="submit" value="Edit Tweet" id="submit">
+
+	  				</form>
+
+	  				<h4><a href="/logout">Click here to logout</a></h4>
+
+			  <% else %>
+			      <h1> You Must Be Logged in to Make Tweets </h1>
+			  <% end %>
+
+
+
