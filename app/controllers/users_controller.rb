@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
           else
 
-            redirect "/layout"
+            redirect "/index"
 
         end
 
