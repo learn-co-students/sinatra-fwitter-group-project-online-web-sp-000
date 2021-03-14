@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
           else
 
-            redirect "/index"
+            redirect "/signup"
 
         end
 
