@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
     end
 
     post '/tweets' do
-        @tweet = Tweet.find_by_id(params[:id])
+        @tweet = Tweet.create(params[:content])
         redirect to "/tweets/#{@tweet.id}"
     end
 
