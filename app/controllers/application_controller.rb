@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
     erb :'index'
   end
 
-  get '/signup' do
+  get '/signup' do #
     if logged_in?(session)
       redirect to "/tweets"
     else
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/signup' do
+  post '/signup' do # sign up and check our params hash via browser.
     # binding.pry
     if params["email"] == "" || params["username"] == "" || params["password"] == ""
       redirect to "/signup"
@@ -36,7 +36,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/login' do
+  get '/login' do # if curent_user is logged in when trying to visit '/login' redirect them to "/tweets", else render :'users/login'
     if logged_in?(session)
       current_user(session)
       redirect to "/tweets"
@@ -45,36 +45,38 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/login' do
-    @user = User.find_by(:username => params[:username])
-    if @user && @user.authenticate(params[:password])
+  post '/login' do # associate instance variable with a User who's user_id matches the :user_id key within params
+    # binding.pry
+    @user = User.find_by(:username => params[:username]) # if the instance variable persists and the :password key in params hash authenticates
+    # binding.pry
+    if @user && @user.authenticate(params[:password]) # associate the :user_id key within our session hash with the id of our User instance
       session[:user_id] = @user.id
-      redirect "/tweets"
+      redirect to "/tweets"
     else
-      redirect "/login"
+      redirect to "/signup"
     end
   end
 
   get '/logout' do
     if logged_in?(session)
       session.clear
+      redirect to "/login"
     else
-      redirect "/login"
+      redirect to "/"
     end
   end
 
-  helpers do
-    def current_user(session)
-      if session[:id] != nil
-        User.find(session[:id])
+  helpers do # if user is logged in, associate instance variable @user with a User that we find by :user_id key within session hash, else return nil.
+    def current_user(session) # 
+      if logged_in?(session)
+      @user = User.find_by_id(session[:user_id])
+      else
+        return nil
       end
     end
 
     def logged_in?(session)
-      if session[:id] != nil
-        user_id = current_user(session).id
-        session[:id] == user_id ? true : false
-      end
+      session[:user_id] != nil
     end
 
     def current_tweet(id)
