@@ -16,16 +16,17 @@ class ApplicationController < Sinatra::Base
     erb :'index'
   end
 
-  get '/signup' do #
+  get '/signup' do
+    # binding.pry
     if logged_in?(session)
       redirect to "/tweets"
     else
-    erb :'/users/create_user'
+    erb :'users/create_user'
     end
   end
 
   post '/signup' do # sign up and check our params hash via browser.
-    # binding.pry
+    #binding.pry
     if params["email"] == "" || params["username"] == "" || params["password"] == ""
       redirect to "/signup"
     else
@@ -37,8 +38,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do # if curent_user is logged in when trying to visit '/login' redirect them to "/tweets", else render :'users/login'
-    if logged_in?(session)
-      current_user(session)
+    if current_user(session)
+    #binding.pry
       redirect to "/tweets"
     else
       erb :'users/login'
@@ -50,15 +51,17 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by(:username => params[:username]) # if the instance variable persists and the :password key in params hash authenticates
     # binding.pry
     if @user && @user.authenticate(params[:password]) # associate the :user_id key within our session hash with the id of our User instance
+    # binding.pry
       session[:user_id] = @user.id
       redirect to "/tweets"
     else
-      redirect to "/signup"
+      redirect to "/login"
     end
   end
 
   get '/logout' do
     if logged_in?(session)
+    #binding.pry
       session.clear
       redirect to "/login"
     else
@@ -76,7 +79,11 @@ class ApplicationController < Sinatra::Base
     end
 
     def logged_in?(session)
-      session[:user_id] != nil
+      if session[:user_id] 
+        User.find_by_id(session[:user_id])
+      else
+        return nil
+      end
     end
 
     def current_tweet(id)
