@@ -1,0 +1,10 @@
+<h3><%= @tweet.content %></h3>
+<a class="button" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+<% if current_user(session) %>
+    <form action="/tweets/<%= @tweet.id %>/delete" method="POST">
+    <!--<input type="hidden" name="_method" value="DELETE">-->
+    <input type="submit" name="submit" value="Delete Tweet">
+<% else %>
+    <a class="button" href="/login">You must Log In to delete a Tweet</a>
+<% end %>
+    </form>

@@ -7,10 +7,10 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     set :session_secret, "fwitter_secret"
+    enable :sessions
   end
 
   enable :method_override
-  enable :sessions
 
   get '/' do
     erb :'index'
@@ -48,14 +48,14 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do # associate instance variable with a User who's user_id matches the :user_id key within params
     # binding.pry
-    @user = User.find_by(:username => params[:username]) # if the instance variable persists and the :password key in params hash authenticates
+    user = User.find_by(:username => params[:username]) # if the instance variable persists and the :password key in params hash authenticates
     # binding.pry
-    if @user && @user.authenticate(params[:password]) # associate the :user_id key within our session hash with the id of our User instance
+    if user && user.authenticate(params[:password]) # associate the :user_id key within our session hash with the id of our User instance
     # binding.pry
-      session[:user_id] = @user.id
+      session[:user_id] = user.id
       redirect to "/tweets"
     else
-      redirect to "/login"
+      redirect to "/signup"
     end
   end
 
@@ -72,14 +72,14 @@ class ApplicationController < Sinatra::Base
   helpers do # if user is logged in, associate instance variable @user with a User that we find by :user_id key within session hash, else return nil.
     def current_user(session) # 
       if logged_in?(session)
-      @user = User.find_by_id(session[:user_id])
+        @user = User.find_by_id(session[:user_id])
       else
         return nil
       end
     end
 
     def logged_in?(session)
-      if session[:user_id] 
+      if session[:user_id]
         User.find_by_id(session[:user_id])
       else
         return nil
@@ -87,7 +87,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_tweet(id)
-      Tweet.find_by_id(id)
+      Tweet.find_by_id(params[:id])
     end
   end
 end
