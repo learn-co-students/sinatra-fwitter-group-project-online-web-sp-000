@@ -13,9 +13,11 @@ class TweetsController < ApplicationController
 
     post '/tweets' do 
         @user =  User.find(session[:user_id])
-        tweet = Tweet.create(content: params[:content])
-        if tweet.content != ""
-        @user.tweets << tweet
+        if params[:content] != ""
+            tweet = Tweet.create(content: params[:content])
+            @user.tweets << tweet
+        else
+            redirect "/tweet/new"
         end
         redirect "/tweets/#{tweet.id}"
     end
@@ -40,7 +42,6 @@ class TweetsController < ApplicationController
 
 
     get '/tweets/:id/edit' do
-   
         if User.is_logged_in?(session)
             @tweet = Tweet.find(params[:id])
             if @tweet.user_id == session[:user_id]

@@ -9,11 +9,11 @@
 <a href="/tweets/<%=@tweet.id%>/edit"><input type="button" value="Edit"></a>
 
 <form action="/tweets/<%=@tweet.id%>/delete" method="post">
-<input type="hidden" value="delete" name="_method">
-<input type="submit" name="delete" value="Delete">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="submit" value="Delete Tweet">
 </form>
 
 <%end%>
 <form action="/logout" method="get">
-<input type="submit" name="logout" value="Logout">
+<input type="submit" name="submit" value="Logout">
 </form>
