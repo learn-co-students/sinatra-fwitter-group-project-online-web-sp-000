@@ -45,15 +45,20 @@ end
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username].strip)
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+    if User.is_logged_in?(session)
       redirect "/tweets"
     else
-      # flash[:message] = "Invalid username/password."
-      redirect "/login"
+      @user = User.find_by(:username => params[:username].strip)
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect "/tweets"
+      else
+        # flash[:message] = "Invalid username/password."
+        redirect "/login"
+      end
     end
   end
+
   get '/logout' do 
     if User.is_logged_in?(session)
       session.clear
