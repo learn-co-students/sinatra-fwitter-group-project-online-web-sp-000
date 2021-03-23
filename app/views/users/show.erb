@@ -1,0 +1,10 @@
+<h1>Welcome, <%= current_user.username %></h1>
+
+<h2>Tweets: </h2>
+<ul>
+  <% current_user.tweets.each do |t| %>
+  <li> <%= t.content %></li>
+  <% end %>
+</ul>
+
+<p><a href="/logout">Click here</a> to log out of Fwitter</p>

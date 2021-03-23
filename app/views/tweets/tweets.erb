@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= current_user.username %> Profile</title>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <h1>Welcome, <%= current_user.username %></h1>
+    <h4>Tweets: </h4>
+    <ul>
+      <% @tweets.each do |t| %>
+      <li><%= t.content %></li>
+      <% end %>
+    </ul>
+    Create New Tweet:
+    <a href="/tweets/new">New Tweet</a>
+    <br><br>
+    See Your Tweets:
+    <a href="/users/show">View Profile</a>
+    <br><br>
+    Logout:
+    <a href="/logout">Logout</a>
+  </body>
+
+</html>
