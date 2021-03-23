@@ -61,7 +61,6 @@ end
     else
       redirect "/"
     end
-    erb :"/users/logout"
   end
   
 end

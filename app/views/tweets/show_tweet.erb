@@ -3,7 +3,9 @@
 <p id="tweet-content"><%=@tweet.content%></p>
 </div>
 
-<%if @tweet.user_id == User.find(session[:user_id]).id%>
+<%if @tweet.user_id == session[:user_id]%>
+<a href="/tweets/new"><input type="button" value="New Tweet"></a><br>
+
 <a href="/tweets/<%=@tweet.id%>/edit"><input type="button" value="Edit"></a>
 
 <form action="/tweets/<%=@tweet.id%>/delete" method="post">
