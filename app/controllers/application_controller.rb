@@ -8,11 +8,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :layout
+    erb :index
   end
 
   get '/login' do
-    erb :login
+    erb :'/users/login'
   end
 
   get '/signup' do
