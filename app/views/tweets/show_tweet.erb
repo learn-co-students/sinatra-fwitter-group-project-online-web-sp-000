@@ -1,0 +1,17 @@
+<div class="tweet-container">
+<a href="/users/<%=@user.slug%>"><%=@user.username%></a>
+<p id="tweet-content"><%=@tweet.content%></p>
+</div>
+
+<%if @tweet.user_id == User.find(session[:user_id]).id%>
+<a href="/tweets/<%=@tweet.id%>/edit"><input type="button" value="Edit"></a>
+
+<form action="/tweets/<%=@tweet.id%>/delete" method="post">
+<input type="hidden" value="delete" name="_method">
+<input type="submit" name="delete" value="Delete">
+</form>
+
+<%end%>
+<form action="/logout" method="get">
+<input type="submit" name="logout" value="Logout">
+</form>
