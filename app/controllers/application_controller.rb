@@ -26,15 +26,10 @@ class ApplicationController < Sinatra::Base
       redirect "/signup"
     else
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-      if User.find(@user.id)
-        session[:user_id] = @user.id
-        redirect "/tweets"
-      else 
-        erb :"users/signup"
+      session[:user_id] = @user.id
+      redirect "/tweets"
     end
-    end
-
-end
+  end
 
   get '/login' do
     if !User.is_logged_in?(session)

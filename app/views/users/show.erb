@@ -4,8 +4,8 @@
 <%@user.tweets.each do |t|%>
     <li>
     <div class="tweet-container">
-    <a href="/users/<%=t.user.slug%>"><%=t.user.username%></a>
-    <p name="tweet" id="tweet-content"><%=t.content%></p>
+    <a href="/users/<%=t.user.slug%>" class='fas fa-user-alt' style="font-size:36px; text-decoration: none"><%=t.user.username%></a>
+    <p name="tweet" id="tweet-content" style="padding: 1em; font-size: 19px"><%=t.content%></p>
     <!--put in an edit and delete button-->
     </div>
     </li>
