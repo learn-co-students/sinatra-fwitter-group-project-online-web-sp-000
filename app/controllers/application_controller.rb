@@ -6,6 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    set :session_secret, 'super secret'
   end
 
   get '/' do
@@ -68,12 +69,51 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       erb :'/tweets/new'
     else
-      redirect :'/'
+      redirect :'/login'
     end
   end
 
-  #post '/tweets' do
-    
+  post '/tweets' do
+    @tweet=Tweet.new(user_id: current_user.id, content: params[:content])
+
+    if !logged_in?
+      redirect :'/login'
+    elsif @tweet.save && logged_in?
+      redirect :"/tweets/#{@tweet.id}"
+    else
+      redirect :'tweets/new'
+    end
+  end
+
+  get '/tweets/:id' do
+    if logged_in?
+    @tweet=Tweet.find(params[:id])
+    erb :'/tweets/show_tweet'
+    else
+      redirect :'/login'
+    end
+  end
+
+  get '/tweets/:id/edit' do
+    if logged_in?
+      @tweet=Tweet.find(params[:id])
+      erb :'/tweets/edit_tweet'
+    else
+      redirect
+    end
+  end
+
+  patch '/edit/:id' do
+    tweet=Tweet.find(params[:id])
+    if !logged_in?
+      redirect :'/login'
+    elsif params[:content]==''
+      redirect :"/tweets/#{tweet.id}/edit"
+    else
+      tweet.update(content: params[:content])
+      redirect :"/tweets/#{tweet.id}"
+    end
+  end
   
   get '/logout' do
     if logged_in?
