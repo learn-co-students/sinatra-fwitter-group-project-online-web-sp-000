@@ -14,7 +14,7 @@ def self.current_user(session)
 end
 
 def self.is_logged_in?(session)
-   !!current_user(session)
+   @current_user ||= User.find(session[:user_id]) if session[:user_id]
 end
 
 #format to slug
