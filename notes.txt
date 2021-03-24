@@ -1,0 +1,20 @@
+-User
+has many tweets
+has secure password
+ attributes: user name, email, password
+
+-Tweet
+belongs to a user
+attributes: content
+
+Control Flow
+'/' welcomes and shows signup or login buttons
+	-'/signup' form, username, email, password
+	-'/login' form, username, password
+'/tweets' welcomes signed in user and shows ALL tweets
+'/users' shows current users tweets
+'/users/:slug' shows username from :slug tweets
+'/tweets/:id/edit' form to edit tweet
+'/tweets/:id/delete' deletes tweet if it belongs to current user
+'/tweets/:id/new' form to create a new tweet
+
