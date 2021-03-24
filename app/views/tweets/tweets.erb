@@ -1,0 +1,17 @@
+
+<h1>Welcome, <%=@user.username%></h1>
+<ul id="tweet-list", style= "list-style: none">
+<%@tweets.each do |t|%>
+    <li>
+    <div class="tweet-container">
+    <a href="/tweets/<%=t.id%>" class='fas fa-user-alt' style="font-size:36px; text-decoration: none">   <%=t.user.username%></a>
+    <p id="tweet-content" style="padding: 1em; font-size: 19px"><%=t.content%></p>
+    </div>
+    </li>
+<%end%>
+</ul>
+
+<a href="/tweets/new"><input type="button" value="New Tweet"></a>
+<form action="/logout" method="get">
+<input type="submit" name="logout" value="Logout">
+</form>

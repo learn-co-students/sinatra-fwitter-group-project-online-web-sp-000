@@ -1,0 +1,18 @@
+
+<h1><%=@user.username%></h1>
+<ul id="tweet-list", style= "list-style: none">
+<%@user.tweets.each do |t|%>
+    <li>
+    <div class="tweet-container">
+    <a href="/users/<%=t.user.slug%>" class='fas fa-user-alt' style="font-size:36px; text-decoration: none"><%=t.user.username%></a>
+    <p name="tweet" id="tweet-content" style="padding: 1em; font-size: 19px"><%=t.content%></p>
+    <!--put in an edit and delete button-->
+    </div>
+    </li>
+<%end%>
+</ul>
+
+<a href="/tweets/new"><input type="button" value="New Tweet"></a>
+<form action="/logout" method="get">
+<input type="submit" name="submit" value="Logout">
+</form>

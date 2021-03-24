@@ -1,4 +1,7 @@
-<form action="/logout" method="post">
-  Logout?
-  <input type="submit" name="logout" >
+<%if User.is_logged_in?(session)%>
+<form action="/logout" method="get">
+Logout?<input type="submit" value="Submit">
 </form>
+<%else%>
+<%redirect "/tweets"%>
+<%end%>

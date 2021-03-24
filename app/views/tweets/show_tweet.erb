@@ -1,0 +1,18 @@
+<div class="tweet-container">
+<a href="/users/<%=@user.slug%>" style="font-size:36px; text-decoration: none"><%=@user.username%></a>
+<p id="tweet-content" style="padding: 1em; font-size: 19px"><%=@tweet.content%></p>
+</div>
+
+
+<a href="/tweets/new"><input type="button" value="New Tweet"></a><br>
+
+<a href="/tweets/<%=@tweet.id%>/edit"><input type="button" value="Edit Tweet"></a>
+
+<form action="/tweets/<%=@tweet.id%>/delete" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="submit" value="Delete Tweet">
+</form>
+
+<form action="/logout" method="get">
+<input type="submit" name="submit" value="Logout">
+</form>
