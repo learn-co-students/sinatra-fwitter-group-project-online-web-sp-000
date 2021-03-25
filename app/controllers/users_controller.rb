@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+    get '/users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        erb :'users/show'
+      end
+
     get '/signup' do
         if !logged_in?
           erb :'users/login', locals: {message: "Please sign up before you sign in"}
@@ -36,5 +41,15 @@ class UsersController < ApplicationController
           redirect to '/signup'
         end
       end
+
+      get '/logout' do
+        if logged_in?
+          session.destroy
+          redirect to '/login'
+        else
+          redirect to '/'
+        end
+      end
+
 
 end
