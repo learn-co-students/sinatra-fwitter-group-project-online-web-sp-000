@@ -1,0 +1,14 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% @user.tweets.each do |tweet| %>
+  <ul><%= tweet.content %></ul>
+<% end %>
+
+<% User.all.each do |user| %>
+  <% if user != @user %>
+    <ul><%= user.username %>
+      <% user.tweets.each do |tweet| %>
+      <li><%= tweet.content %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
