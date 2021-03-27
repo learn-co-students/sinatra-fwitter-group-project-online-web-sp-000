@@ -1,0 +1,20 @@
+<% if Helpers.is_logged_in?(session) %>
+
+    <a href ="/users/<%= @user.slug %>">My Profile</a>
+    <a href="/logout">Logout</a>
+
+    <h2>Feed</h2>
+
+    <% @tweets.each do |tweet| %>
+        <div>
+            <%= tweet.user.username %><br>
+            <%= tweet.content %>
+        </div>
+        <br>
+    <% end %>
+
+<% else %>
+    <h1> You Must Be <a href="/index">Logged in</a> to See Tweets </h1>
+<% end %>
+    
+

@@ -1,0 +1,24 @@
+Welcome, <%= @user.username %>
+
+<H3>Your Tweets</h3>
+
+<a href="/tweets/new">New Tweet</a>
+
+<% @user.tweets.each do |tweet| %>
+    <ol>
+        <li>   
+            <%= tweet.content %> 
+            <br>
+            <a href="/tweets/<%= tweet.id %>/edit">Edit</a>
+                
+            <form action="/tweets/<%= tweet.id %>" method="post">
+              <input type="hidden" id="hidden" name="_method" value="delete">
+              <a href=""><input type="submit" value="Delete"></a>
+            </form>
+
+         </li>
+    </ol>
+<% end %>
+
+
+  
