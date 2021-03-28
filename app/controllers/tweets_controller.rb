@@ -86,6 +86,9 @@ class TweetsController < ApplicationController
             else
                 redirect to "/tweets/#{tweet.id}"
             end
+        else
+            redirect to "/login"
+        end
 
     end
 
