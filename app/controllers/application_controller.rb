@@ -1,11 +1,11 @@
 require './config/environment'
-
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
 
   configure do
     #register Sinatra::ActiveRecordExtension
     enable :sessions
-   # use Rack::Flash
+    use Rack::Flash
     #register Sinatra::Flash
     set :session_secret, "password_security"
     set :public_folder, 'public'
@@ -20,5 +20,15 @@ class ApplicationController < Sinatra::Base
   get '/index' do
     erb :index
   end
+
+  # helpers do
+  #   def logged_in?
+  #     !!session[:user_id
+  #   end
+  
+  #   def current_user
+  #     User.find(session[:user_id])
+  #   end
+  # end
 
 end

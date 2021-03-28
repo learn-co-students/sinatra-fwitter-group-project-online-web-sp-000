@@ -22,13 +22,15 @@ class TweetsController < ApplicationController
 
   post '/tweets' do
     @user= Helpers.current_user(session)
-    if !params[:content].empty?
-      @tweet = Tweet.new(:content => params[:content])
+    @tweet = Tweet.new(:content => params[:content])
+    if @tweet.save
+      #!params[:content].empty?
+      #@tweet = Tweet.new(:content => params[:content])
       @tweet.user = @user
       @tweet.save
       redirect to "/tweets/#{@tweet.id}"
     else
-      #flash[:message] ="Your tweet must includee content."
+      flash[:message] ="Your tweet must includee content."
       redirect to "/tweets/new"
     end
   end

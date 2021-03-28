@@ -17,12 +17,12 @@ class UsersController < ApplicationController
   post '/signup' do
     #binding.pry
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-    if @user && !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
+    if @user.save 
       @user.save
       session[:user_id] = @user.id
       redirect to '/tweets'
     else
-      #flash[:message] = "You need an username, an email, and a password to signup."
+      flash[:message] = "You need an username, an email, and a password to signup."
       redirect to '/signup'
     end
   end
@@ -34,8 +34,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/tweets'
     else
-      #flash[:message] = "Invalid username or password."
-      redirect to '/login'
+      flash[:message] = "Invalid username or password"
+      #redirect to '/login'
+      erb :'users/login'
     end
   end
 
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if Helpers.is_logged_in?(session)
       session.clear
-      #flash[:message] ="You have been successfully logged out."
+      flash[:message] ="You have been successfully logged out."
       redirect to '/login'
     else
       redirect to '/'
