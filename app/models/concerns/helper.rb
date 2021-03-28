@@ -1,5 +1,5 @@
 require 'pry'
-class Helpers
+class Helpers < ActiveRecord::Base
 
   def self.is_logged_in?(argument)
     !!argument[:user_id]

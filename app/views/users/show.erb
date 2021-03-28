@@ -9,11 +9,11 @@ Welcome, <%= @user.username %>
         <li>   
             <%= tweet.content %> 
             <br>
-            <a href="/tweets/<%= tweet.id %>/edit">Edit</a>
+            <a href="/tweets/<%= tweet.id %>/edit" id="Edit Tweet">Edit Tweet</a>
                 
             <form action="/tweets/<%= tweet.id %>" method="post">
               <input type="hidden" id="hidden" name="_method" value="delete">
-              <a href=""><input type="submit" value="Delete"></a>
+              <input type="submit" value="Delete Tweet" id="Delete Tweet">
             </form>
 
          </li>

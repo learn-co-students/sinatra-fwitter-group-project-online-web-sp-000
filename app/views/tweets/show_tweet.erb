@@ -1,19 +1,17 @@
 <% if Helpers.is_logged_in?(session) %>
-<%= @error %>
     <a href="/tweets">Home</a>
     <h1>Single Tweet</h1>
     Content:
     <br>
     <%= @tweet.content %>
     <br><br>
+    <a href="/tweets/<%= @tweet.id %>/edit" id="Edit Tweet">Edit Tweet</a>
     
-    <a href="/tweets/<%= @tweet.id %>/edit"><input type="submit" value="Edit"></a>
-    
+    <br>
     <form action="/tweets/<%= @tweet.id %>" method="post">
         <input type="hidden" id="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete">
+        <input type="submit" value="Delete Tweet" id="Delete Tweet">
     </form>
-
-  <% else %>
-      <h1> You Must Be <a href="/index">Logged in</a> to View Tweets </h1>
-  <% end %>
+<% else %>
+      <h1> You Must Be <a href="/login">Logged in</a> to View Tweets </h1>
+<% end %>

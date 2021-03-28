@@ -1,5 +1,5 @@
 <% if Helpers.is_logged_in?(session) %>
-
+    <h1>Welcome, <%= @user.username %></h1>
     <a href ="/users/<%= @user.slug %>">My Profile</a>
     <a href="/logout">Logout</a>
 
@@ -14,7 +14,7 @@
     <% end %>
 
 <% else %>
-    <h1> You Must Be <a href="/index">Logged in</a> to See Tweets </h1>
+    <h1> You Must Be <a href="/login">Logged in</a> to See Tweets </h1>
 <% end %>
     
 

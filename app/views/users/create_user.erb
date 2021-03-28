@@ -1,3 +1,8 @@
+<% if Helpers.is_logged_in?(session) %>
+  <%= redirect to "/tweets" %>
+
+<% else %>
+
 <h1>New User</h1>
 <% if false %>
 <% if flash.has?(:message) %>
@@ -12,7 +17,9 @@
   <input type="text" name="email" id="email">
   <br>
   <label>Password:</label>
-  <input type="text" name="password" id="password"><BR><BR>
-HELLO
+  <input type="text" name="password" id="password"><br><br>
+
   <input type="submit" value="Create User">
 </form>
+
+<% end %>
