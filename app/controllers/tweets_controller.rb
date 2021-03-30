@@ -2,8 +2,6 @@ class TweetsController < ApplicationController
   
   get '/tweets' do
     if Helpers.is_logged_in?(session)
-      # @user = User.find(session[:user_id])
-      #binding.pry
       @tweets= Tweet.all
       @user = Helpers.current_user(session)
       erb :'tweets/tweets'
@@ -24,8 +22,6 @@ class TweetsController < ApplicationController
     @user= Helpers.current_user(session)
     @tweet = Tweet.new(:content => params[:content])
     if @tweet.save
-      #!params[:content].empty?
-      #@tweet = Tweet.new(:content => params[:content])
       @tweet.user = @user
       @tweet.save
       redirect to "/tweets/#{@tweet.id}"
@@ -36,15 +32,14 @@ class TweetsController < ApplicationController
   end
 
   get '/tweets/:id/edit' do
-    #binding.pry
     if Helpers.is_logged_in?(session) 
-      @user= Helpers.current_user(session)
-      if Tweet.find(params[:id]).user_id == @user.id
-        @tweet= @user.tweets.find(params[:id])
+    #  @user= Helpers.current_user(session)
+     # if Tweet.find(params[:id]).user_id == @user.id
+        @tweet= Tweet.find(params[:id])
         erb :'tweets/edit_tweet'
-      else
-        redirect to "/tweets"
-      end
+     # else
+      #  redirect to "/tweets"
+     # end
     else
       redirect to '/login'
     end
@@ -52,10 +47,8 @@ class TweetsController < ApplicationController
 
   get '/tweets/:id' do
     if Helpers.is_logged_in?(session)
-    # binding.pry
-      @user = Helpers.current_user(session)
+      #@user = Helpers.current_user(session)
       @tweet= Tweet.find(params[:id])
-      
       erb :'tweets/show_tweet'
     else
       redirect to '/login'
@@ -64,13 +57,15 @@ class TweetsController < ApplicationController
 
   patch '/tweets/:id' do
     if Helpers.is_logged_in?(session)
-      @user= Helpers.current_user(session)
-      @tweet= @user.tweets.find(params[:id])
+     # @user= Helpers.current_user(session)
+      @tweet= Tweet.find(params[:id])
       if !params[:content].empty?
         @tweet.content = params[:content]
         @tweet.save
+        flash[:message] = "Successfully updated tweet."
         redirect to "/tweets/#{@tweet.id}"
       else
+        flash[:message] = "Your tweet cannot be empty."
         redirect to "/tweets/#{@tweet.id}/edit"
       end
     else
@@ -82,8 +77,12 @@ class TweetsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
       @tweet= Tweet.find(params[:id])
-      @tweet.destroy
-      redirect to "/tweets"
+      if @tweet.user_id == @user.id
+        @tweet.delete
+        redirect to "/tweets"
+      else
+        redirect to "/tweets"
+      end
     else
       redirect to "/login"
     end

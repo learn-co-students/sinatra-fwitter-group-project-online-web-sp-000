@@ -10,20 +10,19 @@ class UsersController < ApplicationController
   end
   
   get '/signup' do
-    #binding.pry
     erb :'users/create_user'
   end
 
   post '/signup' do
-    #binding.pry
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     if @user.save 
       @user.save
       session[:user_id] = @user.id
       redirect to '/tweets'
     else
-      flash[:message] = "You need an username, an email, and a password to signup."
+     # flash[:message] = "You need an username, an email, and a password to signup."
       redirect to '/signup'
+      #erb :'users/create_user'   (using this line causes errors even though the 'signup' route simply displays the create_user form)
     end
   end
 

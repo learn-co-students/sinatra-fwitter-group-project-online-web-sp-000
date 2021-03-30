@@ -1,6 +1,9 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <% if Helpers.is_logged_in?(session) %>
   <%= redirect to "/tweets" %>
-
 <% else %>
 
 <h1>New User</h1>
