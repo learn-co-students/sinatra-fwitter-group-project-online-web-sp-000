@@ -1,0 +1,21 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<% if Helpers.is_logged_in?(session) %>
+    <a href="/tweets">Home</a>
+    <h1>Single Tweet</h1>
+    Content:
+    <br>
+    <%= @tweet.content %>
+    <br><br>
+    <a href="/tweets/<%= @tweet.id %>/edit" name="Edit Tweet" id="Edit Tweet">Edit Tweet</a>
+    
+    <br>
+    <form action="/tweets/<%= @tweet.id %>" method="post">
+        <input type="hidden" id="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Tweet" name="Delete Tweet" id="Delete Tweet">
+    </form>
+<% else %>
+      <h1> You Must Be <a href="/login">Logged in</a> to View Tweets </h1>
+<% end %>
