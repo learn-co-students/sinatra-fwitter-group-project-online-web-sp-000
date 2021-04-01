@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    # binding.pry
     if Helpers.is_logged_in?(session)
       redirect to("/tweets")
     else
@@ -17,9 +16,8 @@ class UsersController < ApplicationController
 
   post '/signup' do
     # user signs up, if params are not empty, create a new user and set session id, redirect to index.
-    # binding.pry
     if params[:username] != "" && params[:email] != "" && params[:password] != "" 
-      @user = User.create(username: params[:username], email: params[:email], password_digest: params[:password])
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
       redirect to("/tweets")
     else 
@@ -37,14 +35,18 @@ class UsersController < ApplicationController
   end
     
   post '/login' do
+    
+    @user = User.find_by(username: params[:username])
     # binding.pry
-    @user = User.find_by(params[:id])
-    session[:user_id] = @user.id
-    redirect to("/tweets")
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to("/tweets")
+    else
+      redirect to ("/login")
+    end
   end
     
   get '/logout' do
-    # binding.pry
     if Helpers.is_logged_in?(session)
       session.clear
       redirect to("/login")
@@ -52,22 +54,6 @@ class UsersController < ApplicationController
       redirect to("/")
     end
   end
-
-  # post '/logout' do
-  #   # if logged in, lets user logout and redirect to login page
-  #   if Helpers.is_logged_in?(session)
-  #     session.clear
-  #     redirect to("/login")
-  #   else
-  #     redirect to("/")
-  #   end
-  #   # if not logged in and user tries to access /logout
-  #   # redirect to("/")
-  #   # if not logged in and user tries to access /tweets
-  #   # redirect to("/login")
-  #   # if logged in
-  #   # redirect to("/tweets")
-  # end
 
   get '/users/:slug' do
     # shows all a single users tweets
