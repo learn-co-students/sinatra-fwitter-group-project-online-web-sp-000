@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/loging' do
+    get '/login' do
         if logged_in?
             erb :'users/login'
         else
