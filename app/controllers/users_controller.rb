@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     get "/signup" do
         if logged_in?
-            erb :'users/create_user' ,locals: {message: "New users need to create account before sign in"}
+            erb :'users/signup', locals: {message: "New users need to create account before sign in"}
         else
             redirect to "/tweets"
         end
