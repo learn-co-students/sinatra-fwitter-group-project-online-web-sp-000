@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets' do
-        if !logged_in?
+        if logged_in?
             @users = current_user
             @tweets = Tweet.all 
             erb :'/tweets/tweets' 

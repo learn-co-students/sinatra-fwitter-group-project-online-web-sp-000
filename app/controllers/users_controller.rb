@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     end
 
     get "/logout" do
-        if logged_in?
+        if !logged_in?
             redirect to "/"
         else
             session.clear
