@@ -1,11 +1,11 @@
 <p> Welcome, <%= current_user.username %>
-<h2> Tweets </h2>
+<h3> Tweets </h3>
 
 <% @tweets.each do |tweet| %>
-  <div>
+  
     <% if !tweet.content.empty? %>
       <%= tweet.content %>
     <%else%>
     <h2>No tweets!</h2>   
-  </div>
+  
 <%end%>
