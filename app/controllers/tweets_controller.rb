@@ -13,6 +13,20 @@ class TweetsController < ApplicationController
         end
     end
 
+    get "/tweets/new" do
+        erb :'tweets/new'
+    end
+
+    post "/tweets" do
+        @user = User.find_by(id: session[:user_id])
+        @tweet = Tweet.new(content: params[:content])
+        @tweet.user = @user
+        #binding.pry
+
+        @tweet.save
+
+    end
+
     # get "/tweets/:slug" do
 
     #     @user = User.find_by_slug(params[:slug])
