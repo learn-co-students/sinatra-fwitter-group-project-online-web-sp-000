@@ -1,0 +1,13 @@
+# show the tweet!
+<h2> <%= @tweet.content %></h2>
+<p> <%= @tweet.user_id %></p>
+
+<form method="post" action="/tweets/<%= @tweet.id %>">
+# create an edit link
+
+# delete button
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
+
+
