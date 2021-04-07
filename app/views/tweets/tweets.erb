@@ -1,0 +1,22 @@
+<h2>Welcome, 
+    <a href="/users/:slug">
+        @<%= current_user.username %>!  
+    </a>
+</h2>
+
+<button><a href="/tweets/new" id="submit">New Post!</a></button>
+
+<h2>All Tweets:</h2>
+
+<div>
+<% @tweets.each do |tweet| %>
+    <a href="/tweets/<%= tweet.id %>"> 
+        <h3><%= tweet.content %></h3> </a>
+        <h5>tweeted by @<%= tweet.user_id %></h5>   
+<% end %>
+</div>
+
+
+
+<a href="/logout" id="submit">Log Out</a>
+
