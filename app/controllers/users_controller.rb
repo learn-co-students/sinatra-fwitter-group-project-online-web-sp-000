@@ -30,11 +30,11 @@ class UsersController < ApplicationController
 
     post '/login' do
         @user = User.find_by(username: params[:username])
-        if @user
+        if @user     #&& user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect '/tweets'
         else
-            redirect '/users/login'
+            redirect '/signup'
         end
     end
 
@@ -47,8 +47,11 @@ class UsersController < ApplicationController
         end
     end
 
-    # get '/show' do
-    #     erb :'users/show'
-    # end
+    # create controller action to show page that shows all a single users tweets
+    get '/users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        erb :"users/show"
+      end
+
 
 end
