@@ -18,12 +18,19 @@ class TweetsController < ApplicationController
     end
 
     post "/tweets" do
+
+        if !params[:content].empty?
+
         @user = User.find_by(id: session[:user_id])
         @tweet = Tweet.new(content: params[:content])
         @tweet.user = @user
-        #binding.pry
-
         @tweet.save
+
+        else
+            @error = "You need to add content to create a tweet!"
+
+            redirect "/tweets/new"
+        end
 
     end
 
