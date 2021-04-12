@@ -1,0 +1,11 @@
+<% if logged_in? %>
+    <h1>Welcome, <%= @user.username %></h1>
+    <% @tweets.each do |tweet| %>
+        <%= tweet.content %><br>
+    <% end %> 
+<% else %>
+        <%'/login'%>
+<% end %>
+<br>
+<a href="/logout">Log Out</a>
+
