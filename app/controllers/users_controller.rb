@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   get '/signup' do
-    erb :"users/create_user"
+    if !logged_in?
+      erb :"users/create_user"
+    else
+      redirect '/tweets'
+    end
   end
 
   post '/signup' do
@@ -14,7 +18,11 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :"users/login"
+    if !logged_in?
+      erb :"users/login"
+    else
+      redirect '/tweets'
+    end
   end
 
   post '/login' do
@@ -29,7 +37,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.clear
-    redirect "/"
+    redirect "/login"
   end
 
 end
