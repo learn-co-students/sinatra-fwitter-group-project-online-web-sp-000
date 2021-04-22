@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
       end
     end
   
-    post '/tweets' do
+   post '/tweets' do
       if logged_in?
         if params[:content] == ""
           redirect to "/tweets/new"
@@ -26,7 +26,7 @@ class TweetsController < ApplicationController
           if @tweet.save
             redirect to "/tweets/#{@tweet.id}"
           else
-            redirect to "/tweets/new"
+             redirect to "/tweets/new"
           end
         end
       else

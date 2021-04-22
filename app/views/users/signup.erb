@@ -2,6 +2,10 @@
 
 <h3>Sign Up Below</h3>
 
+<% if flash.has?(:onboard_error) %>
+  <%= flash[:onboard_error] %>
+<% end %>
+
 <form action="/signup" method="POST">
   <label>Username: </label><input type="text" name="username"></p>
   <br><br>
