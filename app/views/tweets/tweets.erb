@@ -3,5 +3,5 @@
 <!-- add content here -->
 
 <% @tweets.each do |tweet| %>
-    <li> <p><%= tweet.content %></p> <p>tweet.user.username</p>  <li>
+    <li> <p><%= tweet.content %></p> <p><%= tweet.user.username%></p>  <li>
 <% end %>
