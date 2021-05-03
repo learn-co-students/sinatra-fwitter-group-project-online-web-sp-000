@@ -1,0 +1,8 @@
+
+<%if @user.tweets.any?%>
+    <%@user.tweets.each do |tweet|%>
+        <%=tweet.content%>
+    <%end%>
+<%else%>
+    No tweets
+<%end%>
