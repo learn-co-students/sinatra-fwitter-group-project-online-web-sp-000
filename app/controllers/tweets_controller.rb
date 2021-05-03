@@ -37,10 +37,10 @@ class TweetsController < ApplicationController
         end
     end
 
-    get '/tweets/:id/edit' do
-        @tweet = find_tweet
+    get '/tweets/:id/edit' do 
         if logged_in? 
             if current_user.tweets.include?(find_tweet)
+                @tweet = find_tweet
                 erb :'/tweets/edit'
             else
                 redirect "/tweets"
@@ -61,11 +61,18 @@ class TweetsController < ApplicationController
     end
     
 
-    delete '/tweets/:id' do
-        tweet = find_tweet 
-        if logged_in? && current_user.tweets.include?(find_tweet)
+    delete '/tweets/:id' do 
+        binding.pry  
+        if logged_in? 
+            tweet = find_tweet 
+            if current_user.tweets.include?(tweet)
+                tweet.destroy
+                p "/tweets"
+            else
+                p "/tweets/#{tweet.id}"
+            end
         else
-            redirect "/tweets/#{tweet.id}"
+            p '/login'
         end
     end
 
