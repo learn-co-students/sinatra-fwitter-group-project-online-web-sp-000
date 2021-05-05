@@ -1,0 +1,9 @@
+<p><%= @tweet.content %></p> <p><%= @tweet.user.username %></p>
+<% if Helpers.is_logged_in?(session) %>
+<%= @error %>
+    <% if Helpers.current_user(session).id === @tweet.user_id%>
+        <%= @error %>
+        <form id = "form" method="post" action="/tweets/<%= @tweet[:id] %>">
+        <input id="hidden" type="submit" name="_method" value="DELETE">
+    <% end %>
+  <% end %>
