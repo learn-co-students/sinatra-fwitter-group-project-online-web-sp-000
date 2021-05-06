@@ -49,20 +49,22 @@ end
 patch '/tweets/:id' do 
     @tweet = Tweet.find(params[:id])
     if !params[:tweet][:content].empty?
-        @tweet.update(content: params[:content]
-
-    redirect "/tweets/#{@tweet.id}"
+        @tweet.update(params[:tweet])
+        redirect "/tweets/#{@tweet.id}"
         else 
             redirect "/tweets/#{@tweet.id}/edit"
         end 
     binding.pry 
     end 
-end 
-
-#delete tweets id delete 
 
 
-
-
-
+    delete '/tweets/:id/delete' do
+        @tweet = Tweet.find(params[:id])
+        if logged_in? && @tweet.user_id == current_user.id
+             @tweet.delete
+        redirect "/tweets"
+        else 
+        redirect "/tweets/#{@tweet.id}"
+    end 
 end
+end 
