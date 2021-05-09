@@ -6,9 +6,13 @@
   <body>
 
     <div class="container">
+      <% if current_user %>
+        <a href='/logout'>Logout</a>
+      <% else %>
+        <a href='/login'>Login</a><a href='/signup'>Signup</a>
+      <% end %>
       <h1>Welcome to Fwitter!</h1>
-      <h2>This is located in layout.erb!</h2>
-      <h2>Don't forget to <strong>yield</strong> your views!</h2>
+      <%= yield %>
     </div>
 
   </body>
