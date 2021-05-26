@@ -1,0 +1,10 @@
+<!doctype html>
+  <head>
+    <h4>Here are your tweets, <%= @user.username %></h4><br>
+
+    <% @user.tweets.each do |tweet| %>
+      <li><%= tweet.content %></li>
+    <% end %>
+    
+  </head>
+</htl>

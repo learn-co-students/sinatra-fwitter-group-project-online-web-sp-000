@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fwitter</title><br>
+  </head>
+  <body>
+
+      <h4>Welcome to Fwitter!</h4><br>
+
+      <% if !logged_in? %>
+
+      <p>Please Sign Up or Log In below</p><br>
+
+      <a href="/users/signup">Sign Up</a><br>
+      <a href="/users/login">Log In</a><br>
+
+      <% else %>
+
+      <a href="/users/logout">Log Out</a><br>
+
+      <% end %>
+
+    </div>
+
+  </body>
+</html>
