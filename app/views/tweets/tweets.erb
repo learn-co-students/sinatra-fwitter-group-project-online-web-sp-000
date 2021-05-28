@@ -1,15 +1,7 @@
-<!doctype html>
-  <head>
+<h2>Welcome, <%= @current_user.username %></h2><br>
 
-    <h4>Welcome, <%= @current_user.username %></h4><br>
+<h4>Tweets:</h4><br>
 
-    <h2>Tweets</h2><br>
-
-    <% if logged_in? %>
-      <% @tweets.each do |tweet| %>
-        <li><%= tweet.content %></li>
-        <% end %>
-      <% end %>
-
-  </head>
-</html>
+<% @tweets.each do |tweet| %>
+  <li><%= tweet.content %></li>
+<% end %>

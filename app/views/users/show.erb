@@ -1,10 +1,13 @@
 <!doctype html>
   <head>
-    <h4>Here are your tweets, <%= @user.username %></h4><br>
 
+    <br>
+    <h4><%= @user.username %> Tweets</h4><br>
+    <br>
     <% @user.tweets.each do |tweet| %>
-      <li><%= tweet.content %></li>
+      <li><p><%= tweet.content %></p><li>
+      <br>
     <% end %>
-    
+
   </head>
-</htl>
+<html>
