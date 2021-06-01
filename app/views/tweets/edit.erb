@@ -1,0 +1,14 @@
+<!doctype html>
+  <head>
+
+      <h4>Edit Tweet</h4><br>
+      <br>
+
+      <form method="POST" action="/tweets/<%= @tweet.id %>">
+        <input type="hidden" id="hidden" name="_method" value="patch">
+        <input type="text" name="content" value="<%= @tweet.content %>">
+        <input type="submit" value="submit">
+        <br>
+      </form>
+  </head>
+</html>
