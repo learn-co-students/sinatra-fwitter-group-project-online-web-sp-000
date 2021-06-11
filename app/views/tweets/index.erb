@@ -1,5 +1,8 @@
 <h1>"Welcome, <%=@user.username%>!</h1>
 
+<h2><a href="/tweets/new">Create A New Tweet</a></h2><br><br>
+
+<h2>Fwitter Feed</h2
 <% @tweets.each do |tweet| %>
   <h4><a href="/tweets/<%=tweet.id%>"><%=tweet.content%></a></h4>
 <%end%>
