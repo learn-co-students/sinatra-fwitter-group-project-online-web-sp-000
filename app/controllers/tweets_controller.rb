@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   get "/tweets/new" do
-    if session[:user_id]
+    if Helpers.is_logged_in?(session)
       erb :"tweets/new"
     else
       redirect '/login'
@@ -9,7 +9,7 @@ class TweetsController < ApplicationController
   end
 
   get "/tweets/:id" do
-    if session[:user_id]
+    if Helpers.is_logged_in?(session)
       @tweet = Tweet.find_by_id(params[:id])
       erb :"tweets/show"
     else
@@ -19,9 +19,9 @@ class TweetsController < ApplicationController
 
   get "/tweets/:id/edit" do
     @tweet = Tweet.find_by_id(params[:id])
-    if @tweet && (session[:user_id] == @tweet.user_id)
+    if @tweet && (Helpers.current_user(session).id == @tweet.user_id)
       erb :"tweets/edit"
-    elsif session[:user_id]
+    elsif Helpers.is_logged_in?(session)
       redirect '/tweets'
     else
       redirect '/login'
@@ -30,7 +30,7 @@ class TweetsController < ApplicationController
 
   get "/tweets/:id/delete" do
     @tweet = Tweet.find_by_id(params[:tweet_id])
-    if @tweet.user_id == session[:user_id]
+    if @tweet.user_id == Helpers.current_user(session).id
       @tweet.destroy
     end
     redirect '/tweets'
@@ -50,8 +50,8 @@ class TweetsController < ApplicationController
 
   get "/tweets" do
     #Need to set variable to session user
-    if session[:user_id]
-      @user = User.find(session[:user_id])
+    if Helpers.is_logged_in?(session)
+      @user = User.find(Helpers.current_user(session).id)
       @tweets = Tweet.all
       erb :"tweets/index"
     else
