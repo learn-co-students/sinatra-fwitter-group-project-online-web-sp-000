@@ -9,11 +9,15 @@ class TweetsController < ApplicationController
 
     get '/tweets' do
         @user = User.find_by_id(session[:user_id])
-        erb :'/tweets/tweets'
+        if logged_in?
+            erb :'/tweets/tweets'
+        else
+            redirect '/login'
+        end
     end
 
     get '/tweets/new' do
-        erb :'/tweets/new'
+        erb :'/tweets/new' 
     end
 
     post '/tweets' do
@@ -23,7 +27,11 @@ class TweetsController < ApplicationController
 
     get '/tweets/:id' do
         @tweet = Tweet.find_by_id(params[:id])
-        erb :'/tweets/show_tweet'
+        if logged_in?
+            erb :'/tweets/show_tweet'
+        else
+            redirect '/login'
+        end
     end
 
     get '/tweets/:id/edit' do

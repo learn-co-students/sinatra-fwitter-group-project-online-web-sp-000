@@ -1,5 +1,8 @@
-<p>Welcome to Fwitter, <%= current_user.username %>. Happy you could join us!</p>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
+<p>Welcome to Fwitter, <%= current_user.username %>. Happy you could join us!</p>
 
 <% Tweet.all.each do |tweet| %>
     <a href="/tweets/<%=tweet.id%>"><p> <%= tweet.content %> </p></a>
