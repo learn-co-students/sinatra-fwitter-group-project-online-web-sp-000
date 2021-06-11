@@ -1,10 +1,16 @@
-<h4><%=@tweet.content%></h4>
-<h4>Created by: <%=@tweet_creator.username%> on <%=@tweet.created_at%></h4>
+<h2><%=@tweet.content%></h2><br>
+<p>--------------------------------------------</p>
+<p>Created by: <%=@tweet_creator.username%> on <%=@tweet.created_at%></p>
 <% if @tweet.updated_at != @tweet.created_at %>
-  <h4>Last updated: <%=@tweet.updated_at%></h4>
+  <p>Last updated: <%=@tweet.updated_at%></p>
 <%end%>
 
-<h4><a href="/tweets/<%=@tweet.id%>/edit">Edit Tweet</a></h4>
+
+
+<form action="/tweets/:id/edit">
+  <input type="submit" value="Edit Tweet">
+</form>
+
 <form action="/tweets/:id/delete">
   <input type="hidden" name="tweet_id" value="<%=@tweet.id%>">
   <input type="submit" value="Delete Tweet">
