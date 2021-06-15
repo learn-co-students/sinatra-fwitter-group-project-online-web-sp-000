@@ -63,5 +63,19 @@ class TweetsController < ApplicationController
         end
     end
 
+    delete '/tweets/:id/delete' do
+        
+        @tweet = Tweet.find(params[:id])
+
+        if Helpers.current_user(session).id == @tweet.user_id
+            @tweet.delete
+            redirect to '/tweets'
+        else
+            redirect to "/tweets/#{@tweet.id}"
+            flash[:message] = "You do not have permission to delete!"    
+        end
+
+    end
+
 
 end
