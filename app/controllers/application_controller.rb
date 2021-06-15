@@ -6,19 +6,14 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     set :session_secret, "password_security"
+    enable :sessions
   end
 
   get '/' do
     erb :'index'
   end
 
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
+  # helpers do
 
-    def current_user
-      User.find(session[:user_id])
-    end
-  end
+  # end
 end

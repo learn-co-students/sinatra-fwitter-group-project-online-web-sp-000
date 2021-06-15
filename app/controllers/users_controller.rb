@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     use Rack::Flash
 
     get '/signup' do
-        if logged_in?
+        if Helpers.is_logged_in?(session)
             redirect to '/tweets'
         else
             erb :'users/signup'
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        if !logged_in?
+        if !Helpers.is_logged_in?(session)
             erb :'users/login'
         else 
             redirect to '/tweets'
@@ -34,10 +34,10 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-        user = User.find_by(:username => params[:username])
+        @user = User.find_by(:username => params[:username])
 
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
             redirect to '/tweets'
         else
             flash[:message] = "This username or password is incorrect."
@@ -46,13 +46,19 @@ class UsersController < ApplicationController
     end
 
     get '/logout' do
-        if logged_in?
+        if Helpers.is_logged_in?(session)
             session.destroy
             redirect to '/login'
         else
             redirect to '/'
         end
     end
+
+    get 'users/:id' do
+        @user = Helpers.current_user(session)
+        session[:user_id] = @user.id
+    end
+
 
 
 
