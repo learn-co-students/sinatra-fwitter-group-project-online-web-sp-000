@@ -1,0 +1,13 @@
+<h3><%= @tweet.content %></h3>
+<br>
+<% if Helpers.is_logged_in?(session) %>
+<%= @error %>
+    <a href="/tweets/<%= @tweet.id%>/edit">Edit Tweet</a>
+    <br>
+    <form action='/tweets/<%= @tweet.id %>/delete' method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">    
+        <input type="submit" id="Delete Tweet" value="Delete Tweet">
+    </form>
+<% else %>
+
+<% end %>
