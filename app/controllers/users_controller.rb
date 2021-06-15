@@ -4,6 +4,13 @@ class UsersController < ApplicationController
     enable :sessions
     use Rack::Flash
 
+    get '/users/:slug' do
+        @user = User.find_by_slug(params[:slug])
+        session[:user_id] = @user.id
+
+        erb :'users/show'
+    end
+
     get '/signup' do
         if Helpers.is_logged_in?(session)
             redirect to '/tweets'
@@ -54,10 +61,7 @@ class UsersController < ApplicationController
         end
     end
 
-    get 'users/:id' do
-        @user = Helpers.current_user(session)
-        session[:user_id] = @user.id
-    end
+
 
 
 

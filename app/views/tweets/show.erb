@@ -1,0 +1,10 @@
+<h3><%= @tweet.content %></h3>
+<br>
+<% if Helpers.is_logged_in?(session) %>
+<%= @error %>
+    <a href="/tweets/<%= @tweet.id%>/edit">Edit Tweet</a>
+    <br>
+    <a href="/tweets/<%= @tweet.id%>/delete">Delete Tweet</a>
+<% else %>
+
+<% end %>
