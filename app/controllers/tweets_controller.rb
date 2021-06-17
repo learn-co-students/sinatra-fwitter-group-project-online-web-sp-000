@@ -1,4 +1,5 @@
 require 'rack-flash'
+require 'pry'
 
 class TweetsController < ApplicationController
     use Rack::Flash
